@@ -17,6 +17,7 @@ public:
     void changer(std::string nom, int degats);
     void afficher() const;
     int getDegats() const;
+    
 
 private:
 

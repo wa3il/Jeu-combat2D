@@ -27,3 +27,5 @@ int Arme::getDegats() const
 {
 	return m_degats;
 }
+
+
