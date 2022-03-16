@@ -7,6 +7,8 @@ using namespace std;
 
 Personnage::Personnage()
 {
+	x = 30;
+	y = 30;
 	cout << "Entre le nom de votre personnage : " << endl;
 	cin >> m_nom;
 	m_arme = 0;

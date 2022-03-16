@@ -33,6 +33,7 @@ void Jeu::init(){
     }
      
 }
+
 void Jeu::boucle(){
 
   
@@ -41,11 +42,10 @@ void Jeu::boucle(){
 
     if(!image)
     {
-    cout<<"Erreur de chargement de l'image : "<<SDL_GetError()<<endl;
-    
+    cout<<"Erreur de chargement de l'image : "<< SDL_GetError()<<endl;
     }
 
-   
+    Personnage MainPlayer ;
 
     SDL_Texture * monImage = SDL_CreateTextureFromSurface(renderer,image);  //La texture monImage contient maintenant l'image importée
     SDL_FreeSurface(image); //Équivalent du destroyTexture pour les surface, permet de libérer la mémoire quand on n'a plus besoin d'une surface
@@ -55,20 +55,45 @@ void Jeu::boucle(){
     //void SDL_MinimizeWindow(SDL_Window* window);  // pour réduire la fenetre dans la barre des taches(prototype)
     //void SDL_RestoreWindow(SDL_Window* window);  //pour restaurer la fenetre(prototype)
 
-
-    
     int largeurFenetre, hauteurFenetre;
     SDL_GetWindowSize(window, &largeurFenetre, &hauteurFenetre); //pour recuperer la largeur de la fenetre
     SDL_Rect rectangle  = {0, 0, largeurFenetre, hauteurFenetre};
-    SDL_RenderFillRect(renderer, &rectangle);  //dessine un rectangle plein (si on désactive la couleur on peut voir appairaitre le rectangle !)
-    //SDL_RenderClear(renderer);
-    SDL_RenderCopy(renderer, monImage, NULL,&rectangle);
 
 
-    //setWindowColor(renderer, orange); //pour mettre a jour la couleur de la fenetre
-    SDL_Delay(1000);
-    SDL_RenderPresent(renderer);
-    SDL_Delay(5000);
+    SDL_Event events;
+    bool isOpen{ true };
+    while (isOpen)
+    {
+        while (SDL_PollEvent(&events))
+        {
+            switch (events.type)
+            {
+                case SDL_QUIT:
+                    isOpen = false;
+                break;
+                
+                case SDL_KEYDOWN: // Un événement de type touche enfoncée est effectué
+                if (events.key.keysym.scancode == SDL_SCANCODE_D){ // Regarde si le scancode W est enfoncé (Z sous un azerty)
+                
+                MainPlayer.bougerAdroite(15);
+                cout<<MainPlayer.x<<endl; // Affiche un message
+                }
+
+                break;
+                 
+            }
+            
+        }
+        
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); // Choisir la couleur noir  
+        SDL_RenderClear(renderer); // Colorier en noir toutes la fenêtre 
+    
+         SDL_RenderFillRect(renderer, &rectangle); 
+         SDL_RenderCopy(renderer, monImage, NULL,&rectangle);
+
+        SDL_RenderPresent(renderer);
+
+    }
 
 }
 

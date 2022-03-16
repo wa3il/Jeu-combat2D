@@ -31,7 +31,8 @@ public:
     void afficherEtat() const;
     std::string getNom() const;
 
-    
+    int x ;
+    int y ;
 
 private:
 
@@ -39,8 +40,7 @@ private:
     int m_vie;
     int m_mana;
     Arme *m_arme;
-    int x ;
-    int y ;
+    
 };
 
 
