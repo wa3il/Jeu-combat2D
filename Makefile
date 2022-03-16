@@ -6,6 +6,9 @@ CPPFLAGS = -g -Wall
 LIBSDL  = -lSDL2 -lSDL2main -lSDL2_ttf -lSDL2_image -lSDL2_mixer
 INCLUDESDL = 
 
+start:$(BINDIR)/mainRPG
+	./$(BINDIR)/mainRPG
+
 
 all : $(BINDIR)/mainRPG
 
