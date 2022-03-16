@@ -10,12 +10,13 @@ INCLUDESDL = -I/usr/include/SDL2
 OBJS_mainRPG = $(OBJDIR)/main.o $(OBJDIR)/Personnage.o $(OBJDIR)/Arme.o $(OBJDIR)/Jeu.o
 OBJS_Jeu = $(OBJDIR)/Jeu.o $(OBJDIR)/Personnage.o $(OBJDIR)/Arme.o
 
-start:$(BINDIR)/mainRPG
+
+
+
+startTxt: $(BINDIR)/mainRPG
+
+startSdl:
 	./$(BINDIR)/mainRPG
-
-
-all : $(BINDIR)/mainRPG
-
 
 
 $(BINDIR)/mainRPG: $(OBJS_mainRPG)
