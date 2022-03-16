@@ -7,18 +7,11 @@ LIBSDL  = -lSDL2 -lSDL2main -lSDL2_ttf -lSDL2_image -lSDL2_mixer
 INCLUDESDL = 
 
 
-all : $(BINDIR)/mainRPG $(BINDIR)/jeuRPG
-
+all : $(BINDIR)/mainRPG
 
 
 $(BINDIR)/mainRPG: $(OBJDIR)/main.o $(OBJDIR)/Personnage.o $(OBJDIR)/Arme.o
 	$(CC) $(CPPFLAGS) $(OBJDIR)/main.o $(OBJDIR)/Personnage.o $(OBJDIR)/Arme.o -o $(BINDIR)/mainRPG $(LIBSDL)
-
-$(BINDIR)/jeuRPG: $(OBJDIR)/jeu.o
-	$(CC) $(CPPFLAGS) -c $(OBJDIR)/jeu.o -o $(BINDIR)/jeuRPG $(LIBSDL)
-
-$(OBJDIR)/jeu.o: $(SRCDIR)/jeu.h 
-	$(CC) $(CPPFLAGS) -c $(SRCDIR)/jeu.h -o $(OBJDIR)/jeu.o $(LIBSDL)
 
 $(OBJDIR)/main.o: $(SRCDIR)/main.cpp $(SRCDIR)/Personnage.h $(SRCDIR)/Arme.h
 	$(CC) $(CPPFLAGS) -c $(SRCDIR)/main.cpp -o $(OBJDIR)/main.o
