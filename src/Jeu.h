@@ -23,7 +23,6 @@ class Jeu{
     public:
         Jeu();
        
-        int lancerJeu();
         void init();
         void boucle();
         void quit();

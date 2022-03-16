@@ -9,7 +9,9 @@ using namespace std;
 int main(void){
 
     Jeu j1;
-    j1.lancerJeu();
+    j1.init();
+    j1.boucle();
+    j1.quit();
 
     Personnage premier, deuxieme;
 

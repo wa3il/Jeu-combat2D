@@ -15,7 +15,7 @@ OBJS_Jeu = $(OBJDIR)/Jeu.o $(OBJDIR)/Personnage.o $(OBJDIR)/Arme.o
 
 startTxt: $(BINDIR)/mainRPG
 
-startSdl:
+startSdl:$(BINDIR)/mainRPG
 	./$(BINDIR)/mainRPG
 
 

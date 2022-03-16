@@ -90,18 +90,13 @@ void Personnage::attaqueMagique(Personnage& cible)
 		else if(m_mana<=0) 
 		{ 
 			cout << m_nom << " n a pas assez de mana pour lancer une attaque magique !" << endl; 
+			m_mana = 0;
 		}
 
 			else 
 			{ 
 				cout << m_nom << " est mort !" << endl; 
 			}
-
-	if (m_mana < 0)
-		{
-			m_mana = 0;
-		}
-	
 	
 }
 
