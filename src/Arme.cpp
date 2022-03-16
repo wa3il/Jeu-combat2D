@@ -29,3 +29,7 @@ int Arme::getDegats() const
 }
 
 
+Arme::~Arme()
+{
+
+}
