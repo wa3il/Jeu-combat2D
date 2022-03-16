@@ -13,7 +13,7 @@
 #include "Personnage.h"
 
 
-class sdlJeu{
+class Jeu{
     private:
         SDL_Window *window;
         SDL_Renderer *renderer;
@@ -21,8 +21,8 @@ class sdlJeu{
         //Image im_background;
 
     public:
-        sdlJeu();
-        ~sdlJeu();
+        Jeu();
+        ~Jeu();
         void init();
         void boucle();
         void quit();

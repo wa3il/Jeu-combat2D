@@ -2,7 +2,7 @@
 #include <time.h>
 #include <stdlib.h>
 
-#include "jeu.h"
+#include "Jeu.h"
 
 #include <iostream>
 using namespace std;
@@ -11,13 +11,13 @@ float temps(){
     return float(SDL_GetTicks())/CLOCKS_PER_SEC;
 }
 
-sdlJeu :: sdlJeu(){
+Jeu Jeu :: Jeu(){
     image = NULL;
     texture = NULL;
     has_changed = false;
 }
 
-sdlJeu :: init(){
+void Jeu :: init(){
     if(0 != SDL_Init(SDL_INIT_VIDEO))
     {
         cout<<"Erreur SDL_Init : "<< SDL_GetError()<<endl;
