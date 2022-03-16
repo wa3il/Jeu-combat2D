@@ -1,10 +1,6 @@
-#include <cassert>
-#include <time.h>
-#include <stdlib.h>
-
 #include "Jeu.h"
 
-#include <iostream>
+
 using namespace std;
 
 

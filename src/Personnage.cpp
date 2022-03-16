@@ -1,13 +1,7 @@
-#include <iostream>
-#include<string>
 #include"Personnage.h"
-#include "Arme.h"
+
 
 using namespace std;
-
-
-
-
 
 
 
@@ -41,17 +35,51 @@ Personnage::Personnage(Personnage const& personnageACopier)
 }
 
 
-
-
-
-Personnage::~Personnage()
-{
-	delete m_arme;
-}
-
 string Personnage::getNom() const
 {
 	return m_nom;
+}
+
+bool Personnage::estVivant() const
+{
+	if (m_vie>0)
+	{
+		return true;
+	}
+	else { return false; }
+}
+
+void Personnage::afficherEtat() const
+{
+
+	cout << "Nom : " << m_nom << endl;
+	cout << "Vie : " << m_vie << endl;
+	cout << "Mana : " << m_mana << endl;
+	m_arme->afficher();
+	if (m_vie == 0) { cout << m_nom << " a perdu" << endl; }
+}
+
+
+
+//mouvements
+
+void Personnage::bougerAgauche{
+
+}
+
+void Personnage::bougerAgauche{
+	
+}
+
+void Personnage::bougerAgauche{
+	
+}
+
+
+void Personnage::changerArme(std::string nomNouvelleArme, int degatsNouvelleArme)
+{
+	m_arme->changer(nomNouvelleArme, degatsNouvelleArme);
+	cout << m_nom << "  => Changement d'arme : " <<nomNouvelleArme<< endl;
 }
 
 
@@ -102,10 +130,6 @@ void Personnage::attaqueMagique(Personnage& cible)
 
 
 
-
-
-
-
 void Personnage::boirePotionDeVie(int quantitePotion)
 {
 	m_vie += quantitePotion;
@@ -117,34 +141,20 @@ void Personnage::boirePotionDeVie(int quantitePotion)
 	
 }
 
-void Personnage::changerArme(std::string nomNouvelleArme, int degatsNouvelleArme)
+
+
+
+
+
+
+
+
+
+
+Personnage::~Personnage()
 {
-	m_arme->changer(nomNouvelleArme, degatsNouvelleArme);
-	cout << m_nom << "  => Changement d'arme : " <<nomNouvelleArme<< endl;
+	delete m_arme;
 }
-
-
-bool Personnage::estVivant() const
-{
-	if (m_vie>0)
-	{
-		return true;
-	}
-	else { return false; }
-}
-
-void Personnage::afficherEtat() const
-{
-
-	cout << "Nom : " << m_nom << endl;
-	cout << "Vie : " << m_vie << endl;
-	cout << "Mana : " << m_mana << endl;
-	m_arme->afficher();
-	if (m_vie == 0) { cout << m_nom << " a perdu" << endl; }
-}
-
-
-
 
 
 

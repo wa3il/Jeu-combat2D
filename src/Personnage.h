@@ -2,14 +2,12 @@
 #define PERSONNAGE_H
 
 #include "Arme.h"
-#include <string>
-#include <SDL2/SDL.h>
-#include <stdio.h>
-#include <stdlib.h>
+
 
 class Personnage
 {
 public:
+
 
     Personnage(); //constructeur
     Personnage(std::string nom, std::string nomArme, int degatsArme);
@@ -19,7 +17,10 @@ public:
     //Le prototype du constructeur de copie
 
     ~Personnage(); //destructeur
-    
+    void bougerAdroite(int xd);
+    void bougerAgauche(int xg);
+    void sauter(int yh);
+
     void recevoirDegats(int nbDegats);
     void attaquer(Personnage& cible);
     void attaqueMagique(Personnage& cible);
@@ -38,6 +39,7 @@ private:
     int m_vie;
     int m_mana;
     Arme *m_arme;
+    int x ,y ;
 };
 
 

@@ -1,7 +1,3 @@
-#include <iostream>
-#include <string>
-#include "Personnage.h"
-#include "Arme.h"
 #include "Jeu.h"
 using namespace std;
 
