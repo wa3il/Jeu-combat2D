@@ -3,10 +3,12 @@
 #include "Personnage.h"
 #include "Arme.h"
 
+
 using namespace std;
 
 int main()
 {
+    
 
     //Personnage david, goliath;
     ////Création de 2 objets de type Personnage : david et goliath
@@ -51,6 +53,8 @@ int main()
 
     return 0;
 
+
+    
 
 
 }
