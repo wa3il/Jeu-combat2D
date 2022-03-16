@@ -2,11 +2,14 @@
 #include <string>
 #include "Personnage.h"
 #include "Arme.h"
-
+#include"jeu.h"
 using namespace std;
 
 
 int main(void){
+
+    sdlJeu j1;
+    j1.init();
 
     Personnage premier, deuxieme;
 

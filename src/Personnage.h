@@ -19,6 +19,7 @@ public:
     //Le prototype du constructeur de copie
 
     ~Personnage(); //destructeur
+    
     void recevoirDegats(int nbDegats);
     void attaquer(Personnage& cible);
     void attaqueMagique(Personnage& cible);
@@ -28,6 +29,7 @@ public:
 
     void afficherEtat() const;
     std::string getNom() const;
+
     
 
 private:
