@@ -5,12 +5,6 @@
 
 using namespace std;
 
-
-
-
-
-
-
 Personnage::Personnage()
 {
 	cout << "Entre le nom de votre personnage : " << endl;
