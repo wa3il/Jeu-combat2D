@@ -39,7 +39,8 @@ private:
     int m_vie;
     int m_mana;
     Arme *m_arme;
-    int x ,y ;
+    int x ;
+    int y ;
 };
 
 

@@ -63,16 +63,16 @@ void Personnage::afficherEtat() const
 
 //mouvements
 
-void Personnage::bougerAgauche{
-
+void Personnage::bougerAgauche(int xg){
+	this->x = this->x - xg;
 }
 
-void Personnage::bougerAgauche{
-	
+void Personnage::bougerAdroite(int xd){
+	this->x = this->x + xd;
 }
 
-void Personnage::bougerAgauche{
-	
+void Personnage::sauter(int yh){
+	this->y = this->y + yh ;
 }
 
 

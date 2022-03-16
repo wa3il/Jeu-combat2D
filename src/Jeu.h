@@ -18,8 +18,8 @@ class Jeu{
         
         //Image im_background;
 
-        Personnage MainPlayer ;
         
+
     public:
         Jeu();
        
