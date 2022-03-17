@@ -81,7 +81,6 @@ void Jeu::boucle(){
     MP.x = 40;
     MP.y = 40;
 
-    SDL_Rect rectPlayer  = SDL_Rect{MP.x,MP.y, 80, 100};
 
     SDL_Event events;
     bool isOpen{ true };
@@ -96,29 +95,35 @@ void Jeu::boucle(){
                 break;
                 
                 case SDL_KEYDOWN: // Un événement de type touche enfoncée est effectué
-                if (events.key.keysym.scancode == SDL_SCANCODE_ESCAPE){ // Regarde si le scancode W est enfoncé (Z sous un azerty)
-                    isOpen = false;
+                switch(events.key.keysym.sym)
+                {
+                        case SDLK_ESCAPE:    // Regarde si le scancode W est enfoncé (Z sous un azerty)
+                        isOpen = false;                
+                        break;
+
+                        case SDLK_d:
+                        MP.bougerAdroite(10);
+                        cout <<"x =" << MP.x <<endl;      
+                        break;        
+
+                        case SDLK_q:
+                        MP.bougerAgauche(10);
+                        cout << "x =" << MP.x <<endl;      
+                        break;       
+
+                        case SDLK_z:
+                        MP.sauter(10);
+                        cout <<"y =" << MP.y <<endl;
+                        break;             
+
                 }
 
-                if (events.key.keysym.scancode == SDL_SCANCODE_D){ // Regarde si le scancode W est enfoncé (Z sous un azerty)
-                MP.bougerAdroite(10);
-                cout <<"x =" << MP.x <<endl;
-                }
-
-                if (events.key.keysym.scancode == SDL_SCANCODE_Q){ // Regarde si le scancode W est enfoncé (Z sous un azerty)
-                MP.bougerAgauche(10);
-                cout << "x =" << MP.x <<endl;
-                }
-
-                if (events.key.keysym.scancode == SDL_SCANCODE_Z){ // Regarde si le scancode W est enfoncé (Z sous un azerty)
-                MP.sauter(10);
-                cout <<"y =" << MP.y <<endl;
-                }
-
-                break;
+            break;
 
             }
         }
+
+    SDL_Rect rectPlayer  = SDL_Rect{MP.x,MP.y, 80, 100};
 
         
        

@@ -83,7 +83,7 @@ void Personnage::bougerAdroite(int xd){
 }
 
 void Personnage::sauter(int yh){
-	this->y = this->y + yh ;
+	this->y = this->y - yh ;
 }
 
 
