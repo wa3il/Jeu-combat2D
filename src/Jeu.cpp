@@ -36,6 +36,9 @@ void Jeu::init(){
 
 void Jeu::boucle(){
 
+
+
+
     // Background 1
     SDL_Surface * image = IMG_Load("./data/image.png");
 
@@ -46,26 +49,53 @@ void Jeu::boucle(){
 
     SDL_Texture * monImage = SDL_CreateTextureFromSurface(renderer,image);  //La texture monImage contient maintenant l'image importée
     SDL_FreeSurface(image); //Équivalent du destroyTexture pour les surface, permet de libérer la mémoire quand on n'a plus besoin d'une surface
-    ////////
+
+
+
+
+
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
     // MainPlayer Image
-    SDL_Surface * imPlayer = IMG_Load("./data/luffy.png");
+    SDL_Surface * imPlayerD = IMG_Load("./data/luffyDroit.png");
 
-    if(!imPlayer)
+    if(!imPlayerD)
     {
     cout<<"Erreur de chargement de l'image : "<< SDL_GetError()<<endl;
     }
 
-    SDL_Texture * texPlayer = SDL_CreateTextureFromSurface(renderer,imPlayer);  //La texture monImage contient maintenant l'image importée
-    SDL_FreeSurface(imPlayer); //Équivalent du destroyTexture pour les surface, permet de libérer la mémoire quand on n'a plus besoin d'une surface
-    ////////
+    SDL_Texture * texPlayerD = SDL_CreateTextureFromSurface(renderer,imPlayerD);  //La texture monImage contient maintenant l'image importée
+    SDL_FreeSurface(imPlayerD); //Équivalent du destroyTexture pour les surface, permet de libérer la mémoire quand on n'a plus besoin d'une surface
 
 
- /* On agit sur la fenêtre ici */
+
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    //luffy gauche
+
+    SDL_Surface * imPlayerG = IMG_Load("./data/luffyGauche.png");
+
+    if(!imPlayerG)
+    {
+    cout<<"Erreur de chargement de l'image : "<< SDL_GetError()<<endl;
+    }
+
+    SDL_Texture * texPlayerG = SDL_CreateTextureFromSurface(renderer,imPlayerG);  //La texture monImage contient maintenant l'image importée
+    SDL_FreeSurface(imPlayerG); //Équivalent du destroyTexture pour les surface, permet de libérer la mémoire quand on n'a plus besoin d'une surface
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
 
     //void SDL_MinimizeWindow(SDL_Window* window);  // pour réduire la fenetre dans la barre des taches(prototype)
     //void SDL_RestoreWindow(SDL_Window* window);  //pour restaurer la fenetre(prototype)
+
+
+
+
 
     //Recuperation de taille de fenetre
     int DIMX, DIMY;
@@ -80,6 +110,13 @@ void Jeu::boucle(){
     //infos joueurs
     MP.x = 40;
     MP.y = 40;
+
+
+    //interupteur :
+
+    bool profilGauche = true;
+
+    
 
 
     SDL_Event events;
@@ -103,12 +140,14 @@ void Jeu::boucle(){
 
                         case SDLK_d:
                         MP.bougerAdroite(10);
-                        cout <<"x =" << MP.x <<endl;      
+                        cout <<"x =" << MP.x <<endl; 
+                        profilGauche=false;     
                         break;        
 
                         case SDLK_q:
                         MP.bougerAgauche(10);
-                        cout << "x =" << MP.x <<endl;      
+                        cout << "x =" << MP.x <<endl;  
+                        profilGauche=true;    
                         break;       
 
                         case SDLK_z:
@@ -137,12 +176,24 @@ void Jeu::boucle(){
         
 
         //image luffy
-        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
-        SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
-        SDL_RenderFillRect(renderer, &rectPlayer); 
-        SDL_RenderCopy(renderer, texPlayer, NULL,&rectPlayer );
+        if (profilGauche){
+            SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+            SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+            SDL_RenderFillRect(renderer, &rectPlayer); 
+            SDL_RenderCopy(renderer, texPlayerG, NULL,&rectPlayer );
+        }
+        else {
+            SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+            SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+            SDL_RenderFillRect(renderer, &rectPlayer); 
+            SDL_RenderCopy(renderer, texPlayerD, NULL,&rectPlayer );
 
+        }
+
+        /////////////////////////////////////////////////////////////////////////////////////////
         SDL_RenderPresent(renderer);
+
+
     }
 }
 
