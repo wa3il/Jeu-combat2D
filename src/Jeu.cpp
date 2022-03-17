@@ -176,19 +176,19 @@ void Jeu::boucle(){
         
 
         //image luffy
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+        SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+        SDL_RenderFillRect(renderer, &rectPlayer); 
+
+
         if (profilGauche){
-            SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
-            SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
-            SDL_RenderFillRect(renderer, &rectPlayer); 
             SDL_RenderCopy(renderer, texPlayerG, NULL,&rectPlayer );
         }
-        else {
-            SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
-            SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
-            SDL_RenderFillRect(renderer, &rectPlayer); 
-            SDL_RenderCopy(renderer, texPlayerD, NULL,&rectPlayer );
 
+        else {
+            SDL_RenderCopy(renderer, texPlayerD, NULL,&rectPlayer );
         }
+
 
         /////////////////////////////////////////////////////////////////////////////////////////
         SDL_RenderPresent(renderer);
