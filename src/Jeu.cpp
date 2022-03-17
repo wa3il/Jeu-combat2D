@@ -34,58 +34,37 @@ void Jeu::init(){
      
 }
 
-void Jeu::boucle(){
+SDL_Texture* Jeu::loadImage(const char* filename){
 
-
-
-
-    // Background 1
-    SDL_Surface * image = IMG_Load("./data/image.png");
+    SDL_Surface * image = IMG_Load(filename);
 
     if(!image)
     {
     cout<<"Erreur de chargement de l'image : "<< SDL_GetError()<<endl;
     }
 
-    SDL_Texture * monImage = SDL_CreateTextureFromSurface(renderer,image);  //La texture monImage contient maintenant l'image importée
+    return SDL_CreateTextureFromSurface(renderer,image);  //La texture monImage contient maintenant l'image importée
     SDL_FreeSurface(image); //Équivalent du destroyTexture pour les surface, permet de libérer la mémoire quand on n'a plus besoin d'une surface
+}
+
+
+void Jeu::boucle(){
 
 
 
+    // Background 1
+
+    SDL_Texture* monImage = loadImage("./data/image.png");
 
 
+    // luffy droite
 
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-    // MainPlayer Image
-    SDL_Surface * imPlayerD = IMG_Load("./data/luffyDroit.png");
-
-    if(!imPlayerD)
-    {
-    cout<<"Erreur de chargement de l'image : "<< SDL_GetError()<<endl;
-    }
-
-    SDL_Texture * texPlayerD = SDL_CreateTextureFromSurface(renderer,imPlayerD);  //La texture monImage contient maintenant l'image importée
-    SDL_FreeSurface(imPlayerD); //Équivalent du destroyTexture pour les surface, permet de libérer la mémoire quand on n'a plus besoin d'une surface
-
-
-
-
+    SDL_Texture * texPlayerD = loadImage("./data/luffyDroit.png");
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //luffy gauche
 
-    SDL_Surface * imPlayerG = IMG_Load("./data/luffyGauche.png");
-
-    if(!imPlayerG)
-    {
-    cout<<"Erreur de chargement de l'image : "<< SDL_GetError()<<endl;
-    }
-
-    SDL_Texture * texPlayerG = SDL_CreateTextureFromSurface(renderer,imPlayerG);  //La texture monImage contient maintenant l'image importée
-    SDL_FreeSurface(imPlayerG); //Équivalent du destroyTexture pour les surface, permet de libérer la mémoire quand on n'a plus besoin d'une surface
-
+    SDL_Texture * texPlayerG = loadImage("./data/luffyGauche.png");
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 

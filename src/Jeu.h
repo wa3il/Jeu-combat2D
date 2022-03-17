@@ -22,11 +22,10 @@ class Jeu{
         Personnage MP;
 
     public:
-
-     
-
         Jeu();
-       
+
+        SDL_Texture* loadImage(const char* filename);
+
         void init();
         void boucle();
         void quit();
