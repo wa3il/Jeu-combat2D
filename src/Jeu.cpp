@@ -48,6 +48,56 @@ SDL_Texture* Jeu::loadImage(const char* filename){
 }
 
 
+bool Jeu::check_collision( SDL_Rect &A, SDL_Rect &B )
+{
+    //Les cotes des rectangles
+    int gaucheA, gaucheB;
+    int droiteA, droiteB;
+    int hautA, hautB;
+    int basA, basB;
+            
+    //Calcul les cotes du rectangle A
+    gaucheA = A.x;
+    droiteA = A.x + A.w;
+    hautA = A.y;
+    basA = A.y + A.h;
+            
+    //Calcul les cotes du rectangle B
+    gaucheB = B.x;
+    droiteB = B.x + B.w;
+    hautB = B.y;
+    basB = B.y + B.h;
+
+
+    //Tests de collision
+    if( basA == basB )
+    {
+        return true;
+    }
+            
+    if( hautA == hautB )
+    {
+        return true;
+    }
+            
+    if( droiteA == droiteB )
+    {
+        return true;
+    }
+            
+    if( gaucheA == gaucheB )
+    {
+        return true;
+    }
+            
+    //Si conditions collision detectee
+    return false;
+        
+}
+
+
+
+
 void Jeu::boucle(){
 
 
@@ -95,7 +145,7 @@ void Jeu::boucle(){
 
     bool profilGauche = true;
 
-    
+
 
 
     SDL_Event events;
@@ -114,24 +164,25 @@ void Jeu::boucle(){
                 switch(events.key.keysym.sym)
                 {
                         case SDLK_ESCAPE:    // Regarde si le scancode W est enfoncé (Z sous un azerty)
-                        isOpen = false;                
+                            isOpen = false;                
                         break;
 
                         case SDLK_d:
-                        MP.bougerAdroite(10);
-                        cout <<"x =" << MP.x <<endl; 
-                        profilGauche=false;     
-                        break;        
+                            MP.bougerAdroite(10);
+                            cout <<"x =" << MP.x <<endl; 
+                            profilGauche=false;
+                        break;    
+                            
 
                         case SDLK_q:
-                        MP.bougerAgauche(10);
-                        cout << "x =" << MP.x <<endl;  
-                        profilGauche=true;    
+                            MP.bougerAgauche(10);
+                            cout << "x =" << MP.x <<endl;  
+                            profilGauche=true;    
                         break;       
 
                         case SDLK_z:
-                        MP.sauter(10);
-                        cout <<"y =" << MP.y <<endl;
+                            MP.sauter(10);
+                            cout <<"y =" << MP.y <<endl;
                         break;             
 
                 }
@@ -139,9 +190,31 @@ void Jeu::boucle(){
             break;
 
             }
+
         }
 
-        SDL_Rect rectPlayer  = SDL_Rect{MP.x,MP.y+245, 80, 100};
+
+
+SDL_Rect rectPlayer  = {MP.x,MP.y+245, 80, 100};
+
+if (check_collision(rectPlayer, rectangle))
+    { 
+        /*
+        // collision droite
+        if(rectPlayer.x >640) {
+            MP.x =620;
+        }
+        // collision gauche
+        if(rectPlayer.x < 0) {
+            MP.x = 0;
+        } */
+     
+        MP.x=0;
+        
+    }
+
+
+
 
         
        

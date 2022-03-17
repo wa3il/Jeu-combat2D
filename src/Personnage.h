@@ -18,8 +18,8 @@ public:
     //Le prototype du constructeur de copie
 
     ~Personnage(); //destructeur
-    void bougerAdroite(int xd);
-    void bougerAgauche(int xg);
+    void bougerAdroite(float xd);
+    void bougerAgauche(float xg);
     void sauter(int yh);
 
     void recevoirDegats(int nbDegats);

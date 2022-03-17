@@ -74,11 +74,11 @@ void Personnage::afficherEtat() const
 
 //mouvements
 
-void Personnage::bougerAgauche(int xg){
+void Personnage::bougerAgauche(float xg){
 	this->x = this->x - xg;
 }
 
-void Personnage::bougerAdroite(int xd){
+void Personnage::bougerAdroite(float xd){
 	this->x = this->x + xd;
 }
 
@@ -166,8 +166,4 @@ Personnage::~Personnage()
 {
 	delete m_arme;
 }
-
-
-
-
 
