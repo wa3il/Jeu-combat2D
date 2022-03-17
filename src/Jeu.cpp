@@ -77,7 +77,7 @@ void Jeu::boucle(){
 
 
 
-//infos joueurs
+    //infos joueurs
     MP.x = 40;
     MP.y = 40;
 
@@ -123,7 +123,7 @@ void Jeu::boucle(){
             }
         }
 
-    SDL_Rect rectPlayer  = SDL_Rect{MP.x,MP.y, 80, 100};
+        SDL_Rect rectPlayer  = SDL_Rect{MP.x,MP.y, 80, 100};
 
         
        
@@ -131,14 +131,14 @@ void Jeu::boucle(){
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); 
         SDL_RenderClear(renderer);  
 
-    //Background
+        //Background
         SDL_RenderFillRect(renderer, &rectangle); 
         SDL_RenderCopy(renderer, monImage, NULL,&rectangle );
         
 
         //image luffy
-        SDL_SetRenderDrawBlendMode(renderer ,SDL_BLENDMODE_NONE);
-        SDL_SetTextureBlendMode(texPlayer, SDL_BLENDMODE_BLEND);
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+        SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
         SDL_RenderFillRect(renderer, &rectPlayer); 
         SDL_RenderCopy(renderer, texPlayer, NULL,&rectPlayer );
 
