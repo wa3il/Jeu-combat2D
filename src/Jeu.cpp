@@ -162,7 +162,7 @@ void Jeu::boucle(){
             }
         }
 
-        SDL_Rect rectPlayer  = SDL_Rect{MP.x,MP.y, 80, 100};
+        SDL_Rect rectPlayer  = SDL_Rect{MP.x,MP.y+245, 80, 100};
 
         
        
