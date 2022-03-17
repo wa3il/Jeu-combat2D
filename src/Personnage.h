@@ -10,6 +10,7 @@ public:
 
 
     Personnage(); //constructeur
+    Personnage(int x , int y);//
     Personnage(std::string nom, std::string nomArme, int degatsArme);
     Personnage(std::string nom, int vie, int mana);
 

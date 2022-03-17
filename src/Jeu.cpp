@@ -36,8 +36,7 @@ void Jeu::init(){
 
 void Jeu::boucle(){
 
-  
-
+    // Background 1
     SDL_Surface * image = IMG_Load("./data/image.png");
 
     if(!image)
@@ -45,20 +44,44 @@ void Jeu::boucle(){
     cout<<"Erreur de chargement de l'image : "<< SDL_GetError()<<endl;
     }
 
-    Personnage MainPlayer ;
-
     SDL_Texture * monImage = SDL_CreateTextureFromSurface(renderer,image);  //La texture monImage contient maintenant l'image importée
     SDL_FreeSurface(image); //Équivalent du destroyTexture pour les surface, permet de libérer la mémoire quand on n'a plus besoin d'une surface
+    ////////
+
+
+    // MainPlayer Image
+    SDL_Surface * imPlayer = IMG_Load("./data/luffy.png");
+
+    if(!imPlayer)
+    {
+    cout<<"Erreur de chargement de l'image : "<< SDL_GetError()<<endl;
+    }
+
+    SDL_Texture * texPlayer = SDL_CreateTextureFromSurface(renderer,imPlayer);  //La texture monImage contient maintenant l'image importée
+    SDL_FreeSurface(imPlayer); //Équivalent du destroyTexture pour les surface, permet de libérer la mémoire quand on n'a plus besoin d'une surface
+    ////////
+
 
  /* On agit sur la fenêtre ici */
 
     //void SDL_MinimizeWindow(SDL_Window* window);  // pour réduire la fenetre dans la barre des taches(prototype)
     //void SDL_RestoreWindow(SDL_Window* window);  //pour restaurer la fenetre(prototype)
 
-    int largeurFenetre, hauteurFenetre;
-    SDL_GetWindowSize(window, &largeurFenetre, &hauteurFenetre); //pour recuperer la largeur de la fenetre
-    SDL_Rect rectangle  = {0, 0, largeurFenetre, hauteurFenetre};
+    //Recuperation de taille de fenetre
+    int DIMX, DIMY;
+    SDL_GetWindowSize(window, &DIMX, &DIMY); //pour recuperer la largeur de la fenetre
+    //
+    SDL_Rect rectangle  = {0, 0, DIMX, DIMY};
 
+   
+
+
+
+//infos joueurs
+    MP.x = 40;
+    MP.y = 40;
+
+    SDL_Rect rectPlayer  = SDL_Rect{MP.x,MP.y, 80, 100};
 
     SDL_Event events;
     bool isOpen{ true };
@@ -73,28 +96,49 @@ void Jeu::boucle(){
                 break;
                 
                 case SDL_KEYDOWN: // Un événement de type touche enfoncée est effectué
+                if (events.key.keysym.scancode == SDL_SCANCODE_ESCAPE){ // Regarde si le scancode W est enfoncé (Z sous un azerty)
+                    isOpen = false;
+                }
+
                 if (events.key.keysym.scancode == SDL_SCANCODE_D){ // Regarde si le scancode W est enfoncé (Z sous un azerty)
-                
-                MainPlayer.bougerAdroite(15);
-                cout<<MainPlayer.x<<endl; // Affiche un message
+                MP.bougerAdroite(10);
+                cout <<"x =" << MP.x <<endl;
+                }
+
+                if (events.key.keysym.scancode == SDL_SCANCODE_Q){ // Regarde si le scancode W est enfoncé (Z sous un azerty)
+                MP.bougerAgauche(10);
+                cout << "x =" << MP.x <<endl;
+                }
+
+                if (events.key.keysym.scancode == SDL_SCANCODE_Z){ // Regarde si le scancode W est enfoncé (Z sous un azerty)
+                MP.sauter(10);
+                cout <<"y =" << MP.y <<endl;
                 }
 
                 break;
-                 
+
             }
-            
         }
+
         
-        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); // Choisir la couleur noir  
-        SDL_RenderClear(renderer); // Colorier en noir toutes la fenêtre 
-    
-         SDL_RenderFillRect(renderer, &rectangle); 
-         SDL_RenderCopy(renderer, monImage, NULL,&rectangle);
+       
+       //couleur noire par default
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); 
+        SDL_RenderClear(renderer);  
+
+    //Background
+        SDL_RenderFillRect(renderer, &rectangle); 
+        SDL_RenderCopy(renderer, monImage, NULL,&rectangle );
+        
+
+        //image luffy
+        SDL_SetRenderDrawBlendMode(renderer ,SDL_BLENDMODE_NONE);
+        SDL_SetTextureBlendMode(texPlayer, SDL_BLENDMODE_BLEND);
+        SDL_RenderFillRect(renderer, &rectPlayer); 
+        SDL_RenderCopy(renderer, texPlayer, NULL,&rectPlayer );
 
         SDL_RenderPresent(renderer);
-
     }
-
 }
 
 void Jeu::quit(){
@@ -103,6 +147,8 @@ void Jeu::quit(){
         SDL_DestroyRenderer(renderer);
     if(NULL != window)
         SDL_DestroyWindow(window);
+
+   
     SDL_Quit();
     
 }

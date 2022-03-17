@@ -7,10 +7,19 @@ using namespace std;
 
 Personnage::Personnage()
 {
-	x = 30;
-	y = 30;
+	x=0;
+	y=0;
 	cout << "Entre le nom de votre personnage : " << endl;
 	cin >> m_nom;
+	m_arme = 0;
+	m_vie = 100;
+	m_mana = 100;
+	m_arme = new Arme();
+	
+}
+
+Personnage::Personnage(int x1 , int y1) : x(x1),y(y1)
+{
 	m_arme = 0;
 	m_vie = 100;
 	m_mana = 100;

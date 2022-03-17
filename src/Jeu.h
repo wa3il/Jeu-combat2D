@@ -11,6 +11,7 @@
 #include "Personnage.h"
 
 
+
 class Jeu{
     private:
         SDL_Window *window;
@@ -18,9 +19,12 @@ class Jeu{
         
         //Image im_background;
 
-        
+        Personnage MP;
 
     public:
+
+     
+
         Jeu();
        
         void init();
