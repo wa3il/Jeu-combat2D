@@ -20,6 +20,7 @@ class Jeu{
         //Image im_background;
 
         Personnage MP;
+        Personnage SP;
 
     public:
         Jeu();

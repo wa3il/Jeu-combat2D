@@ -109,12 +109,21 @@ void Jeu::boucle(){
 
     // luffy droite
 
-    SDL_Texture * texPlayerD = loadImage("./data/luffyDroit.png");
+    SDL_Texture * texMPlayerD = loadImage("./data/luffyDroit.png");
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //luffy gauche
 
-    SDL_Texture * texPlayerG = loadImage("./data/luffyGauche.png");
+    SDL_Texture * texMPlayerG = loadImage("./data/luffyGauche.png");
+
+    //ichigo droite
+
+    SDL_Texture * texSPlayerD = loadImage("./data/ichigoDroit.png");
+
+    //ichigo gauche
+
+    SDL_Texture * texSPlayerG = loadImage("./data/ichigoGauche.png");
+
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
@@ -137,13 +146,18 @@ void Jeu::boucle(){
 
 
     //infos joueurs
+    //1
     MP.x = 40;
     MP.y = 40;
+    //2
+    SP.x = 600;
+    SP.x = 40;
 
 
     //interupteur :
 
-    bool profilGauche = true;
+    bool profilGaucheMP = true;
+    bool profilGaucheSP = true;
 
 
 
@@ -169,21 +183,35 @@ void Jeu::boucle(){
 
                         case SDLK_d:
                             MP.bougerAdroite(10);
-                            cout <<"x =" << MP.x <<endl; 
-                            profilGauche=false;
+                            cout <<"MP.x =" << MP.x <<endl; 
+                            profilGaucheMP=false;
                         break;    
                             
 
                         case SDLK_q:
                             MP.bougerAgauche(10);
-                            cout << "x =" << MP.x <<endl;  
-                            profilGauche=true;    
+                            cout << "MP.x =" << MP.x <<endl;  
+                            profilGaucheMP=true;    
                         break;       
 
                         case SDLK_z:
                             MP.sauter(10);
-                            cout <<"y =" << MP.y <<endl;
-                        break;             
+                            cout <<"MP.y =" << MP.y <<endl;
+                        break;
+
+                        case SDLK_LEFT:
+                            SP.bougerAgauche(10);     
+                            cout << "SP.x =" << SP.x <<endl; 
+                            profilGaucheSP=true;
+ 
+                        break;
+
+                        case SDLK_RIGHT:
+                            SP.bougerAdroite(10);     
+                            cout << "SP.x =" << SP.x <<endl;  
+                            profilGaucheSP=false;
+
+                        break;
 
                 }
 
@@ -195,17 +223,19 @@ void Jeu::boucle(){
 
 
 
-SDL_Rect rectPlayer  = {MP.x,MP.y+245, 80, 100};
+SDL_Rect rectMPlayer  = {MP.x,MP.y+245, 80, 100};
+SDL_Rect rectSPlayer  = {500,SP.y+265, 100, 120};
 
-if (check_collision(rectPlayer, rectangle))
+
+if (check_collision(rectMPlayer, rectangle))
     { 
         /*
         // collision droite
-        if(rectPlayer.x >640) {
+        if(rectMPlayer.x >640) {
             MP.x =620;
         }
         // collision gauche
-        if(rectPlayer.x < 0) {
+        if(rectMPlayer.x < 0) {
             MP.x = 0;
         } */
      
@@ -230,16 +260,21 @@ if (check_collision(rectPlayer, rectangle))
         //image luffy
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
         SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
-        SDL_RenderFillRect(renderer, &rectPlayer); 
+        SDL_RenderFillRect(renderer, &rectMPlayer); 
+
+        //image ichigo
+        SDL_RenderFillRect(renderer, &rectSPlayer); 
+
+            
 
 
-        if (profilGauche){
-            SDL_RenderCopy(renderer, texPlayerG, NULL,&rectPlayer );
-        }
 
-        else {
-            SDL_RenderCopy(renderer, texPlayerD, NULL,&rectPlayer );
-        }
+        if (profilGaucheMP){ SDL_RenderCopy(renderer, texMPlayerG, NULL,&rectMPlayer );}
+        else {SDL_RenderCopy(renderer, texMPlayerD, NULL,&rectMPlayer );}
+
+        if (profilGaucheSP){ SDL_RenderCopy(renderer, texSPlayerG, NULL,&rectSPlayer );}
+        else {SDL_RenderCopy(renderer, texSPlayerD, NULL,&rectSPlayer );}
+
 
 
         /////////////////////////////////////////////////////////////////////////////////////////
