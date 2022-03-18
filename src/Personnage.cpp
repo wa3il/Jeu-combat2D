@@ -11,38 +11,36 @@ Personnage::Personnage()
 	y=0;
 	cout << "Entre le nom de votre personnage : " << endl;
 	cin >> m_nom;
-	m_arme = 0;
 	m_vie = 100;
 	m_mana = 100;
-	m_arme = new Arme();
+	m_competence = new Competence();
 	
 }
 
 Personnage::Personnage(int x1 , int y1) : x(x1),y(y1)
 {
-	m_arme = 0;
 	m_vie = 100;
 	m_mana = 100;
-	m_arme = new Arme();
+	m_competence = new Competence();
 	
 }
 
-Personnage::Personnage(string nom ,string nomArme, int degatsArme) : m_nom(nom), m_vie(100), m_mana(100)
+Personnage::Personnage(string nom ,string nomCompetence, int degatsCompetence) : m_nom(nom), m_vie(100), m_mana(100)
 {
-	m_arme = new Arme(nomArme, degatsArme);
+	m_competence = new Competence(nomCompetence, degatsCompetence);
 }
 
 
-Personnage::Personnage(string nom, int vie, int mana) : m_nom(nom), m_vie(vie), m_mana(mana), m_arme(0)
+Personnage::Personnage(string nom, int vie, int mana) : m_nom(nom), m_vie(vie), m_mana(mana), m_competence(0)
 {
-	m_arme = new Arme("Epee rouillee", (10));
+	m_competence = new Competence("Epee rouillee", (10));
 }
 
 
 Personnage::Personnage(Personnage const& personnageACopier)
-	: m_vie(personnageACopier.m_vie), m_mana(personnageACopier.m_mana), m_arme(0)
+	: m_vie(personnageACopier.m_vie), m_mana(personnageACopier.m_mana), m_competence(0)
 {
-	m_arme = new Arme(*(personnageACopier.m_arme));
+	m_competence = new Competence(*(personnageACopier.m_competence));
 }
 
 
@@ -66,7 +64,7 @@ void Personnage::afficherEtat() const
 	cout << "Nom : " << m_nom << endl;
 	cout << "Vie : " << m_vie << endl;
 	cout << "Mana : " << m_mana << endl;
-	m_arme->afficher();
+	m_competence->afficher();
 	if (m_vie == 0) { cout << m_nom << " a perdu" << endl; }
 }
 
@@ -87,10 +85,10 @@ void Personnage::sauter(int yh){
 }
 
 
-void Personnage::changerArme(std::string nomNouvelleArme, int degatsNouvelleArme)
+void Personnage::changerCompetence(std::string nomNouvelleCompetence, int degatsNouvelleCompetence)
 {
-	m_arme->changer(nomNouvelleArme, degatsNouvelleArme);
-	cout << m_nom << "  => Changement d'arme : " <<nomNouvelleArme<< endl;
+	m_competence->changer(nomNouvelleCompetence, degatsNouvelleCompetence);
+	cout << m_nom << "  => Changement de competence : " <<nomNouvelleCompetence<< endl;
 }
 
 
@@ -111,7 +109,7 @@ void Personnage::recevoirDegats(int nbDegats)
 void Personnage::attaquer(Personnage& cible)
 {
 	cout << m_nom << " attaque " << cible.getNom() << endl;
-	cible.recevoirDegats(m_arme->getDegats());	
+	cible.recevoirDegats(m_competence->getDegats());	
 }
 
 
@@ -164,6 +162,6 @@ void Personnage::boirePotionDeVie(int quantitePotion)
 
 Personnage::~Personnage()
 {
-	delete m_arme;
+	delete m_competence;
 }
 

@@ -14,7 +14,7 @@ int main(void){
     premier.attaquer(deuxieme);
     //cout << "appuyer sur E pour lancer une attaque a l'arme " << endl;
     deuxieme.attaqueMagique(premier);
-    premier.changerArme("arme qui encule des races", 90);
+    premier.changerCompetence("arme qui encule des races", 90);
     premier.attaquer(deuxieme);
     deuxieme.attaqueMagique(premier);
     premier.estVivant();

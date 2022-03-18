@@ -1,5 +1,5 @@
-#ifndef ARME_H
-#define ARME_H
+#ifndef COMPETENCE_H
+#define COMPETENCE_H
 
 #include <iostream>
 #include <string>
@@ -11,16 +11,16 @@
 
 
 
-class Arme
+class Competence
 {
 public:
 
-    Arme();
-    Arme(std::string nom, int degats);
+    Competence();
+    Competence(std::string nom, int degats);
     void changer(std::string nom, int degats);
     void afficher() const;
     int getDegats() const;
-    ~Arme();
+    ~Competence();
 
 private:
 
