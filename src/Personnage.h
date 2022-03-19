@@ -38,6 +38,8 @@ public:
 
 
     Vector2D m_position;
+    Vector2D m_vitesse;
+    Vector2D m_acceleration;
 
 private:
 

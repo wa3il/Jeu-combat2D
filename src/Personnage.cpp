@@ -44,16 +44,26 @@ Personnage::Personnage(Personnage const& personnageACopier)
 }
 
 
+
+
 string Personnage::getNom() const
 {
 	return m_nom;
 }
 
+
+
+
+//getter pour avoir la position x :
 int& Personnage :: getx(){ return m_position.getx(); }
 int& Personnage :: gety(){ return m_position.gety(); }
 
+//getter pour avoir la position y :
 void Personnage :: setx(int x){ m_position.setx(x); }
 void Personnage :: sety(int y){ m_position.sety(y); }
+
+
+
 
 bool Personnage::estVivant() const
 {
@@ -92,11 +102,16 @@ void Personnage::sauter(int yh){
 }
 
 
+
+
+
 void Personnage::changerCompetence(std::string nomNouvelleCompetence, int degatsNouvelleCompetence)
 {
 	m_competence->changer(nomNouvelleCompetence, degatsNouvelleCompetence);
 	cout << m_nom << "  => Changement de competence : " <<nomNouvelleCompetence<< endl;
 }
+
+
 
 
 

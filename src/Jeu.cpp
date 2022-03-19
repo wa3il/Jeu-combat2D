@@ -4,6 +4,7 @@
 using namespace std;
 
 
+
 Jeu::Jeu(){
 
 };
@@ -138,7 +139,6 @@ void Jeu::boucle(){
     //Recuperation de taille de fenetre
     int DIMX, DIMY;
     SDL_GetWindowSize(window, &DIMX, &DIMY); //pour recuperer la largeur de la fenetre
-    //
     SDL_Rect rectangle  = {0, 0, DIMX, DIMY};
 
    
@@ -152,6 +152,8 @@ void Jeu::boucle(){
     //2
     SP.setx(500);
     SP.sety(40);
+
+
 
 
     //interupteur :
@@ -228,30 +230,22 @@ void Jeu::boucle(){
 
 
 
-
-
             SDL_Rect rectMPlayer  = {MP.getx(),MP.gety()+245, 80, 100};
             SDL_Rect rectSPlayer  = {SP.getx(),SP.gety()+230, 100, 120};
 
 
-        if (check_collision(rectMPlayer, rectangle))
-        { 
-            /*
-            // collision droite
-            if(rectMPlayer.x >640) {
-                MP.x =620;
-            }
-            // collision gauche
-            if(rectMPlayer.x < 0) {
-                MP.x = 0;
-            } */
+
+            //collision :
+            /* MP */
+            if (MP.getx() < -20) MP.setx(-20);  //collision gauche
+            if (MP.getx() > DIMX-50) MP.getx() = DIMX-50; //collision droite
             
-            MP.getx()=0;
-                
-        }
-
-
-
+            /* SP */
+            if (SP.getx() < -20) SP.setx(-20);  //collision gauche
+            if (SP.getx() > DIMX-50) SP.getx() = DIMX-50; //collision droite
+            
+            //if (MP.gety() < 0)MP.gety() = 0;
+            //if (MP.gety() > DIMY) MP.sety();
 
         
        
@@ -287,7 +281,7 @@ void Jeu::boucle(){
         /////////////////////////////////////////////////////////////////////////////////////////
         SDL_RenderPresent(renderer);
 
-
+        //SDL_Delay();
     }
 }
 
