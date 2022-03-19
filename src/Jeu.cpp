@@ -147,11 +147,11 @@ void Jeu::boucle(){
 
     //infos joueurs
     //1
-    MP.x = 40;
-    MP.y = 40;
+    MP.setx(40);
+    MP.sety(40);
     //2
-    SP.x = 500;
-    SP.y = 40;
+    SP.setx(500);
+    SP.sety(40);
 
 
     //interupteur :
@@ -183,39 +183,39 @@ void Jeu::boucle(){
 
                         case SDLK_d:
                             MP.bougerAdroite(10);
-                            cout <<"MP.x =" << MP.x <<endl; 
+                            cout <<"MP.x =" << MP.getx() <<endl; 
                             profilGaucheMP=false;
                         break;    
                             
 
                         case SDLK_q:
                             MP.bougerAgauche(10);
-                            cout << "MP.x =" << MP.x <<endl;  
+                            cout << "MP.x =" << MP.getx() <<endl;  
                             profilGaucheMP=true;    
                         break;       
 
                         case SDLK_z:
                             MP.sauter(10);
-                            cout <<"MP.y =" << MP.y <<endl;
+                            cout <<"MP.y =" << MP.gety() <<endl;
                         break;
 
                         case SDLK_LEFT:
                             SP.bougerAgauche(10);     
-                            cout << "SP.x =" << SP.x <<endl; 
+                            cout << "SP.x =" << SP.getx() <<endl; 
                             profilGaucheSP=true;
  
                         break;
 
                         case SDLK_RIGHT:
                             SP.bougerAdroite(10);     
-                            cout << "SP.x =" << SP.x <<endl;  
+                            cout << "SP.x =" << SP.getx() <<endl;  
                             profilGaucheSP=false;
 
                         break;
 
                         case SDLK_UP:
                             SP.sauter(10);
-                            cout <<"SP.y =" << SP.y <<endl;
+                            cout <<"SP.y =" << SP.gety() <<endl;
                         break;
 
                 }
@@ -230,8 +230,8 @@ void Jeu::boucle(){
 
 
 
-            SDL_Rect rectMPlayer  = {MP.x,MP.y+245, 80, 100};
-            SDL_Rect rectSPlayer  = {SP.x,SP.y+230, 100, 120};
+            SDL_Rect rectMPlayer  = {MP.getx(),MP.gety()+245, 80, 100};
+            SDL_Rect rectSPlayer  = {SP.getx(),SP.gety()+230, 100, 120};
 
 
         if (check_collision(rectMPlayer, rectangle))
@@ -246,7 +246,7 @@ void Jeu::boucle(){
                 MP.x = 0;
             } */
             
-            MP.x=0;
+            MP.getx()=0;
                 
         }
 

@@ -6,9 +6,8 @@ using namespace std;
 
 
 Personnage::Personnage()
-{
-	x=0;
-	y=0;
+{	
+	m_position = Vector2D();
 	cout << "Entre le nom de votre personnage : " << endl;
 	cin >> m_nom;
 	m_vie = 100;
@@ -17,8 +16,9 @@ Personnage::Personnage()
 	
 }
 
-Personnage::Personnage(int x1 , int y1) : x(x1),y(y1)
+Personnage::Personnage(float x,float y)
 {
+	m_position = Vector2D(x,y);
 	m_vie = 100;
 	m_mana = 100;
 	m_competence = new Competence();
@@ -49,6 +49,12 @@ string Personnage::getNom() const
 	return m_nom;
 }
 
+float& Personnage :: getx(){ return m_position.getx(); }
+float& Personnage :: gety(){ return m_position.gety(); }
+
+void Personnage :: setx(float x){ m_position.setx(x); }
+void Personnage :: sety(float y){ m_position.sety(y); }
+
 bool Personnage::estVivant() const
 {
 	if (m_vie>0)
@@ -73,15 +79,16 @@ void Personnage::afficherEtat() const
 //mouvements
 
 void Personnage::bougerAgauche(float xg){
-	this->x = this->x - xg;
+
+	m_position.getx() = m_position.getx() - xg;
 }
 
 void Personnage::bougerAdroite(float xd){
-	this->x = this->x + xd;
+	m_position.getx() = m_position.getx() + xd;
 }
 
 void Personnage::sauter(int yh){
-	this->y = this->y - yh ;
+	m_position.gety() = m_position.gety() - yh;
 }
 
 
@@ -149,15 +156,6 @@ void Personnage::boirePotionDeVie(int quantitePotion)
 	cout << m_nom << " boit une potion et se remet a " << m_vie << " points de vie" << endl;
 	
 }
-
-
-
-
-
-
-
-
-
 
 
 Personnage::~Personnage()

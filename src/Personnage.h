@@ -2,7 +2,7 @@
 #define PERSONNAGE_H
 
 #include "Competence.h"
-
+#include "Vector2D.h"
 
 class Personnage
 {
@@ -10,7 +10,7 @@ public:
 
 
     Personnage(); //constructeur
-    Personnage(int x , int y);//
+    Personnage(float x,float y);//
     Personnage(std::string nom, std::string nomCompetence, int degatsCompetence);
     Personnage(std::string nom, int vie, int mana);
 
@@ -31,9 +31,13 @@ public:
 
     void afficherEtat() const;
     std::string getNom() const;
+    float& getx();
+    float& gety();
+    void setx(float x);
+    void sety(float x);
 
-    int x ;
-    int y ;
+
+    Vector2D m_position;
 
 private:
 
