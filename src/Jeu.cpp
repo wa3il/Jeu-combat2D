@@ -150,8 +150,8 @@ void Jeu::boucle(){
     MP.x = 40;
     MP.y = 40;
     //2
-    SP.x = 600;
-    SP.x = 40;
+    SP.x = 500;
+    SP.y = 40;
 
 
     //interupteur :
@@ -213,6 +213,11 @@ void Jeu::boucle(){
 
                         break;
 
+                        case SDLK_UP:
+                            SP.sauter(10);
+                            cout <<"SP.y =" << SP.y <<endl;
+                        break;
+
                 }
 
             break;
@@ -223,25 +228,27 @@ void Jeu::boucle(){
 
 
 
-SDL_Rect rectMPlayer  = {MP.x,MP.y+245, 80, 100};
-SDL_Rect rectSPlayer  = {500,SP.y+265, 100, 120};
 
 
-if (check_collision(rectMPlayer, rectangle))
-    { 
-        /*
-        // collision droite
-        if(rectMPlayer.x >640) {
-            MP.x =620;
+            SDL_Rect rectMPlayer  = {MP.x,MP.y+245, 80, 100};
+            SDL_Rect rectSPlayer  = {SP.x,SP.y+230, 100, 120};
+
+
+        if (check_collision(rectMPlayer, rectangle))
+        { 
+            /*
+            // collision droite
+            if(rectMPlayer.x >640) {
+                MP.x =620;
+            }
+            // collision gauche
+            if(rectMPlayer.x < 0) {
+                MP.x = 0;
+            } */
+            
+            MP.x=0;
+                
         }
-        // collision gauche
-        if(rectMPlayer.x < 0) {
-            MP.x = 0;
-        } */
-     
-        MP.x=0;
-        
-    }
 
 
 
@@ -283,6 +290,8 @@ if (check_collision(rectMPlayer, rectangle))
 
     }
 }
+
+
 
 void Jeu::quit(){
 
