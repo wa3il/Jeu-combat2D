@@ -5,12 +5,12 @@
 
 class Vector2D{
     private:
-        float x,y;
+        int x,y;
 
     public:
         /**constructeur destructeur */
         Vector2D();
-        Vector2D(float xpos,float ypos);
+        Vector2D(int xpos,int ypos);
         ~Vector2D();
 
         /**Surcharge d'operateur de la classe vecteur*/
@@ -19,11 +19,11 @@ class Vector2D{
         Vector2D& operator+=(const Vector2D& op);
 
         /** Mutateur est accesseur */
-        float& getx();
-        float& gety();
+        int& getx();
+        int& gety();
 
-        void setx(float xpos);
-        void sety(float ypos);
+        void setx(int xpos);
+        void sety(int ypos);
 
 };
 

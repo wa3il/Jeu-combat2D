@@ -10,7 +10,7 @@ public:
 
 
     Personnage(); //constructeur
-    Personnage(float x,float y);//
+    Personnage(int x,int y);//
     Personnage(std::string nom, std::string nomCompetence, int degatsCompetence);
     Personnage(std::string nom, int vie, int mana);
 
@@ -18,8 +18,8 @@ public:
     //Le prototype du constructeur de copie
 
     ~Personnage(); //destructeur
-    void bougerAdroite(float xd);
-    void bougerAgauche(float xg);
+    void bougerAdroite(int xd);
+    void bougerAgauche(int xg);
     void sauter(int yh);
 
     void recevoirDegats(int nbDegats);
@@ -31,10 +31,10 @@ public:
 
     void afficherEtat() const;
     std::string getNom() const;
-    float& getx();
-    float& gety();
-    void setx(float x);
-    void sety(float x);
+    int& getx();
+    int& gety();
+    void setx(int x);
+    void sety(int x);
 
 
     Vector2D m_position;

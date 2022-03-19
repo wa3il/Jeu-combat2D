@@ -16,7 +16,7 @@ Personnage::Personnage()
 	
 }
 
-Personnage::Personnage(float x,float y)
+Personnage::Personnage(int x,int y)
 {
 	m_position = Vector2D(x,y);
 	m_vie = 100;
@@ -49,11 +49,11 @@ string Personnage::getNom() const
 	return m_nom;
 }
 
-float& Personnage :: getx(){ return m_position.getx(); }
-float& Personnage :: gety(){ return m_position.gety(); }
+int& Personnage :: getx(){ return m_position.getx(); }
+int& Personnage :: gety(){ return m_position.gety(); }
 
-void Personnage :: setx(float x){ m_position.setx(x); }
-void Personnage :: sety(float y){ m_position.sety(y); }
+void Personnage :: setx(int x){ m_position.setx(x); }
+void Personnage :: sety(int y){ m_position.sety(y); }
 
 bool Personnage::estVivant() const
 {
@@ -78,12 +78,12 @@ void Personnage::afficherEtat() const
 
 //mouvements
 
-void Personnage::bougerAgauche(float xg){
+void Personnage::bougerAgauche(int xg){
 
 	m_position.getx() = m_position.getx() - xg;
 }
 
-void Personnage::bougerAdroite(float xd){
+void Personnage::bougerAdroite(int xd){
 	m_position.getx() = m_position.getx() + xd;
 }
 
