@@ -1,10 +1,11 @@
 #include "Jeu.h"
+#include "JeuSDL.h"
 using namespace std;
 
 
 int main(void){
 
-    Jeu j1;
+    JeuSDL j1;
     j1.init();
     j1.boucle();
     j1.quit();
