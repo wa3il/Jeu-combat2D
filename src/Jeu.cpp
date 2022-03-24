@@ -2,16 +2,16 @@
 using namespace std;
 
 void Jeu :: actionsClavier(const char touche){
+
   switch(touche)
     {
 
         case 'd':
             MP.bougerAdroite(10);
-            cout <<"MP.x =" << MP.m_position.getx() <<endl; 
+            cout <<"MP.x =" << MP.getx() <<endl; 
             //profilGaucheMP=false;
         break;    
                             
-
         case 'g':
             MP.bougerAgauche(10);
             cout << "MP.x =" << MP.getx() <<endl;  

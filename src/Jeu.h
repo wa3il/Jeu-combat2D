@@ -13,7 +13,7 @@ class Jeu{
     public:
     Personnage MP;
     Personnage SP;
-    void actionsClavier(const char samere);
+    void actionsClavier(const char touche);
 
 };
 

@@ -189,9 +189,8 @@ void JeuSDL::boucle(){
                             profilGaucheMP=false;
                         break;    
                             
-
                         case SDLK_q:
-                            action.actionsClavier('q');
+                            action.actionsClavier('g');
                             profilGaucheMP=true;    
                         break;       
 
