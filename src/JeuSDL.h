@@ -13,14 +13,16 @@
 
 
 
+
 class JeuSDL{
     private:
         SDL_Window *window;
         SDL_Renderer *renderer;
+        //Les surfaces
+
+
         
         //Image im_background;
-
-
         Jeu action;
 
     public:
@@ -35,7 +37,8 @@ class JeuSDL{
         
 
         void init();
-        void boucle();
+        void bouclePartie();
+        void boucleAcceuil();
         void quit();
 
 };
