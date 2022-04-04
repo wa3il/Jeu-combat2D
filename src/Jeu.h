@@ -2,7 +2,7 @@
 #define JEU_H
 
 #include "Personnage.h"
-//#include "Terrain.h"
+#include "terrain.h"
 
 class Jeu{
     private:
@@ -11,6 +11,7 @@ class Jeu{
     //Terrain Teradnane;
 
     public:
+    terrain ter1;
     Personnage MP;
     Personnage SP;
     void actionsClavier(const char touche);
