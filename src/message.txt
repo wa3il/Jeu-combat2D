@@ -1,4 +1,4 @@
-CC = g++
+```CC = g++
 BINDIR = bin
 SRCDIR = src
 OBJDIR = obj
@@ -58,4 +58,4 @@ $(OBJDIR)/Vector2D.o: $(SRCDIR)/Vector2D.cpp $(SRCDIR)/Vector2D.h
 
 
 clean:
-	rm $(OBJDIR)/*.o
+	rm $(OBJDIR)/*.o```
