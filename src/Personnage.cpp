@@ -7,7 +7,7 @@ using namespace std;
 
 Personnage::Personnage()
 {	
-	m_position = Vector2D();
+	m_position = Vector2D(0,0);
 	cout << "Entre le nom de votre personnage : " << endl;
 	cin >> m_nom;
 	m_vie = 100;
@@ -27,18 +27,19 @@ Personnage::Personnage(int x,int y)
 
 Personnage::Personnage(string nom ,string nomCompetence, int degatsCompetence) : m_nom(nom), m_vie(100), m_mana(100)
 {
+	m_position= Vector2D(0,0);
 	m_competence = new Competence(nomCompetence, degatsCompetence);
 }
 
 
 Personnage::Personnage(string nom, int vie, int mana) : m_nom(nom), m_vie(vie), m_mana(mana), m_competence(0)
 {
+	m_position= Vector2D(0,0);
 	m_competence = new Competence("Epee rouillee", (10));
 }
 
 
-Personnage::Personnage(Personnage const& personnageACopier)
-	: m_vie(personnageACopier.m_vie), m_mana(personnageACopier.m_mana), m_competence(0)
+Personnage::Personnage(Personnage const& personnageACopier) : m_vie(personnageACopier.m_vie), m_mana(personnageACopier.m_mana), m_competence(0)
 {
 	m_competence = new Competence(*(personnageACopier.m_competence));
 }
@@ -85,6 +86,11 @@ void Personnage::afficherEtat() const
 }
 
 
+
+int Personnage::getVie() {
+
+	return m_vie;
+}
 
 //mouvements
 
@@ -178,3 +184,56 @@ Personnage::~Personnage()
 	delete m_competence;
 }
 
+
+
+
+
+
+
+void Personnage::testRegression() {
+
+	Personnage Premier;
+	Personnage Deuxieme(10,20);
+	Personnage mp("luffy", "GumGum ballooon", 30);
+	Personnage sp("Ichigo" , 100, 100);
+
+	Personnage Luffy("Luffy", 100, 100);
+
+	Personnage Luffy_Copier(Luffy);
+
+	assert(Luffy_Copier.getx() == 0);
+	assert(Luffy_Copier.gety() == 0);
+
+	assert(Deuxieme.getx() == 10);
+	assert(Deuxieme.gety() == 20);
+
+	assert(mp.getNom() == "luffy");
+
+	Premier.bougerAdroite(10);
+	assert(Premier.getx() == 10);
+
+	Deuxieme.bougerAgauche(20);
+	assert(Deuxieme.getx() == -20);
+
+	Premier.sauter(50);
+	assert(Premier.gety() == 50);
+
+	Luffy.recevoirDegats(20);  // 100 de vie -20 ce qui fera 80.
+
+	assert(Luffy.getVie() == 80);
+
+	mp.attaquer(sp);  //mp attaque sp avec une competence qui fait 30 de degats
+	 //on verifie l'etat de sp qui devra avoir 70 points de vie :
+	assert(sp.getVie() == 70);
+
+	sp.boirePotionDeVie(10); //lui remetra 10 points de vie 
+
+	assert(sp.getVie() == 80);
+
+	mp.changerCompetence("jet Pistol", 50);  // cela change sa competence en un autre : On peut le verifier grace a la fonction Affciher Etat.
+
+
+
+	
+
+}

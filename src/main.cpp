@@ -10,6 +10,13 @@ int main(void){
     j1.boucleAcceuil();
     j1.quit();
 
+    /*
+    //pour essayer test régression : 
+    Personnage p;
+    p.testRegression();
+    */
+
+
     /* Personnage premier, deuxieme;
 
     premier.attaquer(deuxieme);

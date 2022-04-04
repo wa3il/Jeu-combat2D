@@ -1,6 +1,7 @@
 #ifndef PERSONNAGE_H
 #define PERSONNAGE_H
 
+#include <cassert>
 #include "Competence.h"
 #include "Vector2D.h"
 
@@ -31,10 +32,12 @@ public:
 
     void afficherEtat() const;
     std::string getNom() const;
+    int getVie();
     int& getx();
     int& gety();
     void setx(int x);
     void sety(int x);
+    void testRegression();
 
 
     Vector2D m_position;
