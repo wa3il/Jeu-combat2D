@@ -393,7 +393,7 @@ void JeuSDL::boucleAcceuil(){
                 switch(events.key.keysym.sym)
                 {
                     case SDLK_p:    // Regarde si le scancode W est enfoncé (Z sous un azerty)
-                    this -> boucle();                     
+                    this -> bouclePartie();                     
                     break;
                 };
 

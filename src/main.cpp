@@ -7,10 +7,10 @@ int main(void){
 
     JeuSDL j1;
     j1.init();
-    j1.boucle();
+    j1.boucleAcceuil();
     j1.quit();
 
-    Personnage premier, deuxieme;
+    /* Personnage premier, deuxieme;
 
     premier.attaquer(deuxieme);
     //cout << "appuyer sur E pour lancer une attaque a l'arme " << endl;
@@ -25,7 +25,7 @@ int main(void){
     premier.afficherEtat();
     cout << endl; 
     deuxieme.afficherEtat();
-
+ */
     return 0;
 
 
