@@ -8,8 +8,7 @@ using namespace std;
 Personnage::Personnage()
 {	
 	m_position = Vector2D(0,0);
-	cout << "Entre le nom de votre personnage : " << endl;
-	cin >> m_nom;
+	
 	m_vie = 100;
 	m_mana = 100;
 	m_competence = new Competence();
@@ -231,9 +230,4 @@ void Personnage::testRegression() {
 	assert(sp.getVie() == 80);
 
 	mp.changerCompetence("jet Pistol", 50);  // cela change sa competence en un autre : On peut le verifier grace a la fonction Affciher Etat.
-
-
-
-	
-
 }

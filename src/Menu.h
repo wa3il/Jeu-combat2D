@@ -14,22 +14,28 @@ class Bouton{
     public:
 
     Bouton();
-    ~Bouton();
+
    
     void placerBouton(int x , int y, int w, int h);
     
+
     private:
     int b_x,b_y;
     int b_w,b_h;
+    enum etatBouton{
+        Pressed = 0;
+        Released = 1:
+    }
 };
 
 
 class Menu{
+   
     public:
     Menu();
     Menu(int w , int h);
     
-    ~Menu();
+
 
     private:
     int m_w , m_h ;
