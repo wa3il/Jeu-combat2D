@@ -212,10 +212,10 @@ void Personnage::testRegression() {
 	assert(Premier.getx() == 10);
 
 	Deuxieme.bougerAgauche(20);
-	assert(Deuxieme.getx() == -20);
+	assert(Deuxieme.getx() == -10);
 
 	Premier.sauter(50);
-	assert(Premier.gety() == 50);
+	assert(Premier.gety() == -50);
 
 	Luffy.recevoirDegats(20);  // 100 de vie -20 ce qui fera 80.
 
