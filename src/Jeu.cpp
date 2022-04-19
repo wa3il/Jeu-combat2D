@@ -7,40 +7,45 @@ void Jeu :: actionsClavier(const char touche){
     {
 
         case 'd':
-            MP.bougerAdroite(10);
-            cout <<"MP.x =" << MP.getx() <<endl; 
+            MP.bougerAdroite(1);
+            //cout <<"MP.x =" << MP.getx() <<endl; 
             //profilGaucheMP=false;
         break;    
                             
         case 'g':
-            MP.bougerAgauche(10);
-            cout << "MP.x =" << MP.getx() <<endl;  
+            MP.bougerAgauche(1);
+            //cout << "MP.x =" << MP.getx() <<endl;  
             //profilGaucheMP=true;    
         break;       
 
         case 'z':
-            MP.sauter(10);
-            cout <<"MP.y =" << MP.gety() <<endl;
+            MP.sauter(1);
+            //cout <<"MP.y =" << MP.gety() <<endl;
         break;
 
         case 'j':
             SP.bougerAgauche(10);     
-            cout << "SP.x =" << SP.getx() <<endl; 
+            //cout << "SP.x =" << SP.getx() <<endl; 
             //profilGaucheSP=true;
         break;
 
         case 'l':
             SP.bougerAdroite(10);     
-            cout << "SP.x =" << SP.getx() <<endl;  
+            //cout << "SP.x =" << SP.getx() <<endl;  
             //profilGaucheSP=false;
 
         break;
 
         case 'i':
             SP.sauter(10);
-            cout <<"SP.y =" << SP.gety() <<endl;
+            //cout <<"SP.y =" << SP.gety() <<endl;
         break;
 
     }
 
+}
+
+void Jeu:: actionsAutomatique(){
+    MP.ticks();
+    SP.ticks();
 }

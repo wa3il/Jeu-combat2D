@@ -15,6 +15,7 @@ class Jeu{
     Personnage MP;
     Personnage SP;
     void actionsClavier(const char touche);
+    void actionsAutomatique();
 
 };
 

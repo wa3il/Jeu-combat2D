@@ -1,78 +1,99 @@
 #include "JeuTXT.h"
 #include <unistd.h>
 
-void txtAff(WINDOW * haut,Jeu & j){
-    
-    terrain& terrain = j.ter1;
-    Personnage& persoA = j.MP;
-    Personnage& persoB = j.SP;
+/* Clear screen and set up Curses */
+void clrscr() 
+{
+    /* Initialise the screen */
+    initscr();
+    erase();
+    noecho();
+    raw();
+    move(0, 0);
+    /* Cursor off */
+    curs_set(0);
+    refresh();
+}
 
-    wrefresh(haut);
+void txtAff(Jeu & j){
 
     //affichage des murs.
-    for(int x=0; x<j.ter1.getDimx();++x){
-        for(int y=0; y<j.ter1.getDimy();++x){
-            if(terrain.getXY(x,y) == '_'){
-                mvwprintw(haut,x,y," ");
+    for(int y=0; y<j.ter1.getDimy();++y){
+        for(int x=0; x<j.ter1.getDimx();++x){
+            if ((j.MP.getx() == x) && (j.MP.gety() == y) ){
+                //affichage perso A
+                mvprintw(j.MP.gety(),j.MP.getx(),"A");
             }
-            if(terrain.getXY(x,y) == '#'){
-                mvwprintw(haut,x,y,"#");
+            /*if ((j.SP.getx() == x) && (j.SP.gety() == y) ){
+                //affichage perso B
+                mvprintw(j.SP.gety(),j.SP.getx(),"B");
+            }*/
+            else{
+                if(j.ter1.getXY(x,y) == '_'){
+                move(y,x);
+                mvprintw(y,x," ");
             }
+                if(j.ter1.getXY(x,y) == '#'){
+                move(y,x);
+                mvprintw(y,x,"#");
+            }
+            }
+            
         }
     }
-    //affichage perso A
-    mvwprintw(haut,persoA.getx(),persoA.gety(),"A");
-
-    //affichage perso B
-    mvwprintw(haut,persoB.getx(),persoB.gety(),"B");
+    
 }
 
 void txtBoucle(Jeu & j){
 
-    WINDOW *haut, *bas;
 
-    initscr();
-    haut= subwin(stdscr, j.ter1.getDimx(), j.ter1.getDimy(), 0, 0);        // Créé une fenêtre de 'LINES / 2' lignes et de COLS colonnes en 0, 0
-    bas= subwin(stdscr, LINES / 2, COLS, LINES / 2, 0); // Créé la même fenêtre que ci-dessus sauf que les coordonnées changent
+    /* Clear Screen */
+    clrscr();
 
-    box(haut, ACS_VLINE, ACS_HLINE);
-    box(bas, ACS_VLINE, ACS_HLINE);
-
-    mvwprintw(haut, 0, 3, "terrain");
-    mvwprintw(bas, 1, 1, "Ceci est la fenetre du bas");
+    j.MP.setxy(10,10);
+    j.MP.setxy(15,10);
 
     bool ok = true;
     int c;
     do{
-        txtAff(haut,j);
+        txtAff(j);
         usleep(10000);
 
         c = getch();
         switch (c)
         {
-        case 122: //z
+        case 'z': //z
             j.actionsClavier('z');
             break;
 
-        case 113: //q
-            j.actionsClavier('q');
+        case 'q': //q
+            j.actionsClavier('g');
             break;
 
-        case 110: //d
+        case 'd': //d
             j.actionsClavier('d');
             break;
 
+        case 'j': //z
+            j.actionsClavier('j');
+            break;
+
+        case 'i': //q
+            j.actionsClavier('i');
+            break;
+
+        case 'l': //d
+            j.actionsClavier('l');
+            break;
         }
+        
+        j.actionsAutomatique();
 
     } while (ok);
 
-    wrefresh(haut);
-    wrefresh(bas);
-
-    getch();
+    refresh();
     endwin();
 
-    free(haut);
-    free(bas);
+    //free();
 
 }

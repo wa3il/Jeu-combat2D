@@ -3,7 +3,7 @@
 
 #include <cassert>
 #include "Competence.h"
-#include "Vector2D.h"
+#include "Physic.h"
 
 class Personnage
 {
@@ -33,16 +33,14 @@ public:
     void afficherEtat() const;
     std::string getNom() const;
     int getVie();
-    int& getx();
-    int& gety();
-    void setx(int x);
-    void sety(int x);
+    int getx()const;
+    int gety()const;
+    void setxy(int x,int y);
     void testRegression();
+    void ticks();
 
-
-    Vector2D m_position;
-    Vector2D m_vitesse;
-    Vector2D m_acceleration;
+    Physic phy;
+    
 
 private:
 

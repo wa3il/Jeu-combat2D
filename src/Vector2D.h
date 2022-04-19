@@ -19,8 +19,8 @@ class Vector2D{
         Vector2D& operator+=(const Vector2D& op);
 
         /** Mutateur est accesseur */
-        int& getx();
-        int& gety();
+        int getx()const;
+        int gety()const;
 
         void setx(int xpos);
         void sety(int ypos);

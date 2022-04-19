@@ -7,7 +7,7 @@ using namespace std;
 
 Personnage::Personnage()
 {	
-	m_position = Vector2D(0,0);
+	phy = Physic(10,15);
 	cout << "Entre le nom de votre personnage : " << endl;
 	cin >> m_nom;
 	m_vie = 100;
@@ -18,7 +18,7 @@ Personnage::Personnage()
 
 Personnage::Personnage(int x,int y)
 {
-	m_position = Vector2D(x,y);
+	phy = Physic(x,y);
 	m_vie = 100;
 	m_mana = 100;
 	m_competence = new Competence();
@@ -27,14 +27,14 @@ Personnage::Personnage(int x,int y)
 
 Personnage::Personnage(string nom ,string nomCompetence, int degatsCompetence) : m_nom(nom), m_vie(100), m_mana(100)
 {
-	m_position= Vector2D(0,0);
+	phy = Physic();
 	m_competence = new Competence(nomCompetence, degatsCompetence);
 }
 
 
 Personnage::Personnage(string nom, int vie, int mana) : m_nom(nom), m_vie(vie), m_mana(mana), m_competence(0)
 {
-	m_position= Vector2D(0,0);
+	phy = Physic();
 	m_competence = new Competence("Epee rouillee", (10));
 }
 
@@ -52,19 +52,12 @@ string Personnage::getNom() const
 	return m_nom;
 }
 
-
-
-
 //getter pour avoir la position x :
-int& Personnage :: getx(){ return m_position.getx(); }
-int& Personnage :: gety(){ return m_position.gety(); }
+int Personnage :: getx()const{ return phy.getPosx(); }
+int Personnage :: gety()const{ return phy.getPosy(); }
 
 //getter pour avoir la position y :
-void Personnage :: setx(int x){ m_position.setx(x); }
-void Personnage :: sety(int y){ m_position.sety(y); }
-
-
-
+void Personnage :: setxy(int x,int y){ phy.setPos(x,y); }
 
 bool Personnage::estVivant() const
 {
@@ -95,20 +88,19 @@ int Personnage::getVie() {
 //mouvements
 
 void Personnage::bougerAgauche(int xg){
-
-	m_position.getx() = m_position.getx() - xg;
+	//m_position.getx() = m_position.getx() - xg;
+	phy.setVitx(-xg);
 }
 
 void Personnage::bougerAdroite(int xd){
-	m_position.getx() = m_position.getx() + xd;
+	//m_position.getx() = m_position.getx() + xd;
+	phy.setVitx(xd);
 }
 
 void Personnage::sauter(int yh){
-	m_position.gety() = m_position.gety() - yh;
+	//m_position.gety() = m_position.gety() - yh;
+	phy.setVity(-yh);
 }
-
-
-
 
 
 void Personnage::changerCompetence(std::string nomNouvelleCompetence, int degatsNouvelleCompetence)
@@ -184,7 +176,9 @@ Personnage::~Personnage()
 	delete m_competence;
 }
 
-
+void Personnage:: ticks(){
+	phy.ticks();
+}
 
 
 

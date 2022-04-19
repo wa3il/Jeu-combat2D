@@ -51,11 +51,6 @@ SDL_Texture* JeuSDL::loadImage(const char* filename){
 
 
 
-
-
-
-
-
 bool JeuSDL::check_collision( SDL_Rect &A, SDL_Rect &B )
 {
     //Les cotes des rectangles
@@ -161,11 +156,10 @@ void JeuSDL::bouclePartie(){
 
     //infos joueurs
     //1
-    action.MP.setx(40);
-    action.MP.sety(40);
+    action.MP.setxy(40,0);
+
     //2
-    action.SP.setx(500);
-    action.SP.sety(40);
+    action.SP.setxy(500,0);
 
 
 
@@ -237,7 +231,7 @@ void JeuSDL::bouclePartie(){
             break;
 
             }
-
+            action.actionsAutomatique();
         }
 
 
@@ -255,17 +249,17 @@ void JeuSDL::bouclePartie(){
 
 
 
-            //collision :
-            /* MP */
-            if (action.MP.getx() < -20) action.MP.setx(-20);  //collision gauche
-            if (action.MP.getx() > DIMX-50) action.MP.getx() = DIMX-50; //collision droite
+            // //collision :
+            // /* MP */
+            // if (action.MP.getx() < -20) action.MP.setx(-20);  //collision gauche
+            // if (action.MP.getx() > DIMX-50) action.MP.getx() = DIMX-50; //collision droite
             
-            /* SP */
-            if (action.SP.getx() < -20) action.SP.setx(-20);  //collision gauche
-            if (action.SP.getx() > DIMX-50) action.SP.getx() = DIMX-50; //collision droite
+            // /* SP */
+            // if (action.SP.getx() < -20) action.SP.setx(-20);  //collision gauche
+            // if (action.SP.getx() > DIMX-50) action.SP.getx() = DIMX-50; //collision droite
             
-            //if (MP.gety() < 0)MP.gety() = 0;
-            //if (MP.gety() > DIMY) MP.sety();
+            // //if (MP.gety() < 0)MP.gety() = 0;
+            // //if (MP.gety() > DIMY) MP.sety();
 
         
        

@@ -1,6 +1,14 @@
 #include "terrain.h"
 
-terrain ::terrain():dimx(0),dimy(0){}
+terrain ::terrain():dimx(60),dimy(20){
+    for(int y=0;y<dimy-1;y++){
+        for(int x=0;x<dimx;x++){
+            ter[y][x]='_';
+        }
+    }
+    for(int x=0;x<dimx;x++){
+        ter[dimy-1][x]='#';
+    }}
 terrain ::terrain(int x,int y):dimx(x),dimy(y){
     for(int y=0;y<dimy-1;y++){
         for(int x=0;x<dimx;x++){

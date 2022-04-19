@@ -23,8 +23,8 @@ Vector2D& Vector2D ::operator+=(const Vector2D& op){
             return *this;
         }
 
-int& Vector2D :: getx() {return this->x;}
-int& Vector2D :: gety() {return this->y;}
+int Vector2D :: getx() const{return x;}
+int Vector2D :: gety() const{return y;}
 
 void Vector2D :: setx(int xpos) {this->x = xpos;}
 void Vector2D :: sety(int ypos) {this->y = ypos;}
