@@ -173,7 +173,6 @@ void JeuSDL::bouclePartie(){
 
 
 
-
     SDL_Event events;
     bool isOpen{ true };
     while (isOpen)
@@ -235,6 +234,7 @@ void JeuSDL::bouclePartie(){
         }
 
 
+            //sprite animé
             Uint32 ticks = SDL_GetTicks();
             Uint32 sprite = (ticks / 100) % 8;
           
@@ -335,20 +335,22 @@ void JeuSDL::boucleAcceuil(){
 
     // Bouton play
 
-    SDL_Texture * texMPlayerD = loadImage("./data/luffyDroit.png");
+    SDL_Texture * texBPlay= loadImage("./data/Boutons/startBouton.png");
+       
+    // Bouton parametres
+
+    SDL_Texture * texBParams= loadImage("./data/Boutons/paramsBouton.png");
+    
+    // Bouton help
+
+    SDL_Texture * texBHelp= loadImage("./data/Boutons/quitBouton.png");
+
+    // Bouton quit
+
+    SDL_Texture * texBQuit= loadImage("./data/Boutons/quitBouton.png");
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    //Bouton params
-
-    SDL_Texture * texMPlayerG = loadImage("./data/luffyGauche.png");
-
-    //Bouton Help
-
-    SDL_Texture * texSPlayerD = loadImage("./data/ichigoDroit.png");
-
-    //Bouton quit 
-
-    SDL_Texture * texSPlayerG = loadImage("./data/ichigoGauche.png");
+   
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -366,9 +368,11 @@ void JeuSDL::boucleAcceuil(){
     SDL_GetWindowSize(window, &DIMX, &DIMY); //pour recuperer la largeur de la fenetre
     SDL_Rect rectangle  = {0, 0, DIMX, DIMY};
 
+    SDL_Rect rectPlay = {20,50,200,50};
+    SDL_Rect rectHelp = {20,120,200,50};
+    SDL_Rect rectParams = {20,190,200,50};
+    SDL_Rect rectQuit = {20,260,200,50};
 
-
-    //interupteur :
 
 
     SDL_Event events;
@@ -390,7 +394,31 @@ void JeuSDL::boucleAcceuil(){
                     this -> bouclePartie();                     
                     break;
                 };
+                break;
 
+                
+                case SDL_MOUSEBUTTONDOWN:
+
+                int x = events.button.x ;
+                int y = events.button.y ;
+                SDL_Point Mouse{x,y};
+
+                if (events.button.button == SDL_BUTTON_LEFT){// Clique Gauche
+
+                    if(SDL_PointInRect(&Mouse, &rectPlay)){
+
+                        this -> bouclePartie();
+                    }
+
+
+                    if(SDL_PointInRect(&Mouse, &rectQuit)){
+
+                        isOpen = false ;
+                    }
+
+
+  
+                }
                 break;
 
             }
@@ -401,13 +429,26 @@ void JeuSDL::boucleAcceuil(){
 
         
        
-       //couleur noire par default
+        //couleur noire par default
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); 
         SDL_RenderClear(renderer);  
 
         //Background
         SDL_RenderFillRect(renderer, &rectangle); 
         SDL_RenderCopy(renderer, menuBg, NULL,&rectangle );
+        
+        //Bouton Play
+        SDL_RenderFillRect(renderer, &rectPlay); 
+        SDL_RenderCopy(renderer, texBPlay, NULL,&rectPlay);
+        //Bouton Settings
+        SDL_RenderFillRect(renderer, &rectParams); 
+        SDL_RenderCopy(renderer, texBParams, NULL,&rectParams);
+        //Bouton Help
+        SDL_RenderFillRect(renderer, &rectHelp); 
+        SDL_RenderCopy(renderer, texBHelp, NULL,&rectHelp);
+        //Bouton Quit
+        SDL_RenderFillRect(renderer, &rectQuit); 
+        SDL_RenderCopy(renderer, texBQuit, NULL,&rectQuit);
         
 
 

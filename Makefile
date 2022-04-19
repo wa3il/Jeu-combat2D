@@ -34,7 +34,7 @@ $(OBJDIR)/mainTXT.o:$(SRCDIR)/TXT/mainTXT.cpp $(SRCDIR)/Personnage.h $(SRCDIR)/C
 $(OBJDIR)/main.o:$(SRCDIR)/main.cpp $(SRCDIR)/Personnage.h $(SRCDIR)/Competence.h $(SRCDIR)/Vector2D.h $(SRCDIR)/terrain.h $(SRCDIR)/JeuSDL.h $(SRCDIR)/Jeu.h $(SRCDIR)/Physic.h
 	$(CC) $(CPPFLAGS) -c $(SRCDIR)/main.cpp -o $(OBJDIR)/main.o            
 
-$(OBJDIR)/JeuSDL.o: $(SRCDIR)/JeuSDL.cpp $(SRCDIR)/JeuSDL.h  $(SRCDIR)/Personnage.h $(SRCDIR)/Competence.h $(SRCDIR)/Vector2D.h $(SRCDIR)/terrain.h $(SRCDIR)/Jeu.h $(SRCDIR)/Physic.h
+$(OBJDIR)/JeuSDL.o: $(SRCDIR)/JeuSDL.cpp $(SRCDIR)/JeuSDL.h  $(SRCDIR)/Personnage.h $(SRCDIR)/Competence.h $(SRCDIR)/Vector2D.h $(SRCDIR)/terrain.h $(SRCDIR)/Jeu.h $(SRCDIR)/Physic.h $(SRCDIR)/Menu.h
 	$(CC) $(CPPFLAGS) -c $(SRCDIR)/JeuSDL.cpp -o $(OBJDIR)/JeuSDL.o $(LIBSDL)
 
 $(OBJDIR)/JeuTXT.o: $(SRCDIR)/TXT/JeuTXT.cpp $(SRCDIR)/TXT/JeuTXT.h $(SRCDIR)/Personnage.h $(SRCDIR)/Competence.h $(SRCDIR)/Vector2D.h $(SRCDIR)/terrain.h $(SRCDIR)/Jeu.h $(SRCDIR)/Physic.h
@@ -54,6 +54,9 @@ $(OBJDIR)/Competence.o: $(SRCDIR)/Competence.cpp $(SRCDIR)/Competence.h
 
 $(OBJDIR)/terrain.o: $(SRCDIR)/terrain.cpp $(SRCDIR)/terrain.h
 	$(CC) $(CPPFLAGS) -c $(SRCDIR)/terrain.cpp -o $(OBJDIR)/terrain.o
+
+$(OBJDIR)/Menu.o: $(SRCDIR)/Menu.cpp $(SRCDIR)/Menu.h
+	$(CC) $(CPPFLAGS) -c $(SRCDIR)/Menu.cpp -o $(OBJDIR)/Menu.o
 
 $(OBJDIR)/Vector2D.o: $(SRCDIR)/Vector2D.cpp $(SRCDIR)/Vector2D.h
 	$(CC) $(CPPFLAGS) -c $(SRCDIR)/Vector2D.cpp -o $(OBJDIR)/Vector2D.o

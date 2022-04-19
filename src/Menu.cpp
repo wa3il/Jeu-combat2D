@@ -7,6 +7,7 @@ Bouton::Bouton() : b_x(0),b_y(0),b_w(30),b_h(20)
 {}
 
 
+
 Menu::Menu() : m_w(200),m_h(200)
 {}
 

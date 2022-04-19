@@ -207,10 +207,10 @@ void Personnage::testRegression() {
 	assert(Premier.getx() == 10);
 
 	Deuxieme.bougerAgauche(20);
-	assert(Deuxieme.getx() == -20);
+	assert(Deuxieme.getx() == -10);
 
 	Premier.sauter(50);
-	assert(Premier.gety() == 50);
+	assert(Premier.gety() == -50);
 
 	Luffy.recevoirDegats(20);  // 100 de vie -20 ce qui fera 80.
 
@@ -225,9 +225,4 @@ void Personnage::testRegression() {
 	assert(sp.getVie() == 80);
 
 	mp.changerCompetence("jet Pistol", 50);  // cela change sa competence en un autre : On peut le verifier grace a la fonction Affciher Etat.
-
-
-
-	
-
 }
