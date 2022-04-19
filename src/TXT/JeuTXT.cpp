@@ -87,7 +87,7 @@ void txtBoucle(Jeu & j){
             break;
         }
         
-        j.actionsAutomatique();
+        //j.actionsAutomatique();
 
     } while (ok);
 
