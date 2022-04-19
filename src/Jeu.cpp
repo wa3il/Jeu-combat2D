@@ -7,20 +7,24 @@ void Jeu :: actionsClavier(const char touche){
     {
 
         case 'd':
-            MP.bougerAdroite(1);
+            MP.bougerAdroite(10);
             //cout <<"MP.x =" << MP.getx() <<endl; 
             //profilGaucheMP=false;
         break;    
                             
         case 'g':
-            MP.bougerAgauche(1);
+            MP.bougerAgauche(10);
             //cout << "MP.x =" << MP.getx() <<endl;  
             //profilGaucheMP=true;    
         break;       
 
         case 'z':
-            MP.sauter(1);
+            MP.sauter(10);
             //cout <<"MP.y =" << MP.gety() <<endl;
+        break;
+
+        case 't':
+            MP.attaquer(SP);
         break;
 
         case 'j':
@@ -40,6 +44,7 @@ void Jeu :: actionsClavier(const char touche){
             SP.sauter(10);
             //cout <<"SP.y =" << SP.gety() <<endl;
         break;
+
 
     }
 

@@ -25,7 +25,7 @@ public:
 
     void recevoirDegats(int nbDegats);
     void attaquer(Personnage& cible);
-    void attaqueMagique(Personnage& cible);
+    void attaqueUltime(Personnage& cible);
     void boirePotionDeVie(int quantitePotion);
     void changerCompetence(std::string nomNouvelleCompetence, int degatsNouvelleCompetence);
     bool estVivant() const;

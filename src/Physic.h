@@ -21,6 +21,8 @@ public:
     int getPosy() const;
 
     void setPos(int x, int y);
+    void setPosx(int x);
+    void setPosy(int y);
     void setVitx(int x);
     void setVity(int y);
 

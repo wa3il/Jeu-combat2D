@@ -1,4 +1,5 @@
 #include"Personnage.h"
+#include <stdlib.h>
 
 
 using namespace std;
@@ -8,8 +9,6 @@ using namespace std;
 Personnage::Personnage()
 {	
 	phy = Physic(10,15);
-	cout << "Entre le nom de votre personnage : " << endl;
-	cin >> m_nom;
 	m_vie = 100;
 	m_mana = 100;
 	m_competence = new Competence();
@@ -89,17 +88,17 @@ int Personnage::getVie() {
 
 void Personnage::bougerAgauche(int xg){
 	//m_position.getx() = m_position.getx() - xg;
-	phy.setVitx(-xg);
+	phy.setPosx((this->getx())-xg);
 }
 
 void Personnage::bougerAdroite(int xd){
 	//m_position.getx() = m_position.getx() + xd;
-	phy.setVitx(xd);
+	phy.setPosx((this->getx())+xd);
 }
 
 void Personnage::sauter(int yh){
 	//m_position.gety() = m_position.gety() - yh;
-	phy.setVity(-yh);
+	phy.setPosy((this->gety())-yh);
 }
 
 
@@ -128,25 +127,32 @@ void Personnage::recevoirDegats(int nbDegats)
 
 void Personnage::attaquer(Personnage& cible)
 {
-	cout << m_nom << " attaque " << cible.getNom() << endl;
-	cible.recevoirDegats(m_competence->getDegats());	
+	if (((cible.getx() - this->getx() > -100 ) && (cible.getx() - this->getx() <= 0)) || ((cible.getx() - this->getx() < 100 ) && (cible.getx() - this->getx() >= 0)) ) {
+		if((cible.gety() - this->gety() > -50 && cible.gety() - this->gety() <= 0) || (cible.gety() - this->gety() < 50 && cible.gety() - this->gety() >= 0)) {
+
+			cout << m_nom << " attaque " << cible.getNom() << endl;
+			cible.recevoirDegats(m_competence->getDegats());
+
+		}
+		
+	}
 }
 
 
 
 
 
-void Personnage::attaqueMagique(Personnage& cible)
+void Personnage::attaqueUltime(Personnage& cible)
 {
 	if (m_mana > 0 && m_vie > 0) 
 	{
-			cout << m_nom << " lance une attaque magique sur " << cible.getNom() << endl;
+			cout << m_nom << " lance l'attaque ultime sur " << cible.getNom() << endl;
 			m_mana -= 50;
 			cible.recevoirDegats(50);
 	}
 		else if(m_mana<=0) 
 		{ 
-			cout << m_nom << " n a pas assez de mana pour lancer une attaque magique !" << endl; 
+			cout << m_nom << " n a pas assez de mana pour lancer l'attque ultime !" << endl; 
 			m_mana = 0;
 		}
 
