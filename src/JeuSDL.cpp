@@ -51,7 +51,7 @@ SDL_Texture* JeuSDL::loadImage(const char* filename){
 
 
 
-bool JeuSDL::check_collision( SDL_Rect &A, SDL_Rect &B )
+/* bool JeuSDL::check_collision( SDL_Rect &A, SDL_Rect &B )
 {
     //Les cotes des rectangles
     int gaucheA, gaucheB;
@@ -97,7 +97,7 @@ bool JeuSDL::check_collision( SDL_Rect &A, SDL_Rect &B )
     return false;
         
 }
-
+ */
 
 
 
@@ -211,6 +211,10 @@ void JeuSDL::bouclePartie(){
                             courir=false;
                         break;
 
+                        case SDLK_a:
+                            action.actionsClavier('t');
+                        break;
+
                         case SDLK_LEFT:
                             action.actionsClavier('j');
                             profilGaucheSP=true;
@@ -230,7 +234,7 @@ void JeuSDL::bouclePartie(){
             break;
 
             }
-            action.actionsAutomatique();
+            //action.actionsAutomatique();
         }
 
 

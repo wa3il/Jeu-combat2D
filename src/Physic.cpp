@@ -36,6 +36,16 @@ void Physic::setPos(int x, int y){
      m_position.sety(y);
      }
 
+void Physic::setPosx(int x){
+    m_position.setx(x);
+}
+
+void Physic::setPosy(int y){
+    m_position.sety(y);
+
+}
+
+
 void Physic::setVitx(int x){
     m_vitesse.setx(x);
 }
