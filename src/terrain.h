@@ -3,7 +3,7 @@
 class terrain{
     private:
         int dimx,dimy; // dimension du terrain
-        char ter[10][17]; //terrain
+        char ter[18][15]; //terrain
 
     public:
         /** Constructeur/destructeur

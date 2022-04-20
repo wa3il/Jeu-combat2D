@@ -59,8 +59,8 @@ void JeuSDL::Afficher(SDL_Renderer *renderer,SDL_Texture *texture, SDL_Surface* 
     int i,j;
     SDL_Rect Rect_dest;
     SDL_Rect Rect_source;
-    Rect_dest.w = LARGEUR_TILE;
-    Rect_dest.h = HAUTEUR_TILE;
+    Rect_dest.w = LARGEUR_TILE/4;
+    Rect_dest.h = HAUTEUR_TILE/2;
 
     texture=SDL_CreateTextureFromSurface(renderer,tileset);
     for(i=0;i<NOMBRE_BLOCS_HAUTEUR;i++)
@@ -75,8 +75,8 @@ void JeuSDL::Afficher(SDL_Renderer *renderer,SDL_Texture *texture, SDL_Surface* 
 
             }
             
-                Rect_dest.x = j*LARGEUR_TILE;
-                Rect_dest.y = i*HAUTEUR_TILE;
+                Rect_dest.x = j*LARGEUR_TILE/4;
+                Rect_dest.y = i*HAUTEUR_TILE/2;
             
 
             SDL_RenderCopy(renderer, texture, &Rect_source, &Rect_dest);
@@ -227,7 +227,7 @@ void JeuSDL::bouclePartie(){
             break;
 
             }
-            //action.actionsAutomatique();
+            action.actionsAutomatique();
         }
 
 
