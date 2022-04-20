@@ -58,6 +58,8 @@ int Personnage :: gety()const{ return phy.getPosy(); }
 //getter pour avoir la position y :
 void Personnage :: setxy(int x,int y){ phy.setPos(x,y); }
 
+void Personnage :: sety(int y){ phy.setPosy(y);}
+
 bool Personnage::estVivant() const
 {
 	if (m_vie>0)

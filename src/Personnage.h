@@ -36,6 +36,7 @@ public:
     int getx()const;
     int gety()const;
     void setxy(int x,int y);
+    void sety(int y);
     void testRegression();
     void ticks();
 

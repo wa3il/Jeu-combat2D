@@ -49,6 +49,40 @@ SDL_Texture* JeuSDL::loadImage(const char* filename){
     SDL_FreeSurface(image); //Équivalent du destroyTexture pour les surface, permet de libérer la mémoire quand on n'a plus besoin d'une surface
 }
 
+char* table[] = {
+    "111111111111111",
+    "111111111111111",
+    "111111111111111",
+    "111111111111111",
+    "100000000000001",
+    "111111111111111",
+    "111111111111111",
+    "111111111111111",
+    "000000000000000",
+    "000000000000000",};
+
+void JeuSDL::Afficher(SDL_Renderer *renderer,SDL_Texture *texture, SDL_Surface* tileset,char** table,int nbl,int nbh)
+{
+    int i,j;
+    SDL_Rect Rect_dest;
+    SDL_Rect Rect_source;
+    Rect_dest.w = LARGEUR_TILE;
+    Rect_dest.h = HAUTEUR_TILE;
+
+    texture=SDL_CreateTextureFromSurface(renderer,tileset);
+    for(i=0;i<NOMBRE_BLOCS_LARGEUR;i++)
+    {
+        for(j=0;j<NOMBRE_BLOCS_HAUTEUR;j++)
+        {   
+                Rect_dest.x = i*LARGEUR_TILE;
+                Rect_dest.y = j*HAUTEUR_TILE;
+
+                SDL_RenderCopy(renderer, texture, NULL, &Rect_dest);
+            
+        }
+    }
+    SDL_DestroyTexture(texture);
+}
 
 
 /* bool JeuSDL::check_collision( SDL_Rect &A, SDL_Rect &B )
@@ -234,16 +268,14 @@ void JeuSDL::bouclePartie(){
             break;
 
             }
-            //action.actionsAutomatique();
+            
         }
-
+            action.actionsAutomatique();
 
             //sprite animé
             Uint32 ticks = SDL_GetTicks();
             Uint32 sprite = (ticks / 100) % 8;
-          
-
-
+            if (action.MP.gety() <= -10){ action.MP.sety(-10);}
 
             SDL_Rect rectMPlayer  = {action.MP.getx(),action.MP.gety()+245, 80, 100};
             SDL_Rect rectSPlayer  = {action.SP.getx(),action.SP.gety()+230, 100, 120};
@@ -264,9 +296,7 @@ void JeuSDL::bouclePartie(){
             
             // //if (MP.gety() < 0)MP.gety() = 0;
             // //if (MP.gety() > DIMY) MP.sety();
-
-        
-       
+  
        //couleur noire par default
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); 
         SDL_RenderClear(renderer);  
@@ -281,7 +311,12 @@ void JeuSDL::bouclePartie(){
 
  
 
+// tile
 
+        SDL_Surface *tileset;
+        SDL_Texture *texTuile = NULL;
+        tileset = IMG_Load("./data/plateforme/1.png");
+        Afficher(renderer,texTuile,tileset,table,NOMBRE_BLOCS_LARGEUR,NOMBRE_BLOCS_HAUTEUR);
 
  // a revoir plutard :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -321,13 +356,6 @@ void JeuSDL::bouclePartie(){
 }
 
 
-
-
-
-
-
-
-
 void JeuSDL::boucleAcceuil(){
 
 
@@ -354,18 +382,10 @@ void JeuSDL::boucleAcceuil(){
     SDL_Texture * texBQuit= loadImage("./data/Boutons/quitBouton.png");
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-   
-
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 
     //void SDL_MinimizeWindow(SDL_Window* window);  // pour réduire la fenetre dans la barre des taches(prototype)
     //void SDL_RestoreWindow(SDL_Window* window);  //pour restaurer la fenetre(prototype)
-
-
-
-
 
     //Recuperation de taille de fenetre
     int DIMX, DIMY;
@@ -429,10 +449,6 @@ void JeuSDL::boucleAcceuil(){
 
         }
 
-
-
-        
-       
         //couleur noire par default
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); 
         SDL_RenderClear(renderer);  

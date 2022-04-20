@@ -24,10 +24,10 @@ void txtAff(Jeu & j){
                 //affichage perso A
                 mvprintw(j.MP.gety(),j.MP.getx(),"A");
             }
-            /*if ((j.SP.getx() == x) && (j.SP.gety() == y) ){
+            if ((j.SP.getx() == x) && (j.SP.gety() == y) ){
                 //affichage perso B
                 mvprintw(j.SP.gety(),j.SP.getx(),"B");
-            }*/
+            }
             else{
                 if(j.ter1.getXY(x,y) == '_'){
                 move(y,x);
@@ -45,21 +45,21 @@ void txtAff(Jeu & j){
 }
 
 void txtBoucle(Jeu & j){
-
-
     /* Clear Screen */
     clrscr();
 
     j.MP.setxy(10,10);
-    j.MP.setxy(15,10);
+    j.SP.setxy(15,10);
 
     bool ok = true;
-    int c;
+    
     do{
         txtAff(j);
         usleep(10000);
 
-        c = getch();
+        //j.actionsAutomatique();
+        int c = getch();
+
         switch (c)
         {
         case 'z': //z
@@ -87,13 +87,13 @@ void txtBoucle(Jeu & j){
             break;
         }
         
-        //j.actionsAutomatique();
+        
 
     } while (ok);
 
     refresh();
     endwin();
-
+    
     //free();
 
 }
