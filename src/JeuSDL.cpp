@@ -70,10 +70,9 @@ void JeuSDL::Afficher(SDL_Renderer *renderer,SDL_Texture *texture, SDL_Surface* 
             if(action.ter1.getXY(i,j) == '#') {
                 Rect_source.x=0;
                 Rect_source.y=0;
-            }
-            else {
-                Rect_source.x=LARGEUR_TILE;
-                Rect_source.y=HAUTEUR_TILE;
+                Rect_source.w=LARGEUR_TILE;
+                Rect_source.h=HAUTEUR_TILE;
+
             }
             
                 Rect_dest.x = j*LARGEUR_TILE;
