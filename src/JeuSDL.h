@@ -14,7 +14,7 @@
 #define LARGEUR_TILE 175
 #define HAUTEUR_TILE 44
 
-#define NOMBRE_BLOCS_LARGEUR 4
+#define NOMBRE_BLOCS_LARGEUR 17
 #define NOMBRE_BLOCS_HAUTEUR 10
 
 
@@ -34,8 +34,7 @@ class JeuSDL{
 
 
         SDL_Texture* loadImage(const char* filename);
-        bool check_collision( SDL_Rect &A, SDL_Rect &B );
-        void Afficher(SDL_Renderer *renderer,SDL_Texture *texture, SDL_Surface* tileset,char** table,int nbl,int nbh);
+        void Afficher(SDL_Renderer *renderer,SDL_Texture *texture, SDL_Surface* tileset,int nbl,int nbh);
         
 
         void init();

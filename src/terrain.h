@@ -3,7 +3,7 @@
 class terrain{
     private:
         int dimx,dimy; // dimension du terrain
-        char ter[20][60]; //terrain
+        char ter[10][17]; //terrain
 
     public:
         /** Constructeur/destructeur
@@ -11,7 +11,6 @@ class terrain{
          * 
          */
         terrain();
-        terrain(int x,int y);
         ~terrain(); 
 
         /** Fonction posisvalide

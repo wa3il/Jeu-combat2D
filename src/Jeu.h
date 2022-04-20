@@ -8,7 +8,6 @@ class Jeu{
     private:
 
 
-    //Terrain Teradnane;
 
     public:
     terrain ter1;
