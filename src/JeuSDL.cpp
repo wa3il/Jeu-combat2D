@@ -1,41 +1,34 @@
 #include "JeuSDL.h"
 
-
-
-
 using namespace std;
 
 
 
-JeuSDL::JeuSDL(){
 
-};
+
+
+
+
+
+JeuSDL::JeuSDL(){};
+
+
+
 
 void JeuSDL::init(){
-     if(0 != SDL_Init(SDL_INIT_VIDEO))
-    {
-        cout<<"Erreur SDL_Init : "<< SDL_GetError()<<endl;
-        
-    }
+     if (0 != SDL_Init(SDL_INIT_VIDEO))  {cout<<"Erreur SDL_Init : "<< SDL_GetError()<<endl; }
 
-     window = SDL_CreateWindow("SDL2", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED,
-                              640, 400, SDL_WINDOW_SHOWN); //| SDL_WINDOW_FULLSCREEN); //pour le plein ecran
+     window = SDL_CreateWindow("SDL2", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_SIZE_WIDTH, WINDOW_SIZE_HIGH, SDL_WINDOW_SHOWN);
 
-    if(NULL == window)
-    {
-        cout<< "Erreur SDL_CreateWindow : "<< SDL_GetError()<<endl;
-        
-    }
+    if(NULL == window)   {  cout<< "Erreur SDL_CreateWindow : "<< SDL_GetError()<<endl; }
 
-    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+        renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
 
-    if(NULL == renderer)
-    {
-        cout<<"Erreur SDL_CreateRenderer : "<<SDL_GetError()<<endl;
-        
-    }
+    if(NULL == renderer)   { cout<<"Erreur SDL_CreateRenderer : "<<SDL_GetError()<<endl; }
      
 }
+
+
 
 SDL_Texture* JeuSDL::loadImage(const char* filename){
 
@@ -59,8 +52,8 @@ void JeuSDL::Afficher(SDL_Renderer *renderer,SDL_Texture *texture, SDL_Surface* 
     int i,j;
     SDL_Rect Rect_dest;
     SDL_Rect Rect_source;
-    Rect_dest.w = LARGEUR_TILE/4;
-    Rect_dest.h = HAUTEUR_TILE/2;
+    Rect_dest.w = LARGEUR_TILE/2;
+    Rect_dest.h = HAUTEUR_TILE;
 
     texture=SDL_CreateTextureFromSurface(renderer,tileset);
     for(i=0;i<NOMBRE_BLOCS_HAUTEUR;i++)
@@ -74,8 +67,12 @@ void JeuSDL::Afficher(SDL_Renderer *renderer,SDL_Texture *texture, SDL_Surface* 
                 Rect_source.h=HAUTEUR_TILE;
 
             }
+            else {
+                Rect_source = {NULL};
             
-                Rect_dest.x = j*LARGEUR_TILE/4;
+            }
+            
+                Rect_dest.x = j*LARGEUR_TILE/2;
                 Rect_dest.y = i*HAUTEUR_TILE/2;
             
 
@@ -90,86 +87,142 @@ void JeuSDL::Afficher(SDL_Renderer *renderer,SDL_Texture *texture, SDL_Surface* 
 
 
 
+
+
+/* void JeuSDL::loadSprite(){
+
+
+    //Load sprite sheet texture
+    loadImage("./data/luffy/luffyCourt.png")
+   
+        //Set top left sprite
+        spriteluffy[ 0 ].x =   0;
+        spriteluffy[ 0 ].y =   0;
+        spriteluffy[ 0 ].w = 50;
+        spriteluffy[ 0 ].h = HAUTEUR_SPRITE1_LUFFY;
+
+        //Set top right sprite
+        spriteluffy[ 1 ].x =   50;
+        spriteluffy[ 1 ].y =   0;
+        spriteluffy[ 1 ].w = 50;
+        spriteluffy[ 1 ].h = HAUTEUR_SPRITE1_LUFFY;
+        
+        //Set bottom left sprite
+        spriteluffy[ 2 ].x = 100;
+        spriteluffy[ 2 ].y =   0;
+        spriteluffy[ 2 ].w = 55;
+        spriteluffy[ 2 ].h = HAUTEUR_SPRITE1_LUFFY;
+
+        //Set bottom right sprite
+        spriteluffy[ 3 ].x =   155;
+        spriteluffy[ 3 ].y =   0;
+        spriteluffy[ 3 ].w = 55;
+        spriteluffy[ 3 ].h = HAUTEUR_SPRITE1_LUFFY;
+        
+        //Set bottom right sprite
+        spriteluffy[ 4 ].x =   210;
+        spriteluffy[ 4 ].y =   0;
+        spriteluffy[ 4 ].w = 40;
+        spriteluffy[ 4 ].h = HAUTEUR_SPRITE1_LUFFY;        
+        
+        //Set bottom right sprite
+        spriteluffy[ 5 ].x =   250;
+        spriteluffy[ 5 ].y =   0;
+        spriteluffy[ 5 ].w = 45;
+        spriteluffy[ 5 ].h = HAUTEUR_SPRITE1_LUFFY;
+        
+        //Set bottom right sprite
+        spriteluffy[ 6 ].x =   300;
+        spriteluffy[ 6 ].y =   0;
+        spriteluffy[ 6 ].w = 52;
+        spriteluffy[ 6 ].h = HAUTEUR_SPRITE1_LUFFY;        
+        
+        //Set bottom right sprite
+        spriteluffy[ 7 ].x =   350;
+        spriteluffy[ 7 ].y =   0;
+        spriteluffy[ 7 ].w = 55;
+        spriteluffy[ 7 ].h = HAUTEUR_SPRITE1_LUFFY;
+        
+
+    }
+
+} */
+
+
+
+
+
+
+
+
+
 void JeuSDL::bouclePartie(){
+
+        clock_t start = clock();
+        //std::cout<<start<<std::endl;
 
 
 
     // Background 1
+    SDL_Texture* monImage = loadImage("./data/background/sunny.jpg");
 
-    SDL_Texture* monImage = loadImage("./data/sunny.jpg");
 
-    //tile :
-    //SDL_Texture* texTuile = loadImage("./data/plateforme/1.png");
 
-    // luffy droite
 
-    SDL_Texture * texMPlayerD = loadImage("./data/luffyDroit.png");
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     //luffy gauche
-
-    SDL_Texture * texMPlayerG = loadImage("./data/luffyGauche.png");
-
-    //ichigo droite
-
-    SDL_Texture * texSPlayerD = loadImage("./data/ichigoDroit.png");
+    SDL_Texture * texMPlayerG = loadImage("./data/luffy/luffy.png");
 
     //ichigo gauche
-
-    SDL_Texture * texSPlayerG = loadImage("./data/ichigoGauche.png");
+    SDL_Texture * texSPlayerG = loadImage("./data/ichigo/ichigoGauche.png");
 
     //Sprite luffy
-    SDL_Texture * texSpriteLuffy = loadImage("./data/luffyCourt.png");
+    SDL_Texture * texSpriteLuffy = loadImage("./data/luffy/luffyCourt.png");
 
     //Sprite luffy accroupi
-    SDL_Texture * texLuffyAccroupi = loadImage("./data/luffyAccroupi.png");
+    SDL_Texture * texLuffyAccroupi = loadImage("./data/luffy/luffyAccroupi.png");
+
+    //Sprite luffy attaque
+    SDL_Texture * texLuffyAttaque = loadImage("./data/luffy/luffyAttaque.png");
 
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
-
-
-    //void SDL_MinimizeWindow(SDL_Window* window);  // pour réduire la fenetre dans la barre des taches(prototype)
-    //void SDL_RestoreWindow(SDL_Window* window);  //pour restaurer la fenetre(prototype)
-
+    //Recvtangle fenetre : 
+    SDL_Rect rectangle  = {0, 0, WINDOW_SIZE_WIDTH, WINDOW_SIZE_HIGH};
 
 
 
 
-    //Recuperation de taille de fenetre
-    int DIMX, DIMY;
-    SDL_GetWindowSize(window, &DIMX, &DIMY); //pour recuperer la largeur de la fenetre
-    SDL_Rect rectangle  = {0, 0, DIMX, DIMY};
-
-
-
-
-    //infos joueurs
-    //1
-    action.MP.setxy(40,0);
-
-    //2
-    action.SP.setxy(500,0);
-
-
-
-
-
-    //interupteur :
-
-    bool profilGaucheMP = true;
-    bool profilGaucheSP = true;
-
-    bool courir= false;
 
 
 
     SDL_Event events;
-    bool isOpen{ true };
+
+    //interupteur :
+    bool isOpen = true;
+    bool profilGaucheMP = true;
+    bool profilGaucheSP = true;
+    bool courir = false;
+    bool accroupi = false;
+    bool attaqueA = false;
+
+
+
     while (isOpen)
     {
+
+        clock_t end = clock();
+        //std::cout<<"end  : "<<end<<std::endl;
+
+        float deltaTime = (end - start) / CLOCKS_PER_SEC;
+        //std::cout<<"delta Time "<<deltaTime<<std::endl;
+       // start = end;
+
+
         while (SDL_PollEvent(&events))
         {
             switch (events.type)
@@ -180,132 +233,180 @@ void JeuSDL::bouclePartie(){
 
                 
                 case SDL_KEYDOWN: // Un événement de type touche enfoncée est effectué
-                switch(events.key.keysym.sym)
-                {
-                        case SDLK_ESCAPE:  
-                            isOpen = false;                
-                        break;
+                    switch(events.key.keysym.sym)
+                    {
+                            case SDLK_ESCAPE:  
+                                isOpen = false;                
+                            break;
 
-                        case SDLK_d:
-                            action.actionsClavier('d');
-                            profilGaucheMP=false;
-                            courir= true;
-                        break;    
-                            
-                        case SDLK_q:
-                            action.actionsClavier('g');
-                            profilGaucheMP=true; 
-                            courir= true;
-   
-                        break;       
+                            case SDLK_d:
+                                action.actionsClavier('d');
+                                profilGaucheMP=false;
+                                courir= true;
+                            break;    
+                                
+                            case SDLK_q:
+                                action.actionsClavier('g');
+                                profilGaucheMP=true; 
+                                courir= true;
+    
+                            break;       
 
-                        case SDLK_z:
-                            action.actionsClavier('z');
-                            courir=false;
-                        break;
+                            case SDLK_z:
+                                action.actionsClavier('z');
+                                courir=false;
+                            break;
+            
+                            case SDLK_s:
+                                accroupi=true;
+                            break;
 
-                        case SDLK_a:
-                            action.actionsClavier('t');
-                        break;
+                            case SDLK_a:
+                                action.actionsClavier('t');
+                                attaqueA = true;
+                            break;
 
-                        case SDLK_LEFT:
-                            action.actionsClavier('j');
-                            profilGaucheSP=true;
- 
-                        break;
+                            case SDLK_LEFT:
+                                action.actionsClavier('j');
+                                profilGaucheSP=true;
+    
+                            break;
 
-                        case SDLK_RIGHT:
-                            action.actionsClavier('l');
-                            profilGaucheSP=false;
-                        break;
+                            case SDLK_RIGHT:
+                                action.actionsClavier('l');
+                                profilGaucheSP=false;
+                            break;
 
-                        case SDLK_UP:
-                            action.actionsClavier('i');
-                        break;
+                            case SDLK_UP:
+                                action.actionsClavier('i');
+                            break;
 
-                }
-            break;
+                    }
+                break;
+                
+                case SDL_KEYUP:
+                    switch(events.key.keysym.sym)
+                    {
+
+                            case SDLK_d:
+                                profilGaucheMP=false;
+                                courir= false;
+                            break;    
+                                
+                            case SDLK_q:
+                                action.actionsClavier('g');
+                                profilGaucheMP=true; 
+                                courir= false;
+    
+                            break;       
+
+                            case SDLK_z:
+                                action.actionsClavier('z');
+                                courir=false;
+                            break;
+
+                            case SDLK_s:
+                                accroupi=false;
+                            break;
+
+                            case SDLK_a:
+                                attaqueA = false;
+                            break;
+                    }
+                break;
+
 
             }
-            action.actionsAutomatique();
+            action.actionsAutomatique(deltaTime);
         }
 
 
             //sprite animé
             Uint32 ticks = SDL_GetTicks();
-            Uint32 sprite = (ticks / 100) % 8;
+            Uint32 sprite = (ticks / 100) % 6;
+
+
           
 
 
+            //rectangle destination luffy :
+            SDL_Rect rectMPlayer  = {action.MP.getx(), action.MP.gety()  , 140, 150};
+            //rectangle destination SP :
+            SDL_Rect rectSPlayer  = {action.SP.getx(), action.SP.gety() , 100, 120};
 
-            SDL_Rect rectMPlayer  = {action.MP.getx(),action.MP.gety()+245, 80, 100};
-            SDL_Rect rectSPlayer  = {action.SP.getx(),action.SP.gety()+230, 100, 120};
+            
 
-            SDL_Rect srcrect = { sprite * 42, 0, 40, 88 };
-            SDL_Rect dstrect = { action.MP.getx(), action.MP.gety()+245, 80, 100 };
+            //rectangle source pour luffyCourt :
+            SDL_Rect srcrect = { sprite * 150, 0, 145, 150 };
+            //rectangle source luffyAccroupi :
+            SDL_Rect rectAccroupi= {300, 0, 150, 150};
+            //rectangle source luffyAttaque :
+            SDL_Rect rectAttaque= {sprite * 180, 0, 180, 150};
+
+
 
 
 
 
         
        
-       //couleur noire par default
-        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255); 
-        SDL_RenderClear(renderer);  
 
-        //Background
-        SDL_RenderFillRect(renderer, &rectangle); 
-        SDL_RenderCopy(renderer, monImage, NULL,&rectangle );
-        
+    SDL_RenderClear(renderer);  
 
-        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
-        SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+    //Background
+    SDL_RenderCopy(renderer, monImage, NULL,&rectangle );
+
+    //Transparence :
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+    SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
 
 
-        SDL_Surface *tileset;
-        SDL_Texture *texTuile = NULL;
-        tileset = IMG_Load("./data/plateforme/1.png");
-        Afficher(renderer,texTuile,tileset,NOMBRE_BLOCS_LARGEUR,NOMBRE_BLOCS_HAUTEUR);
+    //chargement de la surface : 
+    SDL_Surface *tileset;
+    SDL_Texture *texTuile = NULL;
+    tileset = IMG_Load("./data/plateforme/2.png");
+
+    //affichage ddes tuiles (plateforme) :
+    Afficher(renderer,texTuile,tileset,NOMBRE_BLOCS_LARGEUR,NOMBRE_BLOCS_HAUTEUR);
 
 
  
 
 
 
- // a revoir plutard :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+ // a revoir plutard ////////////////////////////////////////////////////////////////////////////////////////
 
-
-        if (courir && !profilGaucheMP) {
-            SDL_RenderCopy(renderer, texSpriteLuffy, &srcrect, &dstrect);
-        }
-        else if(courir && profilGaucheMP) {
-            SDL_RenderCopyEx(renderer, texSpriteLuffy, &srcrect, &dstrect, 0, NULL, SDL_FLIP_HORIZONTAL);
-        } 
-        else if (!courir && profilGaucheMP){ SDL_RenderCopy(renderer, texMPlayerG, NULL,&rectMPlayer );}
-        else  {SDL_RenderCopy(renderer, texMPlayerD, NULL,&rectMPlayer );}        
+    if (courir && !profilGaucheMP && !accroupi) {SDL_RenderCopy(renderer, texSpriteLuffy, &srcrect, &rectMPlayer); }
         
-  // :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::         
+    else if(courir && profilGaucheMP && !accroupi) { SDL_RenderCopyEx(renderer, texSpriteLuffy, &srcrect, &rectMPlayer, 0, NULL, SDL_FLIP_HORIZONTAL);}
+
+    else if (!courir && profilGaucheMP && !accroupi){ SDL_RenderCopy(renderer, texMPlayerG, NULL,&rectMPlayer );}
+
+    else if (!courir && !profilGaucheMP && !accroupi)  SDL_RenderCopyEx(renderer, texMPlayerG, NULL, &rectMPlayer, 0, NULL, SDL_FLIP_HORIZONTAL);
+
+    else if (!courir && profilGaucheMP && accroupi) { SDL_RenderCopy(renderer, texLuffyAccroupi, &rectAccroupi,&rectMPlayer );}
+
+    else if (!courir && !profilGaucheMP && accroupi) SDL_RenderCopyEx(renderer, texLuffyAccroupi, &rectAccroupi, &rectMPlayer, 0, NULL, SDL_FLIP_HORIZONTAL);
+
+    /* else {
+        if(attaqueA)  { SDL_RenderCopy(renderer, texLuffyAttaque, &rectAttaque,&rectMPlayer );}
+
+    } */
+  ////////////////////////////////////////////////////////////////////////////////////////////////////////////        
 
 
-       /* //image luffy
-         SDL_RenderFillRect(renderer, &rectMPlayer); 
-        if (profilGaucheMP){ SDL_RenderCopy(renderer, texMPlayerG, NULL,&rectMPlayer );}
-        else {SDL_RenderCopy(renderer, texMPlayerD, NULL,&rectMPlayer );}  
- */
 
 
 
-
-        //image ichigo
-        SDL_RenderFillRect(renderer, &rectSPlayer);
+        //image ichigo    
         if (profilGaucheSP){ SDL_RenderCopy(renderer, texSPlayerG, NULL,&rectSPlayer );}
-        else {SDL_RenderCopy(renderer, texSPlayerD, NULL,&rectSPlayer );}
+        else {SDL_RenderCopyEx(renderer, texSPlayerG, NULL,&rectSPlayer,0, NULL, SDL_FLIP_HORIZONTAL );}
+
+
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
-
-
-        /////////////////////////////////////////////////////////////////////////////////////////
         SDL_RenderPresent(renderer);
 
     }
@@ -325,7 +426,7 @@ void JeuSDL::boucleAcceuil(){
 
     // Background Menu
 
-    SDL_Texture* menuBg = loadImage("./data/menuBg.jpg");
+    SDL_Texture* menuBg = loadImage("./data/background/menuBg.jpg");
 
 
     // Bouton play
@@ -351,22 +452,13 @@ void JeuSDL::boucleAcceuil(){
 
 
 
-    //void SDL_MinimizeWindow(SDL_Window* window);  // pour réduire la fenetre dans la barre des taches(prototype)
-    //void SDL_RestoreWindow(SDL_Window* window);  //pour restaurer la fenetre(prototype)
 
+    SDL_Rect rectangle  = {0, 0, WINDOW_SIZE_WIDTH, WINDOW_SIZE_HIGH};
 
-
-
-
-    //Recuperation de taille de fenetre
-    int DIMX, DIMY;
-    SDL_GetWindowSize(window, &DIMX, &DIMY); //pour recuperer la largeur de la fenetre
-    SDL_Rect rectangle  = {0, 0, DIMX, DIMY};
-
-    SDL_Rect rectPlay = {20,50,200,50};
-    SDL_Rect rectHelp = {20,120,200,50};
-    SDL_Rect rectParams = {20,190,200,50};
-    SDL_Rect rectQuit = {20,260,200,50};
+    SDL_Rect rectPlay = {100,100,250,70};
+    SDL_Rect rectHelp = {100,200,250,70};
+    SDL_Rect rectParams = {100,300,250,70};
+    SDL_Rect rectQuit = {100,400,250,70};
 
 
 
@@ -450,7 +542,6 @@ void JeuSDL::boucleAcceuil(){
         /////////////////////////////////////////////////////////////////////////////////////////
         SDL_RenderPresent(renderer);
 
-        //SDL_Delay();
     }
 }
 

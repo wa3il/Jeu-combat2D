@@ -4,6 +4,7 @@
 #include <cassert>
 #include "Competence.h"
 #include "Physic.h"
+#include "Constantes.h"
 
 class Personnage
 {
@@ -38,7 +39,7 @@ public:
     void setxy(int x,int y);
     void sety(int y);
     void testRegression();
-    void ticks();
+    void ticks(float deltaTime);
 
     Physic phy;
     

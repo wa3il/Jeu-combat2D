@@ -17,12 +17,14 @@ Physic::Physic(int posx,int posy)
 Physic::~Physic(){
 }
 
-void Physic::ticks(){
+void Physic::ticks(float deltaTime){
+
     m_acceleration.sety(1);
 
-    m_vitesse += m_acceleration;
+    m_vitesse += m_acceleration * deltaTime;
 
-    m_position += m_vitesse; 
+    m_position += m_vitesse * deltaTime; 
+
 }
 
 Vector2D Physic::getPos() const{ return m_position; }
@@ -45,6 +47,13 @@ void Physic::setPosy(int y){
 
 }
 
+void Physic::setVit(int x, int y){
+    m_vitesse.setx(x);
+    m_vitesse.sety(y);
+
+}
+
+
 
 void Physic::setVitx(int x){
     m_vitesse.setx(x);
@@ -52,3 +61,10 @@ void Physic::setVitx(int x){
 void Physic::setVity(int y){
     m_vitesse.sety(y);
 }
+
+
+bool Physic::PointRect(const Vector2D &p, const Rect &r){
+
+    return (p.getx() >= r.getx() && p.gety() >= r.gety() && p.getx() < r.getx() + r.getw() && p.gety() < r.gety() + r.geth());
+}
+

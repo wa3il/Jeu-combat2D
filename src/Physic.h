@@ -2,6 +2,7 @@
 #define PHYSIC_H
 
 #include "Vector2D.h"
+#include <time.h>
 
 class Physic
 {
@@ -21,12 +22,18 @@ public:
     int getPosy() const;
 
     void setPos(int x, int y);
+
     void setPosx(int x);
     void setPosy(int y);
+
+    void setVit(int x, int y);
+
     void setVitx(int x);
     void setVity(int y);
 
-    void ticks();
+    void ticks(float deltaTime);
+
+    bool PointRect(const Vector2D &p, const Rect &r);
 
 };
 

@@ -100,7 +100,8 @@ void Personnage::bougerAdroite(int xd){
 
 void Personnage::sauter(int yh){
 	//m_position.gety() = m_position.gety() - yh;
-	phy.setPosy((this->gety())-yh);
+	//phy.setVity((this->phy.getVit().gety())-yh);
+	phy.setPosy(this->gety()-yh);
 }
 
 
@@ -184,8 +185,11 @@ Personnage::~Personnage()
 	delete m_competence;
 }
 
-void Personnage:: ticks(){
-	phy.ticks();
+void Personnage:: ticks(float deltaTime){
+
+	phy.ticks(deltaTime);
+
+
 }
 
 

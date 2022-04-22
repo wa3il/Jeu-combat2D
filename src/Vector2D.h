@@ -27,4 +27,29 @@ class Vector2D{
 
 };
 
+Vector2D operator*(const Vector2D& vec, int f);
+
+
+class Rect{
+    private:
+
+    int x,y,w,h;
+
+
+    public:
+
+    Rect();
+    Rect(int x, int y , int w , int h);
+
+    int getx() const;
+    int gety() const;
+    int getw() const;
+    int geth() const;
+
+    void setx(int x);
+    void sety(int y);
+    void setw(int w);
+    void seth(int h);
+};
+
 #endif

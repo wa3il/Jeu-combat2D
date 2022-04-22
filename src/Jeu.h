@@ -4,17 +4,23 @@
 #include "Personnage.h"
 #include "terrain.h"
 
+
+
 class Jeu{
     private:
 
 
 
     public:
-    terrain ter1;
+    
+
     Personnage MP;
     Personnage SP;
+    terrain ter1;
+
+    void actionsAutomatique(float deltaTime);
     void actionsClavier(const char touche);
-    void actionsAutomatique();
+
 
 };
 
