@@ -328,7 +328,7 @@ void JeuSDL::bouclePartie(){
 
 
             }
-            
+
             action.actionsAutomatique(deltaTime);
 
             if(courir && !profilGaucheMP) action.actionsClavier('d');
@@ -417,6 +417,7 @@ void JeuSDL::bouclePartie(){
         if(attaqueA)  { SDL_RenderCopy(renderer, texLuffyAttaque, &rectAttaque,&rectMPlayer );}
 
     } */
+    
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////        
 
 
@@ -429,9 +430,7 @@ void JeuSDL::bouclePartie(){
 
     else if (!marche && !profilGaucheSP )  SDL_RenderCopyEx(renderer, texSPlayerG, NULL, &rectSPlayer, 0, NULL, SDL_FLIP_HORIZONTAL);
 
-/*         //image ichigo    
-        if (profilGaucheSP){ SDL_RenderCopy(renderer, texSPlayerG, NULL,&rectSplayer );}
-        else {SDL_RenderCopyEx(renderer, texSPlayerG, NULL,&rectSplayer,0, NULL, SDL_FLIP_HORIZONTAL );}  */
+
 
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////
