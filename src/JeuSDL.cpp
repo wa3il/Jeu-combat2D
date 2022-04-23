@@ -174,17 +174,21 @@ void JeuSDL::bouclePartie(){
     //luffy gauche
     SDL_Texture * texMPlayerG = loadImage("./data/luffy/luffy.png");
 
-    //ichigo gauche
-    SDL_Texture * texSPlayerG = loadImage("./data/ichigo/ichigoGauche.png");
-
-    //Sprite luffy
-    SDL_Texture * texSpriteLuffy = loadImage("./data/luffy/luffyCourt.png");
+    //Sprite luffy court
+    SDL_Texture * texLuffyCourt = loadImage("./data/luffy/luffyCourt.png");
 
     //Sprite luffy accroupi
     SDL_Texture * texLuffyAccroupi = loadImage("./data/luffy/luffyAccroupi.png");
 
     //Sprite luffy attaque
     SDL_Texture * texLuffyAttaque = loadImage("./data/luffy/luffyAttaque.png");
+
+    
+    //zoro gauche
+    SDL_Texture * texSPlayerG = loadImage("./data/zoro/zoro.png");
+    
+    //zoro marche
+    SDL_Texture * texZoroMarche = loadImage("./data/zoro/zoroMarche.png");
 
 
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -209,6 +213,7 @@ void JeuSDL::bouclePartie(){
     bool courir = false;
     bool accroupi = false;
     bool attaqueA = false;
+    bool marche = false;
 
 
 
@@ -240,21 +245,17 @@ void JeuSDL::bouclePartie(){
                             break;
 
                             case SDLK_d:
-                                action.actionsClavier('d');
                                 profilGaucheMP=false;
                                 courir= true;
                             break;    
                                 
                             case SDLK_q:
-                                action.actionsClavier('g');
                                 profilGaucheMP=true; 
                                 courir= true;
-    
                             break;       
 
                             case SDLK_z:
                                 action.actionsClavier('z');
-                                courir=false;
                             break;
             
                             case SDLK_s:
@@ -267,14 +268,13 @@ void JeuSDL::bouclePartie(){
                             break;
 
                             case SDLK_LEFT:
-                                action.actionsClavier('j');
                                 profilGaucheSP=true;
-    
+                                marche= true;
                             break;
 
                             case SDLK_RIGHT:
-                                action.actionsClavier('l');
                                 profilGaucheSP=false;
+                                marche= true;
                             break;
 
                             case SDLK_UP:
@@ -312,18 +312,41 @@ void JeuSDL::bouclePartie(){
                             case SDLK_a:
                                 attaqueA = false;
                             break;
+
+                            case SDLK_LEFT:
+                                marche= false;
+                            break;
+
+                            case SDLK_RIGHT:
+                                marche= false;
+                            break;
+
                     }
                 break;
 
 
+
+
             }
+            
             action.actionsAutomatique(deltaTime);
+
+            if(courir && !profilGaucheMP) action.actionsClavier('d');
+            if(courir && profilGaucheMP) action.actionsClavier('g');
+
+            if(marche && !profilGaucheSP) action.actionsClavier('l');
+            if(marche && profilGaucheSP) action.actionsClavier('j');
+
+            
+                
         }
 
 
             //sprite animé
             Uint32 ticks = SDL_GetTicks();
-            Uint32 sprite = (ticks / 100) % 6;
+            Uint32 sprite6 = (ticks / 100) % 6;
+            Uint32 sprite8 = (ticks / 100) % 8;
+
 
 
           
@@ -332,16 +355,18 @@ void JeuSDL::bouclePartie(){
             //rectangle destination luffy :
             SDL_Rect rectMPlayer  = {action.MP.getx(), action.MP.gety()  , 140, 150};
             //rectangle destination SP :
-            SDL_Rect rectSPlayer  = {action.SP.getx(), action.SP.gety() , 100, 120};
+            SDL_Rect rectSPlayer  = {action.SP.getx(), action.SP.gety() , 160, 150};
 
             
 
             //rectangle source pour luffyCourt :
-            SDL_Rect srcrect = { sprite * 150, 0, 145, 150 };
+            SDL_Rect rectCourt = { sprite6 * 150, 0, 145, 150 };
             //rectangle source luffyAccroupi :
             SDL_Rect rectAccroupi= {300, 0, 150, 150};
             //rectangle source luffyAttaque :
-            SDL_Rect rectAttaque= {sprite * 180, 0, 180, 150};
+            SDL_Rect rectAttaque= {sprite6 * 180, 0, 180, 150};
+            //rectangle zoro marche :
+            SDL_Rect rectMarche = {sprite8 * 165, 0, 160, 180 };
 
 
 
@@ -376,9 +401,9 @@ void JeuSDL::bouclePartie(){
 
  // a revoir plutard ////////////////////////////////////////////////////////////////////////////////////////
 
-    if (courir && !profilGaucheMP && !accroupi) {SDL_RenderCopy(renderer, texSpriteLuffy, &srcrect, &rectMPlayer); }
+    if (courir && !profilGaucheMP && !accroupi) {SDL_RenderCopy(renderer, texLuffyCourt, &rectCourt, &rectMPlayer); }
         
-    else if(courir && profilGaucheMP && !accroupi) { SDL_RenderCopyEx(renderer, texSpriteLuffy, &srcrect, &rectMPlayer, 0, NULL, SDL_FLIP_HORIZONTAL);}
+    else if(courir && profilGaucheMP && !accroupi) { SDL_RenderCopyEx(renderer, texLuffyCourt, &rectCourt, &rectMPlayer, 0, NULL, SDL_FLIP_HORIZONTAL);}
 
     else if (!courir && profilGaucheMP && !accroupi){ SDL_RenderCopy(renderer, texMPlayerG, NULL,&rectMPlayer );}
 
@@ -396,11 +421,17 @@ void JeuSDL::bouclePartie(){
 
 
 
+    if (marche && !profilGaucheSP ) {SDL_RenderCopy(renderer, texZoroMarche, &rectMarche, &rectSPlayer); }
+        
+    else if(marche  && profilGaucheSP ) { SDL_RenderCopyEx(renderer, texZoroMarche, &rectMarche, &rectSPlayer, 0, NULL, SDL_FLIP_HORIZONTAL);}
 
+    else if (!marche && profilGaucheSP ){ SDL_RenderCopy(renderer, texSPlayerG, NULL,&rectSPlayer );}
 
-        //image ichigo    
-        if (profilGaucheSP){ SDL_RenderCopy(renderer, texSPlayerG, NULL,&rectSPlayer );}
-        else {SDL_RenderCopyEx(renderer, texSPlayerG, NULL,&rectSPlayer,0, NULL, SDL_FLIP_HORIZONTAL );}
+    else if (!marche && !profilGaucheSP )  SDL_RenderCopyEx(renderer, texSPlayerG, NULL, &rectSPlayer, 0, NULL, SDL_FLIP_HORIZONTAL);
+
+/*         //image ichigo    
+        if (profilGaucheSP){ SDL_RenderCopy(renderer, texSPlayerG, NULL,&rectSplayer );}
+        else {SDL_RenderCopyEx(renderer, texSPlayerG, NULL,&rectSplayer,0, NULL, SDL_FLIP_HORIZONTAL );}  */
 
 
         /////////////////////////////////////////////////////////////////////////////////////////////////////////////

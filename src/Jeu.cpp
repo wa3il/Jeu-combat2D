@@ -50,7 +50,7 @@ void Jeu :: actionsClavier(const char touche){
             MP.bougerAdroite(10);
             //cout <<"MP.x =" << MP.getx() <<endl; 
             //profilGaucheMP=false;
-        break;    
+        break;     
                             
         case 'g':
             MP.bougerAgauche(10);
@@ -78,7 +78,7 @@ void Jeu :: actionsClavier(const char touche){
             cout << "SP.x =" << SP.getx() <<endl;  
             //profilGaucheSP=false;
 
-        break;
+        break; 
 
         case 'i':
             SP.sauter(10);
