@@ -4,6 +4,7 @@
 #include <cassert>
 #include "Competence.h"
 #include "Physic.h"
+#include "Texture.h"
 
 class Personnage
 {
@@ -35,12 +36,12 @@ public:
     //test Regression
     void testRegression();
 
-     Physic phy;
-    
+    Physic phy;
+    Texture tex;
 
 private:
 
-    //int texture[3];
+   
     int m_vie;
     int m_mana;
     Competence *m_competence;

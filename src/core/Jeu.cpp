@@ -3,17 +3,6 @@ using namespace std;
 
 
 
-
-
-
-/*  Jeu::Jeu()
- {
-    Personnage MP(0,WINDOW_SIZE_HIGH - HAUTEUR_SPRITE);
-    Personnage SP(WINDOW_SIZE_WIDTH,WINDOW_SIZE_HIGH);
-    terrain ter1;
- } */
-
-
 void Jeu:: actionsAutomatique(float deltaTime){
     MP.phy.ticks(deltaTime);
     SP.phy.ticks(deltaTime);

@@ -14,6 +14,7 @@ Personnage::Personnage()
 	m_vie = 100;
 	m_mana = 100;
 	m_competence = new Competence();
+
 	
 }
 
