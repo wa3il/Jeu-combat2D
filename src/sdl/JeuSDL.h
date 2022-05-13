@@ -29,12 +29,13 @@ class JeuSDL{
         SDL_Texture* loadImage(const char* filename);
         void Afficher(SDL_Renderer *renderer,SDL_Texture *texture, SDL_Surface* tileset,int nbl,int nbh);
         //void loadSprite();
-        
 
         void init();
         void bouclePartie();
         void boucleAcceuil();
         void quit();
+
+
 
 };
 

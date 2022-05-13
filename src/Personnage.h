@@ -40,7 +40,7 @@ public:
 
 private:
 
-   
+    //int texture[3];
     int m_vie;
     int m_mana;
     Competence *m_competence;

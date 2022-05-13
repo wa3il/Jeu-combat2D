@@ -18,10 +18,6 @@ void Jeu:: actionsAutomatique(float deltaTime){
     MP.phy.ticks(deltaTime);
     SP.phy.ticks(deltaTime);
 
-
-    
-
-
     const float border = WINDOW_SIZE_HEIGHT - HAUTEUR_SPRITE;
 	if (MP.phy.getPosy() > border ){
 
@@ -36,8 +32,10 @@ void Jeu:: actionsAutomatique(float deltaTime){
     } 
 }
 
-void Jeu :: actionsClavier(const char touche){
 
+
+void Jeu :: actionsClavier(const char touche){
+  
   switch(touche)
     {
 
@@ -91,32 +89,32 @@ void Jeu :: actionsClavier(const char touche){
 void Jeu :: actionsMenu(int clic){
     switch(clic){
         //affichage de menu 
-        case '0' :
-
+        case 0 :
+        this-> init();
         break;
 
         //appuie bouton Play
-        case '1' :
-        initPartie();
-        updatePartie();
-        quitPartie();
+        case 1 :
+        this-> initPartie();
+        this-> updatePartie();
+        this-> quitPartie();
         break;
 
-        //appuie btn Options
-        case '2' :
+     /*    //appuie btn Options
+        case 2 :
         
         
         break;
 
         //appuie btn Help
-        case '3' :
+        case 3 :
 
         break;
 
         //appuie btn Quit :
-        case '4' :
+        case 4 :
 
-        break;
+        break; */
 
     }
 }
@@ -134,22 +132,16 @@ void Jeu::initPartie(){
 
     const int MPinitx = LARGEUR_SPRITE ;
     const int MPinity = WINDOW_SIZE_HEIGHT - HAUTEUR_SPRITE ;
-    const int SPinitx = WINDOW_SIZE_WIDTH - LARGEUR_SPRITE;
+    const int SPinitx = WINDOW_SIZE_WIDTH - 2*LARGEUR_SPRITE;
     const int SPinity = WINDOW_SIZE_HEIGHT - HAUTEUR_SPRITE;
     MP.phy.setPos(MPinitx,MPinity);
-    MP.phy.setPos(SPinitx,SPinity);
-
+    SP.phy.setPos(SPinitx,SPinity);
 
 }
 
 void Jeu::updatePartie(){
-//interupteur :
-    bool profilGaucheMP = true;
-    bool profilGaucheSP = true;
-    bool courir = false;
-    bool accroupi = false;
-    bool attaqueA = false;
-    bool marche = false;
+   
+
 
 }
 void Jeu::quitPartie(){}
@@ -185,24 +177,13 @@ menu.quit.placerBouton(WINDOW_SIZE_WIDTH/7,
                     );
                     
 menu.back.placerBouton(0,10,10,10);
+this -> initPartie();
 
 }
 
 
 
 
-//gestion de differents évenements du menu
-//lancement de la fenêtre d'aide et de paramètres pour SDL (affectations plus tard) 
-//gestion des évent dela fenêtre play avec tt les interrupteurs
-////=> on pourra créer des petites fcts qui prendront en compte tt les booléen 
-////=> et effectuer ainsi les actions demandés 
-void Jeu::update(){
-
-
-
-
-
-}
 
 //libéeration de ttes les donnés du jeu 
 //reintialisation des paramètres 
