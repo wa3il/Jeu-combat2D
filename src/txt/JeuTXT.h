@@ -3,7 +3,7 @@
 
 #include <ncurses.h>
 #include "JeuTXT.h"
-#include "../Jeu.h"
+#include "../core/Jeu.h"
 
 void txtBoucle(Jeu & j);
 

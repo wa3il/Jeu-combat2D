@@ -10,24 +10,21 @@ private:
     Vector2D m_position;
     Vector2D m_vitesse;
     Vector2D m_acceleration;
+
 public:
     Physic();
-    Physic(int posx,int posy);
     ~Physic();
 
     Vector2D getPos() const;
-    Vector2D getVit() const;
-    
     int getPosx() const;
     int getPosy() const;
 
     void setPos(int x, int y);
-
     void setPosx(int x);
     void setPosy(int y);
 
+    Vector2D getVit() const;
     void setVit(int x, int y);
-
     void setVitx(int x);
     void setVity(int y);
 

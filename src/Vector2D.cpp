@@ -1,5 +1,8 @@
 #include "Vector2D.h"
 
+
+//fcts liés à Vector2D
+
 Vector2D::Vector2D():x(0),y(0){}
 Vector2D::Vector2D(int xpos,int ypos):x(xpos),y(ypos){}
 Vector2D::~Vector2D(){}
@@ -36,8 +39,8 @@ Vector2D operator*(const Vector2D& vec, int n){
 }
 
 
-
-Rect::Rect():x(0),y(0),w(20),h(20){}
+//fonctions liés aux Rectangles
+Rect::Rect():x(0),y(0),w(0),h(0){}
 Rect::Rect(int x, int y , int w , int h):x(x),y(y),w(w),h(h){}
 
 int Rect::getx() const{return this-> x;}

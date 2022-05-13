@@ -8,9 +8,9 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
 
-#include "Personnage.h"
-#include "Jeu.h"
-#include "Constantes.h"
+#include "../Personnage.h"
+#include "../core/Jeu.h"
+#include "../Constantes.h"
 
 
 class JeuSDL{

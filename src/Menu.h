@@ -14,18 +14,21 @@ class Bouton{
     public:
 
     Bouton();
-
-   
-    void placerBouton(int x , int y, int w, int h);
     
-
+    void placerBouton(int x , int y, int w, int h);
+    int getx()const ;
+    int gety()const ;
+    int getw()const ;
+    int geth()const ;
+    
     private:
     int b_x,b_y;
     int b_w,b_h;
+
     enum etatBouton{
-        Pressed = 0;
-        Released = 1:
-    }
+        Pressed = 0,
+        Released = 1
+    };
 };
 
 
@@ -35,13 +38,15 @@ class Menu{
     Menu();
     Menu(int w , int h);
     
-
+    Bouton start;
+    Bouton help;
+    Bouton options;
+    Bouton quit;
+    Bouton back;
 
     private:
     int m_w , m_h ;
-    Bouton start;
-    Bouton quit;
-    Bouton back;
+    
    
 };
 

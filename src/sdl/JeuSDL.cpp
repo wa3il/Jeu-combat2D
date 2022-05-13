@@ -18,7 +18,7 @@ JeuSDL::JeuSDL(){};
 void JeuSDL::init(){
      if (0 != SDL_Init(SDL_INIT_VIDEO))  {cout<<"Erreur SDL_Init : "<< SDL_GetError()<<endl; }
 
-     window = SDL_CreateWindow("SDL2", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_SIZE_WIDTH, WINDOW_SIZE_HIGH, SDL_WINDOW_SHOWN);
+     window = SDL_CreateWindow("SDL2", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_SIZE_WIDTH, WINDOW_SIZE_HEIGHT, SDL_WINDOW_SHOWN);
 
     if(NULL == window)   {  cout<< "Erreur SDL_CreateWindow : "<< SDL_GetError()<<endl; }
 
@@ -196,7 +196,7 @@ void JeuSDL::bouclePartie(){
 
 
     //Recvtangle fenetre : 
-    SDL_Rect rectangle  = {0, 0, WINDOW_SIZE_WIDTH, WINDOW_SIZE_HIGH};
+    SDL_Rect rectangle  = {0, 0, WINDOW_SIZE_WIDTH, WINDOW_SIZE_HEIGHT};
 
 
 
@@ -332,12 +332,10 @@ void JeuSDL::bouclePartie(){
             action.actionsAutomatique(deltaTime);
 
             if(courir && !profilGaucheMP) action.actionsClavier('d');
-            if(courir && profilGaucheMP) action.actionsClavier('g');
+            if(courir && profilGaucheMP && accroupi) action.actionsClavier('g');
 
             if(marche && !profilGaucheSP) action.actionsClavier('l');
             if(marche && profilGaucheSP) action.actionsClavier('j');
-
-            
                 
         }
 
@@ -351,22 +349,22 @@ void JeuSDL::bouclePartie(){
 
           
 
-
-            //rectangle destination luffy :
-            SDL_Rect rectMPlayer  = {action.MP.getx(), action.MP.gety()  , 140, 150};
-            //rectangle destination SP :
-            SDL_Rect rectSPlayer  = {action.SP.getx(), action.SP.gety() , 160, 150};
+        action.initPartie();
+        //rectangle destination luffy :
+        SDL_Rect rectMPlayer  = {action.MP.phy.getPosx(), action.MP.phy.getPosy()  , 140, 150};
+        //rectangle destination Zoro :
+        SDL_Rect rectSPlayer  = {action.SP.phy.getPosx(), action.SP.phy.getPosy() , 160, 150};
 
             
 
-            //rectangle source pour luffyCourt :
-            SDL_Rect rectCourt = { sprite6 * 150, 0, 145, 150 };
-            //rectangle source luffyAccroupi :
-            SDL_Rect rectAccroupi= {300, 0, 150, 150};
-            //rectangle source luffyAttaque :
-            SDL_Rect rectAttaque= {sprite6 * 180, 0, 180, 150};
-            //rectangle zoro marche :
-            SDL_Rect rectMarche = {sprite8 * 165, 0, 160, 180 };
+        //rectangle source pour luffyCourt :
+        SDL_Rect rectCourt = { sprite6 * 150, 0, 145, 150 };
+        //rectangle source luffyAccroupi :
+        SDL_Rect rectAccroupi= {300, 0, 150, 150};
+        //rectangle source luffyAttaque :
+        SDL_Rect rectAttaque= {sprite6 * 180, 0, 180, 150};
+        //rectangle zoro marche :
+        SDL_Rect rectMarche = {sprite8 * 165, 0, 160, 180 };
 
 
 
@@ -393,9 +391,6 @@ void JeuSDL::bouclePartie(){
 
     //affichage ddes tuiles (plateforme) :
     Afficher(renderer,texTuile,tileset,NOMBRE_BLOCS_LARGEUR,NOMBRE_BLOCS_HAUTEUR);
-
-
- 
 
 
 
@@ -443,9 +438,21 @@ void JeuSDL::bouclePartie(){
 }
 
 
+SDL_Rect convertRectToSDLRect(Rect monRect){
 
+    return SDL_Rect{monRect.getx(),
+                    monRect.gety(),
+                    monRect.getw(),
+                    monRect.geth()};
+}
 
+SDL_Rect convertButtonToSDLRect(Bouton monbtn){
 
+    return SDL_Rect{monbtn.getx(),
+                    monbtn.gety(),
+                    monbtn.getw(),
+                    monbtn.geth()};
+}
 
 
 
@@ -482,13 +489,18 @@ void JeuSDL::boucleAcceuil(){
 
 
 
+    //rectangle bg
+    SDL_Rect rectangle  = {0, 0, WINDOW_SIZE_WIDTH, WINDOW_SIZE_HEIGHT};
+    
+    //Affectation Boutons a SDLRECT
+    action.init();
+    SDL_Rect rectPlay   =  convertButtonToSDLRect(action.menu.start);
+    SDL_Rect rectHelp   =  convertButtonToSDLRect(action.menu.help);
+    SDL_Rect rectParams =  convertButtonToSDLRect(action.menu.options);
+    SDL_Rect rectQuit   =  convertButtonToSDLRect(action.menu.quit);
+    SDL_Rect rectBack   =  convertButtonToSDLRect(action.menu.back);
 
-    SDL_Rect rectangle  = {0, 0, WINDOW_SIZE_WIDTH, WINDOW_SIZE_HIGH};
-
-    SDL_Rect rectPlay = {100,100,250,70};
-    SDL_Rect rectHelp = {100,200,250,70};
-    SDL_Rect rectParams = {100,300,250,70};
-    SDL_Rect rectQuit = {100,400,250,70};
+   
 
 
 
