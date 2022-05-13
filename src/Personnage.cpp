@@ -2,6 +2,8 @@
 #include <stdlib.h>
 
 
+
+
 using namespace std;
 
 
@@ -23,16 +25,20 @@ Personnage::~Personnage()
 
 //mouvements
 
-void Personnage::bougerAgauche(int xg){
-	this->phy.setPosx((this->phy.getPosx())-xg);
+void Personnage::bougerAgauche(float xg, const float deltaTime){
+	this->phy.setPosx((this->phy.getPosx())-(xg * deltaTime));
 }
 
-void Personnage::bougerAdroite(int xd){
-	this->phy.setPosx((this->phy.getPosx())+xd);
+void Personnage::bougerAdroite(float xd, const float deltaTime){
+	this->phy.setPosx((this->phy.getPosx())+(xd * deltaTime));
 }
 
-void Personnage::sauter(int yh){
-	this->phy.setPosy((this->phy.getPosy())+yh);
+void Personnage::sauter(float yh, const float deltaTime){
+
+	for(int i=0; i<10; i++)
+	{	
+		this->phy.setPosy((this->phy.getPosy())-(yh * deltaTime));
+		}
 }
 
 

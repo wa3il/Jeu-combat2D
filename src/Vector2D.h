@@ -5,12 +5,12 @@
 
 class Vector2D{
     private:
-        int x,y;
+        float x,y;
 
     public:
         /**constructeur destructeur */
         Vector2D();
-        Vector2D(int xpos,int ypos);
+        Vector2D(float xpos,float ypos);
         ~Vector2D();
 
         /**Surcharge d'operateur de la classe vecteur*/
@@ -19,37 +19,37 @@ class Vector2D{
         Vector2D& operator+=(const Vector2D& op);
 
         /** Mutateur est accesseur */
-        int getx()const;
-        int gety()const;
+        float getx()const;
+        float gety()const;
 
-        void setx(int xpos);
-        void sety(int ypos);
+        void setx(float xpos);
+        void sety(float ypos);
 
 };
 
-Vector2D operator*(const Vector2D& vec, int f);
+Vector2D operator*(const Vector2D& vec, float f);
 
 
 class Rect{
     private:
 
-    int x,y,w,h;
+    float x,y,w,h;
 
 
     public:
 
     Rect();
-    Rect(int x, int y , int w , int h);
+    Rect(float x, float y , float w , float h);
 
-    int getx() const;
-    int gety() const;
-    int getw() const;
-    int geth() const;
+    float getx() const;
+    float gety() const;
+    float getw() const;
+    float geth() const;
 
-    void setx(int x);
-    void sety(int y);
-    void setw(int w);
-    void seth(int h);
+    void setx(float x);
+    void sety(float y);
+    void setw(float w);
+    void seth(float h);
 };
 
 #endif

@@ -228,6 +228,7 @@ void JeuSDL::boucleAcceuil(){
     bool accroupi = false;
     bool attaqueA = false;
     bool marche = false;
+    bool saut = false;
     
 
     SDL_Event events;
@@ -262,7 +263,7 @@ void JeuSDL::boucleAcceuil(){
         //gestion delta time
         LAST = NOW;
         NOW = clock();
-        float deltaTime = (float)((NOW - LAST)/CLOCKS_PER_SEC) ;
+        float deltaTime = (float)((NOW - LAST)/CLOCKS_PER_SEC);
         //std::cout<<"delta Time :"<<deltaTime<<std::endl;
         action.actionsAutomatique(deltaTime);
 
@@ -297,7 +298,7 @@ void JeuSDL::boucleAcceuil(){
                     break;       
 
                     case SDLK_z:
-                    action.actionsClavier('z');
+                    saut = true;
                     break;
             
                     case SDLK_s:
@@ -305,7 +306,7 @@ void JeuSDL::boucleAcceuil(){
                     break;
 
                     case SDLK_a:
-                    action.actionsClavier('t');
+                    action.actionsClavier('t', deltaTime);
                     attaqueA = true;
                     break;
 
@@ -320,7 +321,7 @@ void JeuSDL::boucleAcceuil(){
                     break;
 
                     case SDLK_UP:
-                    action.actionsClavier('i');
+                    action.actionsClavier('i', deltaTime);
                     break;
                 
                 };
@@ -335,15 +336,12 @@ void JeuSDL::boucleAcceuil(){
                     break;    
                                 
                     case SDLK_q:
-                    action.actionsClavier('g');
                     profilGaucheMP=true; 
                     courir= false;
-    
                     break;       
 
                     case SDLK_z:
-                    action.actionsClavier('z');
-                    courir=false;
+                    saut=false;
                     break;
 
                     case SDLK_s:
@@ -393,11 +391,13 @@ void JeuSDL::boucleAcceuil(){
 
             
 
-            if(courir && !profilGaucheMP) action.actionsClavier('d');
-            if(courir && profilGaucheMP && accroupi) action.actionsClavier('g');
+            if(courir && !profilGaucheMP && !accroupi ) action.actionsClavier('d', deltaTime);
+            if(courir && profilGaucheMP && !accroupi ) action.actionsClavier('g', deltaTime);
+            if((saut )) action.actionsClavier('z',deltaTime);
 
-            if(marche && !profilGaucheSP) action.actionsClavier('l');
-            if(marche && profilGaucheSP) action.actionsClavier('j');
+
+            if(marche && !profilGaucheSP) action.actionsClavier('l', deltaTime);
+            if(marche && profilGaucheSP) action.actionsClavier('j', deltaTime);
         }
 
 

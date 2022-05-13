@@ -16,21 +16,21 @@ public:
     ~Physic();
 
     Vector2D getPos() const;
-    int getPosx() const;
-    int getPosy() const;
+    float getPosx() const;
+    float getPosy() const;
 
-    void setPos(int x, int y);
-    void setPosx(int x);
-    void setPosy(int y);
+    void setPos(float x, float y);
+    void setPosx(float x);
+    void setPosy(float y);
 
     Vector2D getVit() const;
-    void setVit(int x, int y);
-    void setVitx(int x);
-    void setVity(int y);
+    void setVit(float x, float y);
+    void setVitx(float x);
+    void setVity(float y);
 
-    void ticks(float deltaTime);
+    void ticks(const float deltaTime);
 
-    bool PointRect(const Vector2D &p, const Rect &r);
+    bool PofloatRect(const Vector2D &p, const Rect &r);
 
 };
 

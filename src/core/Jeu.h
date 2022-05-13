@@ -24,7 +24,7 @@ class Jeu{
 
   
     void actionsAutomatique(float deltaTime);//évenements automatiques
-    void actionsClavier(const char touche); //gestion des évenements liés au clavié
+    void actionsClavier(const char touche, const float deltaTime); //gestion des évenements liés au clavié
     void actionsMenu(int clic); //gestion des événements liés à la souris
 
     //fct concernant le deroulement de la partie

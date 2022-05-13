@@ -22,37 +22,37 @@ void Jeu:: actionsAutomatique(float deltaTime){
 	if (MP.phy.getPosy() > border ){
 
         MP.phy.setPosy(border);
-        MP.phy.setVity(0);	
+        MP.phy.setVity(0.0f);	
     } 
 
     if (SP.phy.getPosy() > border ){
 
         SP.phy.setPosy(border);
-        SP.phy.setVity(0);	
+        SP.phy.setVity(0.0f);	
     } 
 }
 
 
 
-void Jeu :: actionsClavier(const char touche){
+void Jeu :: actionsClavier(const char touche, const float deltaTime){
   
   switch(touche)
     {
 
         case 'd':
-            MP.bougerAdroite(10);
+            MP.bougerAdroite(500.0f, deltaTime);
             //cout <<"MP.x =" << MP.getx() <<endl; 
             //profilGaucheMP=false;
         break;     
                             
         case 'g':
-            MP.bougerAgauche(10);
+            MP.bougerAgauche(500.0f, deltaTime);
             //cout << "MP.x =" << MP.getx() <<endl;  
             //profilGaucheMP=true;    
         break;       
 
         case 'z':
-            MP.sauter(200);
+            MP.sauter(600.0f, deltaTime);
             cout <<"MP.y =" << MP.phy.getPosy() <<endl;
         break;
 
@@ -61,21 +61,21 @@ void Jeu :: actionsClavier(const char touche){
         break;
 
         case 'j':
-            SP.bougerAgauche(10);     
-            cout << "SP.x =" << SP.phy.getPosx() <<endl; 
+            SP.bougerAgauche(500.0f, deltaTime);     
+            //cout << "SP.x =" << SP.phy.getPosx() <<endl; 
             //profilGaucheSP=true;
         break;
 
         case 'l':
-            SP.bougerAdroite(10);     
-            cout << "SP.x =" << SP.phy.getPosx() <<endl;  
+            SP.bougerAdroite(500.0f, deltaTime);     
+            //cout << "SP.x =" << SP.phy.getPosx() <<endl;  
             //profilGaucheSP=false;
 
         break; 
 
         case 'i':
-            SP.sauter(10);
-            cout <<"SP.y =" << SP.phy.getPosy() <<endl;
+            SP.sauter(700.0f, deltaTime);
+            //cout <<"SP.y =" << SP.phy.getPosy() <<endl;
         break;
 
 

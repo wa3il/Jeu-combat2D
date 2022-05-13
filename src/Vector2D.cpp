@@ -3,8 +3,8 @@
 
 //fcts liés à Vector2D
 
-Vector2D::Vector2D():x(0),y(0){}
-Vector2D::Vector2D(int xpos,int ypos):x(xpos),y(ypos){}
+Vector2D::Vector2D():x(0.f),y(0.f){}
+Vector2D::Vector2D(float xpos,float ypos):x(xpos),y(ypos){}
 Vector2D::~Vector2D(){}
 
 Vector2D Vector2D :: operator+(const Vector2D& op)const{
@@ -26,14 +26,14 @@ Vector2D& Vector2D ::operator+=(const Vector2D& op){
             return *this;
         }
 
-int Vector2D :: getx() const{return x;}
-int Vector2D :: gety() const{return y;}
+float Vector2D :: getx() const{return x;}
+float Vector2D :: gety() const{return y;}
 
-void Vector2D :: setx(int xpos) {this->x = xpos;}
-void Vector2D :: sety(int ypos) {this->y = ypos;}
+void Vector2D :: setx(float xpos) {this->x = xpos;}
+void Vector2D :: sety(float ypos) {this->y = ypos;}
 
 
-Vector2D operator*(const Vector2D& vec, int n){
+Vector2D operator*(const Vector2D& vec, float n){
 
     return Vector2D(vec.getx() * n, vec.gety() * n);
 }
@@ -41,14 +41,14 @@ Vector2D operator*(const Vector2D& vec, int n){
 
 //fonctions liés aux Rectangles
 Rect::Rect():x(0),y(0),w(0),h(0){}
-Rect::Rect(int x, int y , int w , int h):x(x),y(y),w(w),h(h){}
+Rect::Rect(float x, float y , float w , float h):x(x),y(y),w(w),h(h){}
 
-int Rect::getx() const{return this-> x;}
-int Rect::gety() const{return this-> y;}
-int Rect::getw() const{return this-> w;}
-int Rect::geth() const{return this-> h;}
+float Rect::getx() const{return this-> x;}
+float Rect::gety() const{return this-> y;}
+float Rect::getw() const{return this-> w;}
+float Rect::geth() const{return this-> h;}
 
-void Rect::setx(int x){this->x = x ;}
-void Rect::sety(int y){this->x = y ;}
-void Rect::setw(int w){this->x = w ;}
-void Rect::seth(int h){this->x = h ;}
+void Rect::setx(float x){this->x = x ;}
+void Rect::sety(float y){this->x = y ;}
+void Rect::setw(float w){this->x = w ;}
+void Rect::seth(float h){this->x = h ;}
