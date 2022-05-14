@@ -62,3 +62,8 @@ bool terrain::posisvalide(int x,int y){
 int terrain::getDimx(){return dimx;}
 int terrain::getDimy(){return dimy;}
 
+void terrain::setDim(int dimx, int dimy){
+    this -> dimx = dimx;
+    this -> dimy = dimy;
+}
+

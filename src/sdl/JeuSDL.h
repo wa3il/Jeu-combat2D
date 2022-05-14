@@ -18,7 +18,7 @@ class JeuSDL{
         SDL_Window *window;
         SDL_Renderer *renderer;
  
-        Jeu action;
+        Jeu J;
         //SDL_Rect spriteluffy[ 8 ];
 
 

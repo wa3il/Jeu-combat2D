@@ -22,7 +22,7 @@ SDL_Texture* JeuSDL::loadImage(const char* filename){
     cout<<"Erreur de chargement de l'image : "<< SDL_GetError()<<endl;
     }
 
-    return SDL_CreateTextureFromSurface(renderer,image);  //La texture monImage contient maintenant l'image importée
+    return SDL_CreateTextureFromSurface(renderer,image);  //La texture ter1Tex contient maintenant l'image importée
     SDL_FreeSurface(image); //Équivalent du destroyTexture pour les surface, permet de libérer la mémoire quand on n'a plus besoin d'une surface
 }
 
@@ -54,7 +54,7 @@ void JeuSDL::Afficher(SDL_Renderer *renderer,SDL_Texture *texture, SDL_Surface* 
     {
         for(j=0;j<NOMBRE_BLOCS_LARGEUR;j++)
         {   
-            if(action.ter1.getXY(i,j) == '#') {
+            if(J.ter1.getXY(i,j) == '#') {
                 Rect_source.x=0;
                 Rect_source.y=0;
                 Rect_source.w=LARGEUR_TILE;
@@ -162,7 +162,8 @@ SDL_Rect convertButtonToSDLRect(Bouton monbtn){
 
 
 void JeuSDL::boucleAcceuil(){
-    action.init();
+   
+    J.init();
     
     float NOW = clock();
     float LAST = 0;
@@ -172,32 +173,19 @@ void JeuSDL::boucleAcceuil(){
     ////chargement de texture
     
     // Background Menu
-    SDL_Texture* menuBg = loadImage("./data/background/menuBg.jpg");
+    SDL_Texture* menuBg = loadImage(J.menu.tex.url);
     // Bouton play
-    SDL_Texture * texBPlay= loadImage("./data/Boutons/startBouton.png");
-    // Bouton parametres
-    SDL_Texture * texBParams= loadImage("./data/Boutons/paramsBouton.png");
+    SDL_Texture * texBPlay= loadImage(J.menu.start.tex.url);
     // Bouton help
-    SDL_Texture * texBHelp= loadImage("./data/Boutons/quitBouton.png");
+    SDL_Texture * texBHelp= loadImage(J.menu.help.tex.url);
     // Bouton quit
-    SDL_Texture * texBQuit= loadImage("./data/Boutons/quitBouton.png");
+    SDL_Texture * texBQuit= loadImage(J.menu.quit.tex.url);
    
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // Background 1
-    SDL_Texture* monImage = loadImage("./data/background/sunny.jpg");
+    // Background de la partie
+    SDL_Texture* ter1Tex = loadImage(J.ter1.tex.url);
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    //luffy gauche
-    SDL_Texture * texMPlayerG = loadImage("./data/luffy/luffy.png");
-    //Sprite luffy court
-    SDL_Texture * texLuffyCourt = loadImage("./data/luffy/luffyCourt.png");
-    //Sprite luffy accroupi
-    SDL_Texture * texLuffyAccroupi = loadImage("./data/luffy/luffyAccroupi.png");
-    //Sprite luffy attaque
-    SDL_Texture * texLuffyAttaque = loadImage("./data/luffy/luffyAttaque.png");
-    //zoro gauche
-    SDL_Texture * texSPlayerG = loadImage("./data/zoro/zoro.png");
-    //zoro marche
-    SDL_Texture * texZoroMarche = loadImage("./data/zoro/zoroMarche.png");
+   
 
    
     ////////////////////////////////////////////////////////////////////////////////////////////
@@ -205,58 +193,59 @@ void JeuSDL::boucleAcceuil(){
     SDL_Surface *tileset;
     SDL_Texture *texTuile = NULL;
     tileset = IMG_Load("./data/plateforme/2.png");
-/////////////////////////////////////////////////////////////////
+    /////////////////////////////////////////////////////////////////
+   
     //rectangle bg
     SDL_Rect WinRect  = {0, 0, WINDOW_SIZE_WIDTH, WINDOW_SIZE_HEIGHT};
     
     //Affectation Boutons a SDLRECT
-    SDL_Rect rectPlay   =  convertButtonToSDLRect(action.menu.start);
-    SDL_Rect rectHelp   =  convertButtonToSDLRect(action.menu.help);
-    SDL_Rect rectParams =  convertButtonToSDLRect(action.menu.options);
-    SDL_Rect rectQuit   =  convertButtonToSDLRect(action.menu.quit);
-    SDL_Rect rectBack   =  convertButtonToSDLRect(action.menu.back);
+    SDL_Rect rectPlay   =  convertButtonToSDLRect(J.menu.start);
+    SDL_Rect rectHelp   =  convertButtonToSDLRect(J.menu.help);
+    SDL_Rect rectParams =  convertButtonToSDLRect(J.menu.options);
+    SDL_Rect rectQuit   =  convertButtonToSDLRect(J.menu.quit);
+    SDL_Rect rectBack   =  convertButtonToSDLRect(J.menu.back);
 
    
 
   //interupteur :
     bool isOpen = true;
     bool onMenu = true;
+    bool isSprite = false;
     ///////////////////
-    bool profilGaucheMP = true;
-    bool profilGaucheSP = true;
-    bool courir = false;
-    bool accroupi = false;
-    bool attaqueA = false;
-    bool marche = false;
-    bool saut = false;
-    
 
     SDL_Event events;
     
     while (isOpen)
     {   
-
         //rectangle destination luffy :
-        SDL_Rect rectMPlayer  = {action.MP.phy.getPosx(), action.MP.phy.getPosy()  , 140, 150};
+        SDL_Rect rectMPlayer  = {J.MP.phy.getPosx(), J.MP.phy.getPosy()  , 140, 150};
         //rectangle destination Zoro :
-        SDL_Rect rectSPlayer  = {action.SP.phy.getPosx(), action.SP.phy.getPosy() , 160, 150};
+        SDL_Rect rectSPlayer  = {J.SP.phy.getPosx(), J.SP.phy.getPosy() , 160, 150};
+      
+      
         //sprite animé
         Uint32 ticks = SDL_GetTicks();
         Uint32 sprite6 = (ticks / 100) % 6;
         Uint32 sprite8 = (ticks / 100) % 8;     
 
-        //rectangle source pour luffyCourt :
-        SDL_Rect rectCourt = { sprite6 * 150, 0, 145, 150 };
-        //rectangle source luffyAccroupi :
-        SDL_Rect rectAccroupi= {300, 0, 150, 150};
+        //rectangle source pour luffySprite :
+        SDL_Rect rectCourt = { sprite6 * 150, 0, 145, 150 } ;
+
         //rectangle source luffyAttaque :
         SDL_Rect rectAttaque= {sprite6 * 180, 0, 180, 150};
-    
-    
+        
         //rectangle zoro marche :
         SDL_Rect rectMarche = {sprite8 * 165, 0, 160, 150 }; 
         
         
+        //textures des personnages
+
+        SDL_Texture * texMP = loadImage(J.MP.tex.url);
+  
+        SDL_Texture * texSP = loadImage(J.SP.tex.url);
+  
+     
+
         
         
         
@@ -264,8 +253,7 @@ void JeuSDL::boucleAcceuil(){
         LAST = NOW;
         NOW = clock();
         float deltaTime = (float)((NOW - LAST)/CLOCKS_PER_SEC);
-        //std::cout<<"delta Time :"<<deltaTime<<std::endl;
-        action.actionsAutomatique(deltaTime);
+        J.actionsAutomatique(deltaTime);
 
         while (SDL_PollEvent(&events))
         {
@@ -279,85 +267,113 @@ void JeuSDL::boucleAcceuil(){
                 
                   switch(events.key.keysym.sym)
                   {
-                    case SDLK_p:    // Regarde si le scancode W est enfoncé (Z sous un azerty)
-                   // this -> bouclePartie();                     
-                    break;
-
                     case SDLK_ESCAPE:  
                     isOpen = false;                
                     break;
 
                     case SDLK_d:
-                    profilGaucheMP=false;
-                    courir= true;
+                    J.actionsClavier('d',deltaTime);
+                    isSprite = true;
                     break;    
                                 
                     case SDLK_q:
-                    profilGaucheMP=true; 
-                    courir= true;
+                    J.actionsClavier('g',deltaTime);
                     break;       
 
                     case SDLK_z:
-                    saut = true;
+                    J.actionsClavier('z',deltaTime);
                     break;
             
                     case SDLK_s:
-                    accroupi=true;
+                    J.actionsClavier('s',deltaTime);
                     break;
 
-                    case SDLK_a:
-                    action.actionsClavier('t', deltaTime);
-                    attaqueA = true;
+                    case SDLK_y:
+                    J.actionsClavier('t', deltaTime);
                     break;
+
+                    case SDLK_u:
+                    J.actionsClavier('w', deltaTime);
+                    break;
+
 
                     case SDLK_LEFT:
-                    profilGaucheSP=true;
-                    marche= true;
+                    J.actionsClavier('j', deltaTime);
                     break;
 
                     case SDLK_RIGHT:
-                    profilGaucheSP=false;
-                    marche= true;
+                    J.actionsClavier('l', deltaTime);
                     break;
 
                     case SDLK_UP:
-                    action.actionsClavier('i', deltaTime);
+                    J.actionsClavier('i', deltaTime);
                     break;
-                
+
+                    case SDLK_DOWN:
+                    J.actionsClavier('k', deltaTime);
+                    break;
+
+                    case SDLK_b:
+                    J.actionsClavier('b', deltaTime);
+                    break;
+
+                    case SDLK_n:
+                    J.actionsClavier('n', deltaTime);
+                    break;
+
                 };
                 break;
                 
                 case SDL_KEYUP:
                  switch(events.key.keysym.sym)
                  {
-                    case SDLK_d:
-                    profilGaucheMP=false;
-                    courir= false;
+                     case SDLK_d:
+                  
                     break;    
                                 
                     case SDLK_q:
-                    profilGaucheMP=true; 
-                    courir= false;
+                  
                     break;       
 
                     case SDLK_z:
-                    saut=false;
+                  
                     break;
-
+            
                     case SDLK_s:
-                    accroupi=false;
+                  
                     break;
 
-                    case SDLK_a:
-                    attaqueA = false;
+                    case SDLK_y:
+                   
                     break;
+
+                    case SDLK_u:
+                    
+                    break;
+
 
                     case SDLK_LEFT:
-                    marche= false;
+                    
                     break;
 
                     case SDLK_RIGHT:
-                    marche= false;
+                   
+                    break;
+
+                    case SDLK_UP:
+                   
+                    break;
+
+                    case SDLK_DOWN:
+                    
+                    break;
+
+                    case SDLK_b:
+                   
+                    break;
+
+                    case SDLK_n:
+               
                     break;
 
                     }
@@ -374,7 +390,7 @@ void JeuSDL::boucleAcceuil(){
                 if (events.button.button == SDL_BUTTON_LEFT){// Clique Gauche
 
                     if(SDL_PointInRect(&Mouse, &rectPlay)){  
-                        action.actionsMenu(1);
+                        J.actionsMenu(1);
                         onMenu = false;
                     }
 
@@ -389,15 +405,6 @@ void JeuSDL::boucleAcceuil(){
 
             }
 
-            
-
-            if(courir && !profilGaucheMP && !accroupi ) action.actionsClavier('d', deltaTime);
-            if(courir && profilGaucheMP && !accroupi ) action.actionsClavier('g', deltaTime);
-            if((saut )) action.actionsClavier('z',deltaTime);
-
-
-            if(marche && !profilGaucheSP) action.actionsClavier('l', deltaTime);
-            if(marche && profilGaucheSP) action.actionsClavier('j', deltaTime);
         }
 
 
@@ -409,48 +416,42 @@ void JeuSDL::boucleAcceuil(){
         SDL_RenderFillRect(renderer, &WinRect); 
         
         if(onMenu){
-        //Background for menu
-        SDL_RenderCopy(renderer, menuBg, NULL,&WinRect );
-        
-        //Bouton Play
-        SDL_RenderFillRect(renderer, &rectPlay); 
-        SDL_RenderCopy(renderer, texBPlay, NULL,&rectPlay);
-        //Bouton Settings
-        SDL_RenderFillRect(renderer, &rectParams); 
-        SDL_RenderCopy(renderer, texBParams, NULL,&rectParams);
-        //Bouton Help
-        SDL_RenderFillRect(renderer, &rectHelp); 
-        SDL_RenderCopy(renderer, texBHelp, NULL,&rectHelp);
-        //Bouton Quit
-        SDL_RenderFillRect(renderer, &rectQuit); 
-        SDL_RenderCopy(renderer, texBQuit, NULL,&rectQuit);
+            //Background for menu
+            SDL_RenderCopy(renderer, menuBg, NULL,&WinRect );
+            
+            //Bouton Play
+            SDL_RenderFillRect(renderer, &rectPlay); 
+            SDL_RenderCopy(renderer, texBPlay, NULL,&rectPlay);
+            //Bouton Help
+            SDL_RenderFillRect(renderer, &rectHelp); 
+            SDL_RenderCopy(renderer, texBHelp, NULL,&rectHelp);
+            //Bouton Quit
+            SDL_RenderFillRect(renderer, &rectQuit); 
+            SDL_RenderCopy(renderer, texBQuit, NULL,&rectQuit);
         }
         
         else{
 
-        //Background du Jeu
-        SDL_RenderCopy(renderer, monImage, NULL,&WinRect );
-       
-        //affichage des tuiles (plateforme) :
-        Afficher(renderer,texTuile,tileset,NOMBRE_BLOCS_LARGEUR,NOMBRE_BLOCS_HAUTEUR);
+            //Background du Jeu
+            SDL_RenderCopy(renderer, ter1Tex, NULL,&WinRect );
         
-        // a revoir plutard ////////////////////////////////////////////////////////////////////////////////////////
-
-        if (courir && !profilGaucheMP && !accroupi) {SDL_RenderCopy(renderer, texLuffyCourt, &rectCourt, &rectMPlayer); }
-        else if(courir && profilGaucheMP && !accroupi) { SDL_RenderCopyEx(renderer, texLuffyCourt, &rectCourt, &rectMPlayer, 0, NULL, SDL_FLIP_HORIZONTAL);}
-        else if (!courir && profilGaucheMP && !accroupi){ SDL_RenderCopy(renderer, texMPlayerG, NULL,&rectMPlayer );}
-        else if (!courir && !profilGaucheMP && !accroupi)  SDL_RenderCopyEx(renderer, texMPlayerG, NULL, &rectMPlayer, 0, NULL, SDL_FLIP_HORIZONTAL);
-        else if (!courir && profilGaucheMP && accroupi) { SDL_RenderCopy(renderer, texLuffyAccroupi, &rectAccroupi,&rectMPlayer );} 
-        else if (!courir && !profilGaucheMP && accroupi) SDL_RenderCopyEx(renderer, texLuffyAccroupi, &rectAccroupi, &rectMPlayer, 0, NULL, SDL_FLIP_HORIZONTAL);
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////////        
-
-        if (marche && !profilGaucheSP ) {SDL_RenderCopy(renderer, texZoroMarche, &rectMarche, &rectSPlayer); }
-        else if(marche  && profilGaucheSP ) { SDL_RenderCopyEx(renderer, texZoroMarche, &rectMarche, &rectSPlayer, 0, NULL, SDL_FLIP_HORIZONTAL);}
-        else if (!marche && profilGaucheSP ){ SDL_RenderCopy(renderer, texSPlayerG, NULL,&rectSPlayer );}
-        else if (!marche && !profilGaucheSP )  SDL_RenderCopyEx(renderer, texSPlayerG, NULL, &rectSPlayer, 0, NULL, SDL_FLIP_HORIZONTAL);
-        
+            //affichage des tuiles (plateforme) :
+            Afficher(renderer,texTuile,tileset,NOMBRE_BLOCS_LARGEUR,NOMBRE_BLOCS_HAUTEUR);
+            
+            //Bouton Play
+            SDL_RenderFillRect(renderer, &rectMPlayer); 
+            if(isSprite == true){
+                SDL_RenderCopy(renderer, texMP, &rectCourt ,&rectMPlayer);
+            }
+            else{
+                SDL_RenderCopy(renderer, texMP, NULL,&rectMPlayer);
+            }
+            
+            //Bouton Settings
+            SDL_RenderFillRect(renderer, &rectSPlayer); 
+            SDL_RenderCopy(renderer, texSP, NULL,&rectSPlayer);
         }
-       
+      
         /////////////////////////////////////////////////////////////////////////////////////////
         SDL_RenderPresent(renderer);
 

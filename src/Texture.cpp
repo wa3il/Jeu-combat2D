@@ -4,5 +4,5 @@ using namespace std;
 
 Texture::Texture(){
     url = "";
-    lettre ='a';
+    lettre ='-';
 }

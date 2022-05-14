@@ -12,7 +12,7 @@ class Texture{
     
     public:
     
-    string url;
+    const char* url;
     char lettre;
 
     Texture();

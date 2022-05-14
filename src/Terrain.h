@@ -1,4 +1,5 @@
 #include <iostream>
+#include "Texture.h"
 
 class terrain{
     private:
@@ -31,5 +32,9 @@ class terrain{
          */
         int getDimx();
         int getDimy();
+
+        void setDim(int dimx, int dimy);
+
+        Texture tex;
 
 };

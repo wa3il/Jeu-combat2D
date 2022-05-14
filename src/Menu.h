@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
+#include "Texture.h"
 
 
 class Bouton{
@@ -15,6 +15,7 @@ class Bouton{
 
     Bouton();
     
+    Texture tex;
     void placerBouton(int x , int y, int w, int h);
     int getx()const ;
     int gety()const ;
@@ -38,6 +39,7 @@ class Menu{
     Menu();
     Menu(int w , int h);
     
+    Texture tex;
     Bouton start;
     Bouton help;
     Bouton options;

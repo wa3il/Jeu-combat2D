@@ -77,6 +77,5 @@ $(OBJDIR)/Texture.o: $(SRCDIR)/Texture.cpp $(SRCDIR)/Texture.h
 	$(CC) $(CPPFLAGS) -c $(SRCDIR)/Texture.cpp -o $(OBJDIR)/Texture.o
 
 
-
 clean:
 	rm $(OBJDIR)/*.o
