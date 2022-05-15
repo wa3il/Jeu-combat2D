@@ -5,6 +5,8 @@
 #include "Competence.h"
 #include "Physic.h"
 #include "Texture.h"
+#include "Terrain.h"
+
 
 class Personnage
 {

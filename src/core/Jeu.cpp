@@ -215,7 +215,7 @@ void Jeu::SPClavierUp(int touche){
 
 void Jeu::initPartie(){
     //initialisation du terrain
-    ter1.setDim(30,16);
+    //ter1.setDim(30,16);
    
     ter1.tex.url = "./data/background/sunny.jpg"; //SDL
     ter1.tex.lettre="##########" ; //TXT

@@ -42,7 +42,7 @@ SDL_Rect convertButtonToSDLRect(Bouton monbtn){
 void JeuSDL::init(){
 
     //Initialisation VIDEO ET AUDIO
-     if (0 != SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO))  {cout<<"Erreur SDL_Init : "<< SDL_GetError()<<endl; }
+     if (0 != SDL_Init(SDL_INIT_VIDEO))  {cout<<"Erreur SDL_Init : "<< SDL_GetError()<<endl; }
 
     window = SDL_CreateWindow("SDL2", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_SIZE_WIDTH, WINDOW_SIZE_HEIGHT, SDL_WINDOW_SHOWN);
 
@@ -52,13 +52,7 @@ void JeuSDL::init(){
 
     if(NULL == renderer)   { cout<<"Erreur SDL_CreateRenderer : "<<SDL_GetError()<<endl; }
 
-    // Initialisation de SDL_Mixer
-    if (Mix_OpenAudio(96000, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 1024) < 0)
-    {
-        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Erreur initialisation SDL_mixer : %s", Mix_GetError());
-        SDL_Quit();
 
-    }
 
 }
 
@@ -367,7 +361,7 @@ void JeuSDL::boucleAcceuil(){
         KeyboardEventsZoro(isSpriteZ);
 
         t=t+5;
-        SDL_Delay(500);
+        //SDL_Delay(500);
 
 
 

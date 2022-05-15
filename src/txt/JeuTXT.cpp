@@ -26,7 +26,7 @@ void JeuTxt :: menuaff(){
     // pour utiliser les arrows key sur l'ecran
     keypad(stdscr,true);
 
-    string choices[3]={Jtxt.menu.start.tex.lettre,Jtxt.menu.quit.tex.lettre};
+    string choices[3]={Jtxt.menu.start.tex.lettre, Jtxt.menu.quit.tex.lettre};
     //string choices[3]={"Play","Help","quitter"};
     int choice;
     int highlight = 0;
@@ -56,7 +56,7 @@ void JeuTxt :: menuaff(){
     if(choice == 10) break;
     }
 
-    if (choices[highlight] == "P") txtBoucle();
+    if (choices[highlight] == Jtxt.menu.start.tex.lettre) txtBoucle();
     
     //getch();
     endwin();
@@ -98,7 +98,6 @@ void JeuTxt :: txtBoucle(){
         LAST = NOW;
         NOW = clock();
         float deltaTime = (float)((NOW - LAST)/CLOCKS_PER_SEC);
-
         txtAff();
         usleep(10000);
 
@@ -108,10 +107,9 @@ void JeuTxt :: txtBoucle(){
         switch (c)
         {
         //mouvements MP
-            case 'z' :  Jtxt.MPClavierDown(2); break;
             case 'q' :  Jtxt.MPClavierDown(1); break;
             case 'd' : Jtxt.MPClavierDown(0); break;
-
+            case 'z' :  Jtxt.MPClavierDown(2); break;
             //S'accroupir MP
             case 's' : Jtxt.MPClavierDown(3); break;
             //attaquer MP
@@ -119,9 +117,9 @@ void JeuTxt :: txtBoucle(){
             case 'a' : Jtxt.MPClavierDown(5); break;
 
             //mouvements SP
+            case KEY_LEFT:  Jtxt.SPClavierDown(0); break;
+            case KEY_RIGHT: Jtxt.SPClavierDown(1); break;
             case KEY_UP:  Jtxt.SPClavierDown(2); break;
-            case KEY_LEFT:  Jtxt.SPClavierDown(1); break;
-            case KEY_RIGHT: Jtxt.SPClavierDown(0); break;
             //s'accroupir SP
             case KEY_DOWN: Jtxt.SPClavierDown(3); break;
             //attaquer SP

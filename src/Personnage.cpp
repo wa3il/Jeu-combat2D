@@ -27,17 +27,17 @@ Personnage::~Personnage()
 //mouvements
 
 void Personnage::bougerAgauche(float xg,terrain& t){
-	if(t.posisvalide(phy.getPosx(),phy.getPosx()))
+	if(t.posisvalide(this->phy.getPosx(), this->phy.getPosy()))
 		this->phy.setPosx(this->phy.getPosx()-xg );
 }
 
 void Personnage::bougerAdroite(float xd,terrain& t){
-	if(t.posisvalide(phy.getPosx(),phy.getPosx()))
+	if(t.posisvalide(this->phy.getPosx(), this->phy.getPosy()))
 		this->phy.setPosx(this->phy.getPosx()+xd );
 }
 
 void Personnage::sauter(float yh,terrain& t){
-	if(t.posisvalide(phy.getPosx(),phy.getPosx()))
+	if(t.posisvalide(this->phy.getPosx(), this->phy.getPosy()))
 		this->phy.setPosy(this->phy.getPosy()-yh );
 }
 

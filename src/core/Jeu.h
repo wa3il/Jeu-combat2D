@@ -3,7 +3,6 @@
 
 #include"../Menu.h"
 #include "../Personnage.h"
-#include "../Terrain.h"
 #include "../Constantes.h"
 
 
