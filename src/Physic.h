@@ -10,10 +10,13 @@ private:
     Vector2D m_position;
     Vector2D m_vitesse;
     Vector2D m_acceleration;
+    
 
 public:
     Physic();
     ~Physic();
+
+   // float t ;//time
 
     Vector2D getPos() const;
     float getPosx() const;

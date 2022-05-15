@@ -200,6 +200,18 @@ void JeuSDL::boucleAcceuil(){
     float NOW = clock();
     float LAST = 0;
     float deltaTime = 0;
+    float t =0;
+    
+    //Variables méthode 2:
+    const double g = 9.81;
+    const double pi = 3.14;
+    int v_init = 5;
+    int angle_init = pi/2.f;
+	double v_x = cos(angle_init)*v_init;
+    double v_y = sin(angle_init)*v_init;
+
+	// La position relative 
+    Vector2D posRel(0,0);
 
     ///////////////////////////
 
@@ -245,22 +257,7 @@ void JeuSDL::boucleAcceuil(){
     //booleen pour les sprits
     bool isSpriteL = true ;
     bool isSpriteZ = true;
-    ///////////////////
-   
-    ///////test//////////////
-    
-    
-    
-    //Variables méthode 2:
-    float t=0;
-    const double g = 9.81;
-    const double pi = 3.14;
-    int v_init = 3;
-    int angle_init = pi/3;
-	double v_x = cos(angle_init)*v_init;
-    double v_y = sin(angle_init)*v_init;
-    // La position relative 
-    Vector2D posRel(0,0);
+
     
     ////////////////////////////////
    
@@ -296,6 +293,7 @@ void JeuSDL::boucleAcceuil(){
         //gestion delta time
         LAST = NOW;
         NOW = clock();
+        
         float deltaTime = (float)((NOW - LAST)/CLOCKS_PER_SEC);
     
         J.updatePartie(deltaTime);
@@ -346,21 +344,26 @@ void JeuSDL::boucleAcceuil(){
             }
     
         }
+    
+        
         //On calcule la valeur relative de y:
-        posRel.setx((int)(0.002*v_x*t));
-        posRel.sety((int)((0.002*v_y*t)-((g*t*t)/2000)));
+        posRel.setx((int)(0.2f*v_x*t));
+        posRel.sety((int)((0.2f*v_y*t)-((g*t*t)/700)));
 
         //On calcule maintenant les valeurs absolues
 
         J.MP.phy.setPosx(J.MP.phy.getPosx() + posRel.getx());
         J.MP.phy.setPosy(J.MP.phy.getPosy() - posRel.gety());
-	
-        t+=1;
-        SDL_Delay(10);
+
+        
       
         KeyboardEventsLuffy(isSpriteL);
         KeyboardEventsZoro(isSpriteZ);
-     
+
+        t=t+5;
+        SDL_Delay(500);
+
+
 
         SDL_RenderClear(renderer);  
     

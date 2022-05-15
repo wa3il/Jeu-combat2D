@@ -38,12 +38,12 @@ void Personnage::sauter(float yh){
 	this->phy.setPosy(this->phy.getPosy()-yh );
 }
 
-void Personnage::sauterAdroite(float deltaTime){
+void Personnage::sauterAdroite(float &t){
 	//Variables méthode 2:
     const double g = 9.81;
     const double pi = 3.14;
     int v_init = 2;
-    int angle_init = pi/3;
+    int angle_init = 4*pi/8;
 	double v_x = cos(angle_init)*v_init;
     double v_y = sin(angle_init)*v_init;
 
@@ -51,8 +51,8 @@ void Personnage::sauterAdroite(float deltaTime){
     Vector2D posRel(0,0);
     
 	//On calcule la valeur relative de y:
-    posRel.setx((int)(v_x*deltaTime));
-    posRel.sety((int)((v_y*deltaTime)-((g*deltaTime*deltaTime)/2000)));
+    posRel.setx((int)(0.02f*v_x*t));
+    posRel.sety((int)((0.02*v_y*t)-((g*t*t)/1000)));
 
     //On calcule maintenant les valeurs absolues
 

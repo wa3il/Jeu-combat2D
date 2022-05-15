@@ -226,7 +226,7 @@ void Jeu::initPartie(){
     const int SPinitx = WINDOW_SIZE_WIDTH - 2*LARGEUR_SPRITE;
     const int SPinity = WINDOW_SIZE_HEIGHT - HAUTEUR_SPRITE;
    
-    MP.phy.setPos(MPinitx,0);
+    MP.phy.setPos(MPinitx,MPinity);
     SP.phy.setPos(SPinitx,SPinity);
    
     MP.tex.url = "./data/luffy/luffyD.png";//Personnage debout
@@ -240,7 +240,7 @@ void Jeu::initPartie(){
 void Jeu::updatePartie(float deltaTime){
  
     this->actionsAutomatique();
-    //MP.phy.ticks(deltaTime); //gravité MP
+    MP.phy.ticks(deltaTime); //gravité MP
     SP.phy.ticks(deltaTime); //gravité SP)
 
 

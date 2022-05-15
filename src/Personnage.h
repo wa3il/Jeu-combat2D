@@ -19,7 +19,7 @@ public:
     void bougerAdroite(float xd);
     void bougerAgauche(float xg);
     void sauter(float yh);
-    void sauterAdroite(float deltaTime);
+    void sauterAdroite(float& t);
     void sauterAgauche();
 
     //Attaques et Compétences
