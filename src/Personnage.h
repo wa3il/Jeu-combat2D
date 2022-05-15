@@ -16,9 +16,9 @@ public:
 
 
     //mouvements
-    void bougerAdroite(float xd);
-    void bougerAgauche(float xg);
-    void sauter(float yh);
+    void bougerAdroite(float xd,terrain& t);
+    void bougerAgauche(float xg,terrain& t);
+    void sauter(float yh,terrain& t);
     void sauterAdroite(float& t);
     void sauterAgauche();
 

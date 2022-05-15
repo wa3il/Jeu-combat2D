@@ -26,16 +26,19 @@ Personnage::~Personnage()
 
 //mouvements
 
-void Personnage::bougerAgauche(float xg){
-	this->phy.setPosx(this->phy.getPosx()-xg );
+void Personnage::bougerAgauche(float xg,terrain& t){
+	if(t.posisvalide(phy.getPosx(),phy.getPosx()))
+		this->phy.setPosx(this->phy.getPosx()-xg );
 }
 
-void Personnage::bougerAdroite(float xd){
-	this->phy.setPosx(this->phy.getPosx()+xd );
+void Personnage::bougerAdroite(float xd,terrain& t){
+	if(t.posisvalide(phy.getPosx(),phy.getPosx()))
+		this->phy.setPosx(this->phy.getPosx()+xd );
 }
 
-void Personnage::sauter(float yh){
-	this->phy.setPosy(this->phy.getPosy()-yh );
+void Personnage::sauter(float yh,terrain& t){
+	if(t.posisvalide(phy.getPosx(),phy.getPosx()))
+		this->phy.setPosy(this->phy.getPosy()-yh );
 }
 
 void Personnage::sauterAdroite(float &t){

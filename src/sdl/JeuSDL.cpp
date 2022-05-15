@@ -4,12 +4,6 @@ using namespace std;
 
 
 
-
-
-
-
-
-
 JeuSDL::JeuSDL(){};
 
 //fct pour charger des images
@@ -58,8 +52,18 @@ void JeuSDL::init(){
 
     if(NULL == renderer)   { cout<<"Erreur SDL_CreateRenderer : "<<SDL_GetError()<<endl; }
 
+    // Initialisation de SDL_Mixer
+    if (Mix_OpenAudio(96000, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, 1024) < 0)
+    {
+        SDL_LogError(SDL_LOG_CATEGORY_APPLICATION, "Erreur initialisation SDL_mixer : %s", Mix_GetError());
+        SDL_Quit();
+
+    }
 
 }
+
+
+
 
 void JeuSDL::Afficher(SDL_Texture *texture, SDL_Surface* tileset,int nbl,int nbh)
 {

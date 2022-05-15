@@ -20,21 +20,22 @@ void JeuTxt :: menuaff(){
     clrscr();
 
     //on recupere window max y et x
+    int xMax = getmaxx(stdscr);
     int yMax = getmaxy(stdscr);
 
     // pour utiliser les arrows key sur l'ecran
     keypad(stdscr,true);
 
-    string choices[4]={Jtxt.menu.start.tex.lettre,Jtxt.menu.help.tex.lettre,Jtxt.menu.quit.tex.lettre,Jtxt.menu.back.tex.lettre};
+    string choices[3]={Jtxt.menu.start.tex.lettre,Jtxt.menu.quit.tex.lettre};
     //string choices[3]={"Play","Help","quitter"};
     int choice;
     int highlight = 0;
 
     //affichage menu
     while(1){
-        for(int i = 0;i < 4; i++){
+        for(int i = 0;i < 2; i++){
             if(i == highlight) attron(A_REVERSE);
-            mvprintw(i+yMax/2,3,choices[i].c_str());
+            mvprintw(i+yMax/2,xMax/2,choices[i].c_str());
             attroff(A_REVERSE);
         }
         choice = getch();
@@ -48,7 +49,7 @@ void JeuTxt :: menuaff(){
         
             case KEY_DOWN:
                 highlight++;
-                if(highlight == 4) highlight = 3;
+                if(highlight == 2) highlight = 1;
                 break;
         }
 
@@ -63,12 +64,13 @@ void JeuTxt :: menuaff(){
 }
 
  void JeuTxt :: txtAff(){
+     
     //affichage des murs.
     for(int x=0; x<Jtxt.ter1.getDimx();++x){
         for(int y=0; y<Jtxt.ter1.getDimy();++y){
             //on cherche dans le modul terrain pour placer les murs
-                if(Jtxt.ter1.getXY(x,y) == '0') mvprintw(x,y*4," ");
-                if(Jtxt.ter1.getXY(x,y) == '#')mvprintw(x,y*4,Jtxt.ter1.tex.lettre);
+            if(Jtxt.ter1.getXY(x,y) == '0') mvprintw(x,y*10,"__________");
+            if(Jtxt.ter1.getXY(x,y) == '#')mvprintw(x,y*10,Jtxt.ter1.tex.lettre);
         }
     }
     mvprintw(Jtxt.SP.phy.getPosy(),Jtxt.SP.phy.getPosx() , Jtxt.SP.tex.lettre);
@@ -85,7 +87,7 @@ void JeuTxt :: txtBoucle(){
     clrscr();
     Jtxt.init();
 
-    Jtxt.MP.phy.setPos (10,10);
+    Jtxt.MP.phy.setPos(10,10);
     Jtxt.SP.phy.setPos(15,10);
 
     bool ok = true;
@@ -106,25 +108,25 @@ void JeuTxt :: txtBoucle(){
         switch (c)
         {
         //mouvements MP
-            case 'z' :  Jtxt.actionsClavier('z', 1); break;
-            case 'q' :  Jtxt.actionsClavier('g', 1); break;
-            case 'd' : Jtxt.actionsClavier('d', 1); break;
+            case 'z' :  Jtxt.MPClavierDown(2); break;
+            case 'q' :  Jtxt.MPClavierDown(1); break;
+            case 'd' : Jtxt.MPClavierDown(0); break;
 
             //S'accroupir MP
-            case 's' : Jtxt.actionsClavier('s', 1); break;
+            case 's' : Jtxt.MPClavierDown(3); break;
             //attaquer MP
-            case 'e' : Jtxt.actionsClavier('t', 1); break;
-            case 'a' : Jtxt.actionsClavier('w', 1); break;
+            case 'e' : Jtxt.MPClavierDown(4); break;
+            case 'a' : Jtxt.MPClavierDown(5); break;
 
             //mouvements SP
-            case KEY_UP:  Jtxt.actionsClavier('j', 1); break;
-            case KEY_LEFT:  Jtxt.actionsClavier('i', 1); break;
-            case KEY_RIGHT: Jtxt.actionsClavier('l', 1); break;
+            case KEY_UP:  Jtxt.SPClavierDown(2); break;
+            case KEY_LEFT:  Jtxt.SPClavierDown(1); break;
+            case KEY_RIGHT: Jtxt.SPClavierDown(0); break;
             //s'accroupir SP
-            case KEY_DOWN: Jtxt.actionsClavier('k', 1); break;
+            case KEY_DOWN: Jtxt.SPClavierDown(3); break;
             //attaquer SP
-            case 'm': Jtxt.actionsClavier('b', 1); break;
-            case 'l': Jtxt.actionsClavier('n', 1); break;
+            case 'm': Jtxt.SPClavierDown(4); break;
+            case 'l': Jtxt.SPClavierDown(5); break;
             //endwin 
             case 'x': ok = false; break;
         }

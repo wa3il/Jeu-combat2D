@@ -77,20 +77,20 @@ void Jeu :: MPClavierDown(int touche)
     {
         //MP/////////////////////////////////////////////////////////
         case 0:
-            MP.bougerAdroite(10.0f);
+            MP.bougerAdroite(10.0f,ter1);
             MP.tex.url = "./data/luffy/luffyCourtD.png";//Sprite Courir a corriger
             //MP.tex.isSprite = true;          
 
         break;     
                             
         case 1: //gauche a inverser
-            MP.bougerAgauche(10.0f);
+            MP.bougerAgauche(10.0f,ter1);
             MP.tex.url = "./data/luffy/luffyCourtG.png";//Sprite Courir
             //MP.tex.isSprite = true;
         break;       
 
         case 2:
-            MP.sauter(20.0f);
+            MP.sauter(20.0f,ter1);
             MP.tex.url= "./data/luffy/luffySauteD.png";
             //MP.tex.isSprite = false;
         break;
@@ -143,20 +143,20 @@ void Jeu::SPClavierDown(int touche)
     switch(touche)
         {
             case 0:
-                SP.bougerAgauche(10.0f);     
+                SP.bougerAgauche(10.0f,ter1);     
                 SP.tex.url = "./data/zoro/zoroCourtD.png";
                 //MP.tex.isSprite = true;
                 
             break;
 
             case 1:
-                SP.bougerAdroite(10.0f);     
+                SP.bougerAdroite(10.0f,ter1);     
                 SP.tex.url = "./data/zoro/zoroCourtG.png";
                 //MP.tex.isSprite = true;
             break; 
 
             case 2:
-                SP.sauter(20.0f);
+                SP.sauter(20.0f,ter1);
                 SP.tex.url = "./data/zoro/zoroSauteD.png"; 
                 //MP.tex.isSprite = false;
             break;
@@ -218,7 +218,7 @@ void Jeu::initPartie(){
     ter1.setDim(30,16);
    
     ter1.tex.url = "./data/background/sunny.jpg"; //SDL
-    ter1.tex.lettre="#" ; //TXT
+    ter1.tex.lettre="##########" ; //TXT
 
     //initialisation des position et textures des joueurs
     const int MPinitx = LARGEUR_SPRITE ;
@@ -275,10 +275,10 @@ void Jeu :: init(){
         menu.tex.url ="./data/background/menuBg.jpg";
 
         menu.start.tex.url ="./data/Boutons/startBouton.png";
-        menu.start.tex.lettre="P";
+        menu.start.tex.lettre="Play";
 
         menu.quit.tex.url ="./data/Boutons/quitBouton.png";
-        menu.quit.tex.lettre="Q";
+        menu.quit.tex.lettre="Quit";
 
         menu.son.tex.url ="./data/Boutons/sonOnBouton.jpg";
        
