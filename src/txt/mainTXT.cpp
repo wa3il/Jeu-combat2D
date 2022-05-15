@@ -2,9 +2,10 @@
 #include <iostream>
 #include "JeuTXT.h"
 
-int main(void){
-	Jeu actions;
-	txtBoucle(actions);
+int main(int argc,char ** argv){
+	//txtBoucle(actions);
+	JeuTxt J;
+	J.menuaff();
 
 	return 0;
 }

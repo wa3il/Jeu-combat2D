@@ -17,11 +17,11 @@
     "00000000000000",
     "00000000000000",
     "00000000000000",
-    "000########000",
     "00000000000000",
     "00000000000000",
     "00000000000000",
-    "####0000000000",
+    "00000000000000",
+    "####000000####",
     "00000000000000",
     "00000000000000",
     "00000000000000",
@@ -53,14 +53,14 @@ terrain ::terrain():dimx(30),dimy(16){
 
 terrain :: ~terrain(){}
 
-char terrain::getXY(int x,int y){ return ter[x][y];}
+char terrain::getXY(int x,int y){ return this->ter[x][y];}
 
 bool terrain::posisvalide(int x,int y){
      return ((ter[x][y] != '#') && (x>= 0) && (x<dimx)&& (y >= 0) && (y<dimx));
 }
 
-int terrain::getDimx(){return dimx;}
-int terrain::getDimy(){return dimy;}
+int terrain::getDimx(){return this->dimx;}
+int terrain::getDimy(){return this->dimy;}
 
 void terrain::setDim(int dimx, int dimy){
     this -> dimx = dimx;

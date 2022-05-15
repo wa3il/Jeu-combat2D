@@ -40,7 +40,7 @@ $(OBJDIR)/mainTXT.o:$(TXTDIR)/mainTXT.cpp
 	$(CC) $(CPPFLAGS) -c $(TXTDIR)/mainTXT.cpp -o $(OBJDIR)/mainTXT.o 
 
 $(OBJDIR)/JeuTXT.o: $(TXTDIR)/JeuTXT.cpp $(TXTDIR)/JeuTXT.h 
-	$(CC) $(CPPFLAGS) -c $(SDLDIR)/JeuTXT.cpp -o $(OBJDIR)/JeuTXT.o -lncurses
+	$(CC) $(CPPFLAGS) -c $(TXTDIR)/JeuTXT.cpp -o $(OBJDIR)/JeuTXT.o -lncurses
 
 
 #version SDL

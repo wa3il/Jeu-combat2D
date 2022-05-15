@@ -82,67 +82,6 @@ void JeuSDL::Afficher(SDL_Renderer *renderer,SDL_Texture *texture, SDL_Surface* 
 
 
 
-
-/* void JeuSDL::loadSprite(){
-
-
-    //Load sprite sheet texture
-    loadImage("./data/luffy/luffyCourt.png")
-   
-        //Set top left sprite
-        spriteluffy[ 0 ].x =   0;
-        spriteluffy[ 0 ].y =   0;
-        spriteluffy[ 0 ].w = 50;
-        spriteluffy[ 0 ].h = HAUTEUR_SPRITE1_LUFFY;
-
-        //Set top right sprite
-        spriteluffy[ 1 ].x =   50;
-        spriteluffy[ 1 ].y =   0;
-        spriteluffy[ 1 ].w = 50;
-        spriteluffy[ 1 ].h = HAUTEUR_SPRITE1_LUFFY;
-        
-        //Set bottom left sprite
-        spriteluffy[ 2 ].x = 100;
-        spriteluffy[ 2 ].y =   0;
-        spriteluffy[ 2 ].w = 55;
-        spriteluffy[ 2 ].h = HAUTEUR_SPRITE1_LUFFY;
-
-        //Set bottom right sprite
-        spriteluffy[ 3 ].x =   155;
-        spriteluffy[ 3 ].y =   0;
-        spriteluffy[ 3 ].w = 55;
-        spriteluffy[ 3 ].h = HAUTEUR_SPRITE1_LUFFY;
-        
-        //Set bottom right sprite
-        spriteluffy[ 4 ].x =   210;
-        spriteluffy[ 4 ].y =   0;
-        spriteluffy[ 4 ].w = 40;
-        spriteluffy[ 4 ].h = HAUTEUR_SPRITE1_LUFFY;        
-        
-        //Set bottom right sprite
-        spriteluffy[ 5 ].x =   250;
-        spriteluffy[ 5 ].y =   0;
-        spriteluffy[ 5 ].w = 45;
-        spriteluffy[ 5 ].h = HAUTEUR_SPRITE1_LUFFY;
-        
-        //Set bottom right sprite
-        spriteluffy[ 6 ].x =   300;
-        spriteluffy[ 6 ].y =   0;
-        spriteluffy[ 6 ].w = 52;
-        spriteluffy[ 6 ].h = HAUTEUR_SPRITE1_LUFFY;        
-        
-        //Set bottom right sprite
-        spriteluffy[ 7 ].x =   350;
-        spriteluffy[ 7 ].y =   0;
-        spriteluffy[ 7 ].w = 55;
-        spriteluffy[ 7 ].h = HAUTEUR_SPRITE1_LUFFY;
-        
-
-    }
-
-} */
-
-
 SDL_Rect convertRectToSDLRect(Rect monRect){
 
     return SDL_Rect{monRect.getx(),
@@ -210,41 +149,45 @@ void JeuSDL::boucleAcceuil(){
   //interupteur :
     bool isOpen = true;
     bool onMenu = true;
-    bool isSprite = false;
+    bool isSprite = false ;
     ///////////////////
 
     SDL_Event events;
     
     while (isOpen)
     {   
-        //rectangle destination luffy :
-        SDL_Rect rectMPlayer  = {J.MP.phy.getPosx(), J.MP.phy.getPosy()  , 140, 150};
-        //rectangle destination Zoro :
-        SDL_Rect rectSPlayer  = {J.SP.phy.getPosx(), J.SP.phy.getPosy() , 160, 150};
+
       
       
         //sprite animé
         Uint32 ticks = SDL_GetTicks();
-        Uint32 sprite6 = (ticks / 100) % 6;
-        Uint32 sprite8 = (ticks / 100) % 8;     
+        Uint32 nbSprite = (ticks / 100) % 6;
 
+                            /* ******** LUFFY ******* */
+
+        //rectangle destination luffy :
+        SDL_Rect rectMPlayer  = {J.MP.phy.getPosx(), J.MP.phy.getPosy()  , 160, 150};
         //rectangle source pour luffySprite :
-        SDL_Rect rectCourt = { sprite6 * 150, 0, 145, 150 } ;
+        SDL_Rect rectCourt = { nbSprite * 150, NULL, 148, 150 } ;
 
         //rectangle source luffyAttaque :
-        SDL_Rect rectAttaque= {sprite6 * 180, 0, 180, 150};
-        
-        //rectangle zoro marche :
-        SDL_Rect rectMarche = {sprite8 * 165, 0, 160, 150 }; 
-        
-        
-        //textures des personnages
+        SDL_Rect rectAttaque= {nbSprite * 180, NULL, 180, 150};
 
+        //textures
         SDL_Texture * texMP = loadImage(J.MP.tex.url);
-  
+
+
+
+                            /* ******** ZORO ******* */
+
+        
+        //rectangle destination Zoro :
+        SDL_Rect rectSPlayer  = {J.SP.phy.getPosx(), J.SP.phy.getPosy() , 180, 155};
+        //rectangle source pour zoroCourt :
+        SDL_Rect rectCourtZ = { nbSprite * 190, 0, 180, 150} ;
+        //textures
         SDL_Texture * texSP = loadImage(J.SP.tex.url);
-  
-     
+
 
         
         
@@ -272,108 +215,109 @@ void JeuSDL::boucleAcceuil(){
                     break;
 
                     case SDLK_d:
-                    J.actionsClavier('d',deltaTime);
+                    J.MPClavierDown(0, deltaTime);
                     isSprite = true;
                     break;    
                                 
                     case SDLK_q:
-                    J.actionsClavier('g',deltaTime);
+                    J.MPClavierDown(1, deltaTime);
+                    isSprite = true;
                     break;       
 
                     case SDLK_z:
-                    J.actionsClavier('z',deltaTime);
+                    J.MPClavierDown(2, deltaTime);
                     break;
             
                     case SDLK_s:
-                    J.actionsClavier('s',deltaTime);
+                    J.MPClavierDown(3, deltaTime);
                     break;
 
                     case SDLK_y:
-                    J.actionsClavier('t', deltaTime);
+                    J.MPClavierDown(4, deltaTime);
                     break;
 
                     case SDLK_u:
-                    J.actionsClavier('w', deltaTime);
+                    J.MPClavierDown(5, deltaTime);
                     break;
 
 
                     case SDLK_LEFT:
-                    J.actionsClavier('j', deltaTime);
+                    J.SPClavierDown(0, deltaTime);
                     break;
 
                     case SDLK_RIGHT:
-                    J.actionsClavier('l', deltaTime);
+                    J.SPClavierDown(1, deltaTime);
                     break;
 
                     case SDLK_UP:
-                    J.actionsClavier('i', deltaTime);
+                    J.SPClavierDown(2, deltaTime);
                     break;
 
                     case SDLK_DOWN:
-                    J.actionsClavier('k', deltaTime);
+                    J.SPClavierDown(3, deltaTime);
                     break;
 
                     case SDLK_b:
-                    J.actionsClavier('b', deltaTime);
+                    J.SPClavierDown(4, deltaTime);
                     break;
 
                     case SDLK_n:
-                    J.actionsClavier('n', deltaTime);
+                    J.SPClavierDown(5, deltaTime);
                     break;
 
-                };
+                }
                 break;
                 
                 case SDL_KEYUP:
                  switch(events.key.keysym.sym)
                  {
-                     case SDLK_d:
-                  
+                    case SDLK_d:
+                        J.MPClavierUp(0, deltaTime);
                     break;    
                                 
                     case SDLK_q:
-                  
+                        J.MPClavierUp(1, deltaTime);
                     break;       
 
                     case SDLK_z:
-                  
+                        J.MPClavierUp(2, deltaTime);
                     break;
             
                     case SDLK_s:
-                  
+                        J.MPClavierUp(3, deltaTime);                  
                     break;
 
                     case SDLK_y:
-                   
+                        J.MPClavierUp(4, deltaTime);
                     break;
 
                     case SDLK_u:
-                    
+                        J.MPClavierUp(4, deltaTime);                    
                     break;
 
 
                     case SDLK_LEFT:
-                    
+                        J.SPClavierUp(0, deltaTime);
                     break;
 
                     case SDLK_RIGHT:
-                   
+                        J.SPClavierUp(1, deltaTime);                  
                     break;
 
                     case SDLK_UP:
-                   
+                        J.SPClavierUp(2, deltaTime);                                     
                     break;
 
                     case SDLK_DOWN:
-                    
+                        J.SPClavierUp(3, deltaTime);                                      
                     break;
 
                     case SDLK_b:
-                   
+                        J.SPClavierUp(4, deltaTime);                                     
                     break;
 
                     case SDLK_n:
-               
+                        J.SPClavierUp(5, deltaTime);                                 
                     break;
 
                     }
@@ -413,24 +357,22 @@ void JeuSDL::boucleAcceuil(){
         //Transparence :
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
         SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
-        SDL_RenderFillRect(renderer, &WinRect); 
         
-        if(onMenu){
+        if(onMenu)
+        {
             //Background for menu
             SDL_RenderCopy(renderer, menuBg, NULL,&WinRect );
             
             //Bouton Play
-            SDL_RenderFillRect(renderer, &rectPlay); 
             SDL_RenderCopy(renderer, texBPlay, NULL,&rectPlay);
             //Bouton Help
-            SDL_RenderFillRect(renderer, &rectHelp); 
             SDL_RenderCopy(renderer, texBHelp, NULL,&rectHelp);
             //Bouton Quit
-            SDL_RenderFillRect(renderer, &rectQuit); 
             SDL_RenderCopy(renderer, texBQuit, NULL,&rectQuit);
         }
         
-        else{
+        else
+        {
 
             //Background du Jeu
             SDL_RenderCopy(renderer, ter1Tex, NULL,&WinRect );
@@ -438,21 +380,28 @@ void JeuSDL::boucleAcceuil(){
             //affichage des tuiles (plateforme) :
             Afficher(renderer,texTuile,tileset,NOMBRE_BLOCS_LARGEUR,NOMBRE_BLOCS_HAUTEUR);
             
-            //Bouton Play
-            SDL_RenderFillRect(renderer, &rectMPlayer); 
-            if(isSprite == true){
+
+            if(isSprite == true)
+            {
                 SDL_RenderCopy(renderer, texMP, &rectCourt ,&rectMPlayer);
             }
-            else{
+            else
+            {
                 SDL_RenderCopy(renderer, texMP, NULL,&rectMPlayer);
             }
             
-            //Bouton Settings
-            SDL_RenderFillRect(renderer, &rectSPlayer); 
-            SDL_RenderCopy(renderer, texSP, NULL,&rectSPlayer);
+
+
+            if(isSprite == true)
+            {
+                SDL_RenderCopy(renderer, texSP, &rectCourtZ ,&rectSPlayer);
+            }
+            else
+            {
+                SDL_RenderCopy(renderer, texSP, NULL, &rectSPlayer);
+            }
         }
       
-        /////////////////////////////////////////////////////////////////////////////////////////
         SDL_RenderPresent(renderer);
 
     }

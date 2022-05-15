@@ -3,7 +3,7 @@ using namespace std;
 
 
 
-void Jeu:: actionsAutomatique(float deltaTime){
+void Jeu :: actionsAutomatique(float deltaTime){
     MP.phy.ticks(deltaTime);
     SP.phy.ticks(deltaTime);
 
@@ -23,83 +23,176 @@ void Jeu:: actionsAutomatique(float deltaTime){
 
 
 
-void Jeu :: actionsClavier(const char touche, const float deltaTime){
+void Jeu :: MPClavierDown(int touche, const float deltaTime)
+{
   
   switch(touche)
     {
         //MP/////////////////////////////////////////////////////////
-        case 'd':
+        case 0:
             MP.bougerAdroite(500.0f, deltaTime);
             MP.tex.url = "./data/luffy/luffyCourtD.png";//Sprite Courir a corriger
-          
+            //MP.tex.isSprite = true;          
+
         break;     
                             
-        case 'g': //gauche a inverser
+        case 1: //gauche a inverser
             MP.bougerAgauche(500.0f, deltaTime);
             MP.tex.url = "./data/luffy/luffyCourtG.png";//Sprite Courir
+            //MP.tex.isSprite = true;
         break;       
 
-        case 'z':
+        case 2:
             MP.sauter(600.0f, deltaTime);
             MP.tex.url= "./data/luffy/luffySauteD.png";
-            
+            //MP.tex.isSprite = false;
         break;
 
-        case 's' :
+        case 3 :
             MP.tex.url = "./data/luffy/luffyAccroupiD.png";//Personnage accroupi pour SDL
-            MP.tex.lettre = 'l';//Personnage accroupi en TXT
+            MP.tex.lettre = "l";//Personnage accroupi en TXT
+            //MP.tex.isSprite = false;
         break;
         
 
-        case 't':
+        case 4:
             MP.attaquer(SP);
             MP.tex.url = "./data/luffy/luffyAttaqueA.png"; //attaqueA
-            MP.tex.lettre = 'LL'; 
+            MP.tex.lettre = "LL"; 
+            //MP.tex.isSprite = true;
         break;
 
-        case 'w':
+        case 5:
             MP.attaquer(SP);
             MP.tex.url = "./data/luffy/luffyAttaqueB.png"; //attaqueB
-            MP.tex.lettre = 'LL'; 
+            MP.tex.lettre = "LL";
+            //MP.tex.isSprite = true; 
         break;
-
-
-        //SP/////////////////////////////////////////////////////////
-        case 'j':
-            SP.bougerAgauche(500.0f, deltaTime);     
-            SP.tex.url = "./data/zoro/zoroD.png";
-            
-        break;
-
-        case 'l':
-            SP.bougerAdroite(500.0f, deltaTime);     
-            SP.tex.url = "./data/zoro/zoroG.png";
-        break; 
-
-        case 'i':
-            SP.sauter(700.0f, deltaTime);
-            SP.tex.url = "./data/zoro/zoroSauteD.png"; 
-        break;
-
-        case 'k':
-            SP.tex.url = "./data/zoro/zoroAccroupiG.png";
-            SP.tex.lettre = 'z';
-        break;
-
-        case 'b':
-            SP.tex.url = "./data/zoro/zoroAttaqueA.png"; //attaqueA
-            SP.tex.lettre = 'ZZ'; 
-        break;
-
-        case 'n':
-            SP.tex.url = "./data/zoro/zoroAttaqueB.png"; //attaqueB
-            SP.tex.lettre = 'ZZ'; 
-        break;
-
 
     }
-
 }
+
+
+void Jeu::MPClavierUp(int touche, const float deltaTime)
+{
+        switch(touche)
+        {
+            case 0:
+                MP.tex.url = "./data/luffy/luffyD.png";
+                //MP.tex.isSprite = false;
+            break;
+
+            case 1:
+                MP.tex.url = "./data/luffy/luffyG.png";
+                //MP.tex.isSprite = false;
+            break; 
+
+            case 2:
+        /*     if(MP.phy.getPosx() == ){
+                MP.tex.url = 
+            } */
+            break;
+
+            case 3:
+
+            break;
+
+            case 4:
+
+            break;
+
+            case 5:
+
+            break;
+        }
+}
+
+
+
+void Jeu::SPClavierDown(int touche, const float deltaTime)
+{
+    switch(touche)
+        {
+            case 0:
+                SP.bougerAgauche(500.0f, deltaTime);     
+                SP.tex.url = "./data/zoro/zoroCourtD.png";
+                //MP.tex.isSprite = true;
+                
+            break;
+
+            case 1:
+                SP.bougerAdroite(500.0f, deltaTime);     
+                SP.tex.url = "./data/zoro/zoroCourtG.png";
+                //MP.tex.isSprite = true;
+            break; 
+
+            case 2:
+                SP.sauter(700.0f, deltaTime);
+                SP.tex.url = "./data/zoro/zoroSauteD.png"; 
+                //MP.tex.isSprite = false;
+            break;
+
+            case 3:
+                SP.tex.url = "./data/zoro/zoroAccroupiG.png";
+                SP.tex.lettre = "z";
+                //MP.tex.isSprite = false;
+            break;
+
+            case 4:
+                SP.tex.url = "./data/zoro/zoroAttaqueA.png"; //attaqueA
+                SP.tex.lettre = "ZZ"; 
+                //MP.tex.isSprite = true;
+            break;
+
+            case 5:
+                SP.tex.url = "./data/zoro/zoroAttaqueB.png"; //attaqueB
+                SP.tex.lettre = "ZZ"; 
+                //MP.tex.isSprite = true;
+            break;
+        }
+}
+
+
+
+void Jeu::SPClavierUp(int touche, const float deltaTime){
+        switch(touche)
+        {
+            case 0:
+                SP.tex.url = "./data/zoro/zoroD.png";
+                //MP.tex.isSprite = false;
+            break;
+
+            case 1:
+                SP.tex.url = "./data/zoro/zoroG.png";
+                //MP.tex.isSprite = false;
+            break; 
+
+            case 2:
+
+            break;
+
+            case 3:
+
+            break;
+
+            case 4:
+
+            break;
+
+            case 5:
+
+            break;
+        }
+}
+
+
+
+
+
+
+    
+
+
 
 //but est d'effectuer les actions liés à un clic de souris
 // on affectera plus tard le Vector2D aux coordonnés de la souris 
@@ -145,10 +238,10 @@ void Jeu :: actionsMenu(int clic){
 
 void Jeu::initPartie(){
     //initialisation du terrain
-    ter1.setDim(WINDOW_SIZE_WIDTH,WINDOW_SIZE_HEIGHT);
+    ter1.setDim(30,16);
    
     ter1.tex.url = "./data/background/sunny.jpg"; //SDL
-    ter1.tex.lettre='#' ; //TXT
+    ter1.tex.lettre="#" ; //TXT
 
     //initialisation des position et textures des joueurs
     const int MPinitx = LARGEUR_SPRITE ;
@@ -160,10 +253,10 @@ void Jeu::initPartie(){
     SP.phy.setPos(SPinitx,SPinity);
    
     MP.tex.url = "./data/luffy/luffyD.png";//Personnage debout
-    MP.tex.lettre = 'L';//Personnage debout
+    MP.tex.lettre = "L";//Personnage debout
 
     SP.tex.url = "./data/zoro/zoroD.png" ; //personnage ZORO debout
-    SP.tex.lettre = 'Z';//Personnage debout
+    SP.tex.lettre = "Z";//Personnage debout
 
 }
 
@@ -209,16 +302,13 @@ void Jeu :: init(){
         menu.tex.url ="./data/background/menuBg.jpg";
 
         menu.start.tex.url ="./data/Boutons/startBouton.png";
-        menu.start.tex.lettre='P';
-
-        menu.help.tex.url ="./data/Boutons/quitBouton.png";
-        menu.help.tex.lettre='H';
+        menu.start.tex.lettre="P";
 
         menu.quit.tex.url ="./data/Boutons/quitBouton.png";
-        menu.quit.tex.lettre='Q';
+        menu.quit.tex.lettre="Q";
 
         menu.back.tex.url ="./data/Boutons/quitBouton.png";
-        menu.back.tex.lettre='B';
+        menu.back.tex.lettre="B";
 
         this -> initPartie();
 

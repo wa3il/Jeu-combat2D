@@ -5,7 +5,17 @@
 #include "JeuTXT.h"
 #include "../core/Jeu.h"
 
-void txtBoucle(Jeu & j);
+class JeuTxt{
+    public:
+        Jeu Jtxt;
+
+        void txtBoucle();
+        void menuaff();
+        void txtAff();
+
+    private:
+
+};
 
 
 #endif

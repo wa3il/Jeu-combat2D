@@ -13,7 +13,8 @@ class Texture{
     public:
     
     const char* url;
-    char lettre;
+    const char* lettre;
+    //bool isSprite;
 
     Texture();
 
