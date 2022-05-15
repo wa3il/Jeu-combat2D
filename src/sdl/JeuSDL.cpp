@@ -46,7 +46,9 @@ SDL_Rect convertButtonToSDLRect(Bouton monbtn){
 
 
 void JeuSDL::init(){
-     if (0 != SDL_Init(SDL_INIT_VIDEO))  {cout<<"Erreur SDL_Init : "<< SDL_GetError()<<endl; }
+
+    //Initialisation VIDEO ET AUDIO
+     if (0 != SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO))  {cout<<"Erreur SDL_Init : "<< SDL_GetError()<<endl; }
 
     window = SDL_CreateWindow("SDL2", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_SIZE_WIDTH, WINDOW_SIZE_HEIGHT, SDL_WINDOW_SHOWN);
 
@@ -56,7 +58,7 @@ void JeuSDL::init(){
 
     if(NULL == renderer)   { cout<<"Erreur SDL_CreateRenderer : "<<SDL_GetError()<<endl; }
 
-     
+
 }
 
 void JeuSDL::Afficher(SDL_Texture *texture, SDL_Surface* tileset,int nbl,int nbh)
