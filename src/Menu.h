@@ -40,12 +40,11 @@ class Menu{
     Menu(int w , int h);
     
     Texture tex;
+    
     Bouton start;
-    Bouton help;
-    Bouton options;
     Bouton quit;
     Bouton back;
-
+    Bouton son;
     private:
     int m_w , m_h ;
     

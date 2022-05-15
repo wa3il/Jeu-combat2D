@@ -16,9 +16,11 @@ public:
 
 
     //mouvements
-    void bougerAdroite(float xd, const float deltaTime);
-    void bougerAgauche(float xg, const float deltaTime);
-    void sauter(float yh, const float deltaTime);
+    void bougerAdroite(float xd);
+    void bougerAgauche(float xg);
+    void sauter(float yh);
+    void sauterAdroite(float deltaTime);
+    void sauterAgauche();
 
     //Attaques et Compétences
     void recevoirDegats(int nbDegats);

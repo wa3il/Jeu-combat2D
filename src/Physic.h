@@ -28,7 +28,7 @@ public:
     void setVitx(float x);
     void setVity(float y);
 
-    void ticks(const float deltaTime);
+    void ticks(const float deltaTime);//gravité
 
     bool PofloatRect(const Vector2D &p, const Rect &r);
 

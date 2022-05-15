@@ -3,47 +3,94 @@ using namespace std;
 
 
 
-void Jeu :: actionsAutomatique(float deltaTime){
-    MP.phy.ticks(deltaTime);
-    SP.phy.ticks(deltaTime);
+void Jeu :: actionsAutomatique(){
+    
 
-    const float border = WINDOW_SIZE_HEIGHT - HAUTEUR_SPRITE;
-	if (MP.phy.getPosy() > border ){
+	if (MP.phy.getPosy() > WINDOW_SIZE_HEIGHT - HAUTEUR_SPRITE){
 
-        MP.phy.setPosy(border);
+        MP.phy.setPosy(WINDOW_SIZE_HEIGHT - HAUTEUR_SPRITE);
         MP.phy.setVity(0.0f);	
     } 
 
-    if (SP.phy.getPosy() > border ){
+    if (SP.phy.getPosy() > WINDOW_SIZE_HEIGHT - HAUTEUR_SPRITE ){
 
-        SP.phy.setPosy(border);
+        SP.phy.setPosy(WINDOW_SIZE_HEIGHT - HAUTEUR_SPRITE);
         SP.phy.setVity(0.0f);	
     } 
+
+	if (MP.phy.getPosy() < 0 ){
+
+        MP.phy.setPosy(0);
+        MP.phy.setVity(0.0f);	
+    } 
+
+    if (SP.phy.getPosy() < 0 ){
+
+        SP.phy.setPosy(0);
+        SP.phy.setVity(0.0f);	
+    } 
+    
+    if (MP.phy.getPosx() < 0 ){
+
+        MP.phy.setPosx(0);
+        MP.phy.setVitx(0.0f);	
+    } 
+
+    if (SP.phy.getPosx() < 0 ){
+
+        SP.phy.setPosx(0);
+        SP.phy.setVitx(0.0f);	
+    } 
+
+    if (MP.phy.getPosx() > WINDOW_SIZE_WIDTH -LARGEUR_SPRITE ){
+
+        MP.phy.setPosx(WINDOW_SIZE_WIDTH -LARGEUR_SPRITE);
+        MP.phy.setVitx(0.0f);	
+    } 
+
+    if (SP.phy.getPosx() > WINDOW_SIZE_WIDTH -LARGEUR_SPRITE ){
+
+        SP.phy.setPosx(WINDOW_SIZE_WIDTH -LARGEUR_SPRITE);
+        SP.phy.setVitx(0.0f);	
+    } 
+
+    for(int i=0;i<NOMBRE_BLOCS_HAUTEUR;i++)//boucle pour collision avec tuiles
+    {
+        for(int j=0;j<NOMBRE_BLOCS_LARGEUR;j++)
+        {   
+            if(ter1.getXY(i,j) == '#'){
+
+
+
+            }
+        }
+    }
+
 }
 
 
 
-void Jeu :: MPClavierDown(int touche, const float deltaTime)
+void Jeu :: MPClavierDown(int touche)
 {
   
   switch(touche)
     {
         //MP/////////////////////////////////////////////////////////
         case 0:
-            MP.bougerAdroite(500.0f, deltaTime);
+            MP.bougerAdroite(10.0f);
             MP.tex.url = "./data/luffy/luffyCourtD.png";//Sprite Courir a corriger
             //MP.tex.isSprite = true;          
 
         break;     
                             
         case 1: //gauche a inverser
-            MP.bougerAgauche(500.0f, deltaTime);
+            MP.bougerAgauche(10.0f);
             MP.tex.url = "./data/luffy/luffyCourtG.png";//Sprite Courir
             //MP.tex.isSprite = true;
         break;       
 
         case 2:
-            MP.sauter(600.0f, deltaTime);
+            MP.sauter(20.0f);
             MP.tex.url= "./data/luffy/luffySauteD.png";
             //MP.tex.isSprite = false;
         break;
@@ -73,61 +120,43 @@ void Jeu :: MPClavierDown(int touche, const float deltaTime)
 }
 
 
-void Jeu::MPClavierUp(int touche, const float deltaTime)
+void Jeu::MPClavierUp(int touche)
 {
         switch(touche)
         {
             case 0:
                 MP.tex.url = "./data/luffy/luffyD.png";
-                //MP.tex.isSprite = false;
+              
             break;
 
             case 1:
                 MP.tex.url = "./data/luffy/luffyG.png";
-                //MP.tex.isSprite = false;
+             
             break; 
 
-            case 2:
-        /*     if(MP.phy.getPosx() == ){
-                MP.tex.url = 
-            } */
-            break;
-
-            case 3:
-
-            break;
-
-            case 4:
-
-            break;
-
-            case 5:
-
-            break;
         }
 }
 
 
-
-void Jeu::SPClavierDown(int touche, const float deltaTime)
+void Jeu::SPClavierDown(int touche)
 {
     switch(touche)
         {
             case 0:
-                SP.bougerAgauche(500.0f, deltaTime);     
+                SP.bougerAgauche(10.0f);     
                 SP.tex.url = "./data/zoro/zoroCourtD.png";
                 //MP.tex.isSprite = true;
                 
             break;
 
             case 1:
-                SP.bougerAdroite(500.0f, deltaTime);     
+                SP.bougerAdroite(10.0f);     
                 SP.tex.url = "./data/zoro/zoroCourtG.png";
                 //MP.tex.isSprite = true;
             break; 
 
             case 2:
-                SP.sauter(700.0f, deltaTime);
+                SP.sauter(20.0f);
                 SP.tex.url = "./data/zoro/zoroSauteD.png"; 
                 //MP.tex.isSprite = false;
             break;
@@ -154,7 +183,7 @@ void Jeu::SPClavierDown(int touche, const float deltaTime)
 
 
 
-void Jeu::SPClavierUp(int touche, const float deltaTime){
+void Jeu::SPClavierUp(int touche){
         switch(touche)
         {
             case 0:
@@ -166,22 +195,6 @@ void Jeu::SPClavierUp(int touche, const float deltaTime){
                 SP.tex.url = "./data/zoro/zoroG.png";
                 //MP.tex.isSprite = false;
             break; 
-
-            case 2:
-
-            break;
-
-            case 3:
-
-            break;
-
-            case 4:
-
-            break;
-
-            case 5:
-
-            break;
         }
 }
 
@@ -193,42 +206,6 @@ void Jeu::SPClavierUp(int touche, const float deltaTime){
     
 
 
-
-//but est d'effectuer les actions liés à un clic de souris
-// on affectera plus tard le Vector2D aux coordonnés de la souris 
-//cela va faire role de gestion de # events du menu 
-void Jeu :: actionsMenu(int clic){
-    switch(clic){
-        //affichage de menu 
-        case 0 :
-        this-> init();
-        break;
-
-        //appuie bouton Play
-        case 1 :
-        this-> initPartie();
-        this-> updatePartie();
-        this-> quitPartie();
-        break;
-
-     /*    //appuie btn Options
-        case 2 :
-        
-        
-        break;
-
-        //appuie btn Help
-        case 3 :
-
-        break;
-
-        //appuie btn Quit :
-        case 4 :
-
-        break; */
-
-    }
-}
 
 //cette fct va servir à initiliser le jeu à savoir : 
 //les emplacements de base des boutons => affichage menu 
@@ -249,7 +226,7 @@ void Jeu::initPartie(){
     const int SPinitx = WINDOW_SIZE_WIDTH - 2*LARGEUR_SPRITE;
     const int SPinity = WINDOW_SIZE_HEIGHT - HAUTEUR_SPRITE;
    
-    MP.phy.setPos(MPinitx,MPinity);
+    MP.phy.setPos(MPinitx,0);
     SP.phy.setPos(SPinitx,SPinity);
    
     MP.tex.url = "./data/luffy/luffyD.png";//Personnage debout
@@ -260,10 +237,11 @@ void Jeu::initPartie(){
 
 }
 
-void Jeu::updatePartie(){
+void Jeu::updatePartie(float deltaTime){
  
- 
-
+    this->actionsAutomatique();
+    //MP.phy.ticks(deltaTime); //gravité MP
+    SP.phy.ticks(deltaTime); //gravité SP)
 
 
 }
@@ -284,19 +262,14 @@ void Jeu :: init(){
                             WINDOW_SIZE_HEIGHT/9
                             );
 
-        menu.help.placerBouton(WINDOW_SIZE_WIDTH/7,
-                            4*WINDOW_SIZE_HEIGHT/9,
-                            WINDOW_SIZE_WIDTH/5,
-                            WINDOW_SIZE_HEIGHT/9
-                            );
-
-
         menu.quit.placerBouton(WINDOW_SIZE_WIDTH/7,
                             5*WINDOW_SIZE_HEIGHT/9,
                             WINDOW_SIZE_WIDTH/5,
                             WINDOW_SIZE_HEIGHT/9
                             );
-                            
+
+        menu.son.placerBouton(WINDOW_SIZE_WIDTH-40,0,40,40);
+        
         menu.back.placerBouton(0,10,10,10);
 
         menu.tex.url ="./data/background/menuBg.jpg";
@@ -307,8 +280,8 @@ void Jeu :: init(){
         menu.quit.tex.url ="./data/Boutons/quitBouton.png";
         menu.quit.tex.lettre="Q";
 
-        menu.back.tex.url ="./data/Boutons/quitBouton.png";
-        menu.back.tex.lettre="B";
+        menu.son.tex.url ="./data/Boutons/sonOnBouton.jpg";
+       
 
         this -> initPartie();
 

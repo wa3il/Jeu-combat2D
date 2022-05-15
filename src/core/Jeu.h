@@ -23,21 +23,20 @@ class Jeu{
     Menu menu;
 
   
-    void actionsAutomatique(float deltaTime);//évenements automatiques
+    void actionsAutomatique();//évenements automatiques
 
-    void MPClavierDown(int touche, const float deltaTime); //gestion des évenements liés au clavié
-    void MPClavierUp(int touche, const float deltaTime);
+    void MPClavierDown(int touche); //gestion des évenements liés au clavié
+    void MPClavierUp(int touche);
 
-    void SPClavierDown(int touche, const float deltaTime); 
-    void SPClavierUp(int touche, const float deltaTime);
+    void SPClavierDown(int touche); 
+    void SPClavierUp(int touche);
 
     void actionsMenu(int clic); //gestion des événements liés à la souris
 
     //fct concernant le deroulement de la partie
     void initPartie();
-    void updatePartie();
+    void updatePartie(float deltaTime);
     void quitPartie();
-
 
     void init();//initialisation du jeu
     void update(); //update

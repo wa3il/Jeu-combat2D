@@ -19,7 +19,7 @@ class JeuSDL{
         SDL_Renderer *renderer;
  
         Jeu J;
-        //SDL_Rect spriteluffy[ 8 ];
+
 
 
     public:
@@ -27,8 +27,12 @@ class JeuSDL{
 
 
         SDL_Texture* loadImage(const char* filename);
-        void Afficher(SDL_Renderer *renderer,SDL_Texture *texture, SDL_Surface* tileset,int nbl,int nbh);
+        void Afficher(SDL_Texture *texture, SDL_Surface* tileset,int nbl,int nbh);
         //void loadSprite();
+
+        void KeyboardEventsLuffy(bool &isSprite);
+        void KeyboardEventsZoro(bool &isSprite);
+        void clavierUP(SDL_Event events);
 
         void init();
         void bouclePartie();

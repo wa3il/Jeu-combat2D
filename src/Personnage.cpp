@@ -1,6 +1,6 @@
 #include"Personnage.h"
 #include <stdlib.h>
-
+#include <math.h>
 
 
 
@@ -26,20 +26,43 @@ Personnage::~Personnage()
 
 //mouvements
 
-void Personnage::bougerAgauche(float xg, const float deltaTime){
-	this->phy.setPosx((this->phy.getPosx())-(xg * deltaTime));
+void Personnage::bougerAgauche(float xg){
+	this->phy.setPosx(this->phy.getPosx()-xg );
 }
 
-void Personnage::bougerAdroite(float xd, const float deltaTime){
-	this->phy.setPosx((this->phy.getPosx())+(xd * deltaTime));
+void Personnage::bougerAdroite(float xd){
+	this->phy.setPosx(this->phy.getPosx()+xd );
 }
 
-void Personnage::sauter(float yh, const float deltaTime){
+void Personnage::sauter(float yh){
+	this->phy.setPosy(this->phy.getPosy()-yh );
+}
 
-	for(int i=0; i<10; i++)
-	{	
-		this->phy.setPosy((this->phy.getPosy())-(yh * deltaTime));
-		}
+void Personnage::sauterAdroite(float deltaTime){
+	//Variables méthode 2:
+    const double g = 9.81;
+    const double pi = 3.14;
+    int v_init = 2;
+    int angle_init = pi/3;
+	double v_x = cos(angle_init)*v_init;
+    double v_y = sin(angle_init)*v_init;
+
+	// La position relative 
+    Vector2D posRel(0,0);
+    
+	//On calcule la valeur relative de y:
+    posRel.setx((int)(v_x*deltaTime));
+    posRel.sety((int)((v_y*deltaTime)-((g*deltaTime*deltaTime)/2000)));
+
+    //On calcule maintenant les valeurs absolues
+
+	this->phy.setPosx(this->phy.getPosx() + posRel.getx());
+	this->phy.setPosy(this->phy.getPosy() - posRel.gety());
+	
+}
+
+void Personnage::sauterAgauche(){
+
 }
 
 
