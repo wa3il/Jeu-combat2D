@@ -28,7 +28,7 @@ git clone https://forge.univ-lyon1.fr/p1811588/rpg.git
 - Entrez les commandes suivantes sur un terminal :
 
 ```
-cd Animefighter
+cd rpg
 ```
 - Version Texte :
 ```
