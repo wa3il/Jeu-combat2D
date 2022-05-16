@@ -68,13 +68,13 @@ void JeuTxt :: menuaff(){
     //affichage des murs.
     for(int x=0; x<Jtxt.ter1.getDimx();++x){
         for(int y=0; y<Jtxt.ter1.getDimy();++y){
-            //on cherche dans le modul terrain pour placer les murs
-            if(Jtxt.ter1.getXY(x,y) == '0') mvprintw(x,y*10,"__________");
-            if(Jtxt.ter1.getXY(x,y) == '#') mvprintw(x,y*10,Jtxt.ter1.tex.lettre);
+            //on cherche dans le module terrain pour placer les plateformes
+            if(Jtxt.ter1.getXY(x,y) == '0') mvprintw(x,y,"_");
+            if(Jtxt.ter1.getXY(x,y) == '#') mvprintw(x,y,Jtxt.ter1.tex.lettre);
         }
     }
-    mvprintw(Jtxt.SP.phy.getPosy(),Jtxt.SP.phy.getPosx() * 10 , Jtxt.SP.tex.lettre);
-    mvprintw(Jtxt.MP.phy.getPosy(),Jtxt.MP.phy.getPosx() * 10 , Jtxt.MP.tex.lettre);
+    mvprintw(Jtxt.SP.phy.getPosy(),Jtxt.SP.phy.getPosx(), Jtxt.SP.tex.lettre);
+    mvprintw(Jtxt.MP.phy.getPosy(),Jtxt.MP.phy.getPosx(), Jtxt.MP.tex.lettre);
 }
 
 void JeuTxt :: txtBoucle(){

@@ -1,3 +1,6 @@
+#ifndef TERRAIN_H
+#define TERRAIN_H
+
 #include <iostream>
 #include "Texture.h"
 #include "Constantes.h"
@@ -5,7 +8,7 @@
 class terrain{
     private:
         int dimx,dimy; // dimension du terrain
-        char ter[30][16]; //terrain
+        char ter[10][58]; //terrain
 
     public:
         /** Constructeur/destructeur
@@ -36,8 +39,10 @@ class terrain{
 
         void setDim(int dimx, int dimy);
 
-        bool isPlatform();
+
 
         Texture tex;
 
 };
+
+#endif

@@ -77,7 +77,7 @@ void Jeu :: MPClavierDown(int touche)
     {
         //MP/////////////////////////////////////////////////////////
         case 0:
-            MP.bougerAdroite(10.0f, ter1);
+            MP.bougerAdroite(10.0f/* , ter1 */);
             MP.tex.url = "./data/luffy/luffyCourtD.png";//Sprite Courir a corriger
             //MP.tex.isSprite = true;          
 
@@ -167,7 +167,7 @@ void Jeu::SPClavierDown(int touche)
             break;
 
             case 1:
-                SP.bougerAdroite(10.0f, ter1);     
+                SP.bougerAdroite(10.0f/* , ter1 */);     
                 SP.tex.url = "./data/zoro/zoroCourtG.png";
                 //MP.tex.isSprite = true;
             break; 
@@ -237,10 +237,10 @@ void Jeu::SPClavierUp(int touche){
 
 void Jeu::initPartie(){
     //initialisation du terrain
-    ter1.setDim(30,16);
+    ter1.setDim(10,58);
    
     ter1.tex.url = "./data/background/sunny.jpg"; //SDL
-    ter1.tex.lettre="##########" ; //TXT
+    ter1.tex.lettre="#" ; //TXT
 
     //initialisation des position et textures des joueurs
     const int MPinitx = LARGEUR_SPRITE ;

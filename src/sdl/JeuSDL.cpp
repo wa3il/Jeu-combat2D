@@ -52,7 +52,11 @@ void JeuSDL::init(){
 
     if(NULL == renderer)   { cout<<"Erreur SDL_CreateRenderer : "<<SDL_GetError()<<endl; }
 
-
+    if(TTF_Init()==-1) 
+    {
+        printf("TTF_Init: %s\n", TTF_GetError());
+        exit(2);
+    }
 
 }
 
@@ -64,13 +68,13 @@ void JeuSDL::Afficher(SDL_Texture *texture, SDL_Surface* tileset,int nbl,int nbh
     int i,j;
     SDL_Rect Rect_dest;
     SDL_Rect Rect_source;
-    Rect_dest.w = LARGEUR_TILE/2;
+    Rect_dest.w = LARGEUR_TILE;
     Rect_dest.h = HAUTEUR_TILE;
 
     texture=SDL_CreateTextureFromSurface(renderer,tileset);
-    for(i=0;i<NOMBRE_BLOCS_HAUTEUR;i++)
+    for(i=0;i< nbh;i++)
     {
-        for(j=0;j<NOMBRE_BLOCS_LARGEUR;j++)
+        for(j=0;j<nbl ;j++)
         {   
             if(J.ter1.getXY(i,j) == '#') {
                 Rect_source.x=0;
@@ -84,8 +88,8 @@ void JeuSDL::Afficher(SDL_Texture *texture, SDL_Surface* tileset,int nbl,int nbh
             
             }
             
-                Rect_dest.x = j*LARGEUR_TILE/2;
-                Rect_dest.y = i*HAUTEUR_TILE/2;
+                Rect_dest.x = j * WINDOW_SIZE_WIDTH / LARGEUR_TILE;
+                Rect_dest.y = i * WINDOW_SIZE_HEIGHT / HAUTEUR_TILE;
             
 
             SDL_RenderCopy(renderer, texture, &Rect_source, &Rect_dest);
@@ -240,17 +244,32 @@ void JeuSDL::boucleAcceuil(){
     SDL_Texture* ter1Tex = loadImage(J.ter1.tex.url);
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
    
+    //rectangle bg
+    SDL_Rect WinRect  = {0, 0, WINDOW_SIZE_WIDTH, WINDOW_SIZE_HEIGHT};
+
+    //Luffy VS Zoro
+    SDL_Texture *texVS = loadImage("./data/vs.png");
+
+    //Rectangle Luffy VS Zoro
+    SDL_Rect VS = {400, 0, WINDOW_SIZE_WIDTH - 800, 100 };
+
+
+
 
     //chargement de la surface des tiles : 
     SDL_Surface *tileset;
     SDL_Texture *texTuile = NULL;
     tileset = IMG_Load("./data/plateforme/2.png");
-    /////////////////////////////////////////////////////////////////
    
-    //rectangle bg
-    SDL_Rect WinRect  = {0, 0, WINDOW_SIZE_WIDTH, WINDOW_SIZE_HEIGHT};
+
     
   
+
+
+
+
+
+
 
    //interupteur :
     bool isOpen = true;
@@ -294,10 +313,9 @@ void JeuSDL::boucleAcceuil(){
 
 
         //Rectangle Points de vie :
-        SDL_Rect hp_perso_MP ={10, 10, 4*J.MP.getVie(), 20};
-        SDL_Rect hp_perso_SP ={WINDOW_SIZE_WIDTH - 410 , 10, 4*J.SP.getVie(), 20};
+        SDL_Rect hp_perso_MP ={10, 20, 4*J.MP.getVie(), 30};
+        SDL_Rect hp_perso_SP ={WINDOW_SIZE_WIDTH - 410 , 20, 4*J.SP.getVie(), 30};
 
-        //Rectangle Luffy VS Zoro
 
         //gestion delta time
         LAST = NOW;
@@ -378,6 +396,22 @@ void JeuSDL::boucleAcceuil(){
         //Transparence :
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
         SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+/* 
+        if(!J.MP.estVivant() || !J.SP.estVivant())
+            {   
+                //Chargement de la font d'écriture
+                TTF_Font * font = TTF_OpenFont("arial.ttf", 50);
+                SDL_Rect rectFin = {0, 0, WINDOW_SIZE_WIDTH, WINDOW_SIZE_HEIGHT};
+
+                //Rectangle Joueur gagnant :
+                SDL_Surface * surfaceText = TTF_RenderUTF8_Blended(font, "Fin", { 255, 255, 255, 255 });
+                SDL_Texture * textureFin = SDL_CreateTextureFromSurface(renderer, surfaceText);
+                SDL_RenderFillRect(renderer, &rectFin);
+                //SDL_RenderCopy(renderer, textureFin, NULL, &rectFin);
+                SDL_FreeSurface(surfaceText);
+                TTF_CloseFont(font);
+
+            } */
         
         if(onMenu)
         {
@@ -400,7 +434,11 @@ void JeuSDL::boucleAcceuil(){
         
             //affichage des tuiles (plateforme) :
             Afficher(texTuile,tileset,NOMBRE_BLOCS_LARGEUR,NOMBRE_BLOCS_HAUTEUR);
-            
+            SDL_RenderCopy(renderer, texVS, NULL, &VS); 
+
+
+
+         
 
             if(isSpriteL == true)
             {
@@ -428,6 +466,8 @@ void JeuSDL::boucleAcceuil(){
 
             SDL_SetRenderDrawColor(renderer,255 - 2.5 * J.SP.getVie(),2.5 * J.SP.getVie(), 0,255);
             SDL_RenderFillRect(renderer, &hp_perso_SP);
+            
+
 
         }
       
@@ -444,7 +484,9 @@ void JeuSDL::quit(){
     if(NULL != window)
         SDL_DestroyWindow(window);
 
-   
+
+    	
+    TTF_Quit();
     SDL_Quit();
     
 }

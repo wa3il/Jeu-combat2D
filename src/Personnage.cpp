@@ -32,8 +32,8 @@ void Personnage::bougerAgauche(float xg,terrain& t){
 		
 }
 
-void Personnage::bougerAdroite(float xd,terrain& t){
-	if(t.posisvalide(this->phy.getPosx()+10, this->phy.getPosy()))
+void Personnage::bougerAdroite(float xd/* ,terrain& t */){
+	/* if(t.posisvalide(this->phy.getPosx()+10, this->phy.getPosy())) */
 		this->phy.setPosx(this->phy.getPosx()+xd );
 }
 
