@@ -230,7 +230,7 @@ void Jeu::initPartie(){
         tuile[i].pos.setx(i*LARGEUR_TILE);
         tuile[i].pos.sety(WINDOW_SIZE_HEIGHT-HAUTEUR_TILE);
         ter1.setCaract(i,WINDOW_SIZE_HEIGHT - HAUTEUR_TILE,"#");
-        std::cout <<ter1.getXY(i,WINDOW_SIZE_WIDTH-HAUTEUR_TILE)<<std::endl;
+        //std::cout <<ter1.getXY(i,WINDOW_SIZE_WIDTH-HAUTEUR_TILE)<<std::endl;
 
     }
 

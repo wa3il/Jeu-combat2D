@@ -1,0 +1,14 @@
+<map id="Jeu" name="Jeu">
+<area shape="rect" id="node1" title=" " alt="" coords="235,1363,392,1601"/>
+<area shape="rect" id="node2" href="$classterrain.html" title=" " alt="" coords="5,740,112,949"/>
+<area shape="rect" id="node3" href="$classTexture.html" title="class permettant de gerer les textures d&#39;un personnage" alt="" coords="215,213,300,305"/>
+<area shape="rect" id="node4" href="$classMenu.html" title="permettant de gerer le menu" alt="" coords="220,1076,295,1183"/>
+<area shape="rect" id="node5" href="$classBouton.html" title="permettant de gerer les boutons du menu" alt="" coords="90,492,209,687"/>
+<area shape="rect" id="node6" href="$classTuiles.html" title=" " alt="" coords="312,543,389,635"/>
+<area shape="rect" id="node8" href="$classPersonnage.html" title="permettant de gerer les caracteristiques d&#39;un personnage" alt="" coords="432,973,595,1285"/>
+<area shape="rect" id="node7" href="$classVector2D.html" title="class permettant de gerer des vecteurs" alt="" coords="459,147,565,371"/>
+<area shape="rect" id="node12" href="$classPhysic.html" title="permettant de gerer les caracteristiques physique d&#39;un joueur" alt="" coords="493,463,584,716"/>
+<area shape="rect" id="node9" href="$classCompetence.html" title=" " alt="" coords="610,514,734,665"/>
+<area shape="rect" id="node10" title="STL class." alt="" coords="632,220,712,297"/>
+<area shape="rect" id="node11" title="STL class." alt="" coords="609,5,735,97"/>
+</map>

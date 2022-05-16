@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['rect_74',['Rect',['../classRect.html',1,'']]]
+  ['personnage_168',['Personnage',['../classPersonnage.html',1,'']]],
+  ['physic_169',['Physic',['../classPhysic.html',1,'']]]
 ];

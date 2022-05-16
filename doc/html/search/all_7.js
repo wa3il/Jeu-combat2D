@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['operator_2a_27',['operator*',['../Vector2D_8h.html#af1b14cb362aab47e111bfa190caf20cf',1,'Vector2D.cpp']]],
-  ['operator_2b_28',['operator+',['../classVector2D.html#ad8d60ec201a1dc774fbf3ca6cc65b444',1,'Vector2D']]],
-  ['operator_2b_3d_29',['operator+=',['../classVector2D.html#a23171db90e3c1b0d8602a4bc9133bbd4',1,'Vector2D']]],
-  ['operator_3d_30',['operator=',['../classVector2D.html#a8c958d82b2e20a44a10a6edc7f8e3211',1,'Vector2D']]]
+  ['init_46',['init',['../classJeu.html#af8832b6cdb31f97f5dec8ed4e38a5200',1,'Jeu::init()'],['../classJeuSDL.html#abbae3ee89e46cb4900c35fdfb2675fbc',1,'JeuSDL::init()']]],
+  ['initpartie_47',['initPartie',['../classJeu.html#ac482be638e7ea44d78eecc8af2fbcef9',1,'Jeu']]]
 ];

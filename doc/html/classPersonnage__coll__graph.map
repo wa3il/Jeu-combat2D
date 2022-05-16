@@ -1,0 +1,9 @@
+<map id="Personnage" name="Personnage">
+<area shape="rect" id="node1" title="permettant de gerer les caracteristiques d&#39;un personnage" alt="" coords="117,779,279,1091"/>
+<area shape="rect" id="node2" href="$classCompetence.html" title=" " alt="" coords="7,514,131,665"/>
+<area shape="rect" id="node3" title="STL class." alt="" coords="29,220,109,297"/>
+<area shape="rect" id="node4" title="STL class." alt="" coords="5,5,132,97"/>
+<area shape="rect" id="node5" href="$classTexture.html" title="class permettant de gerer les textures d&#39;un personnage" alt="" coords="155,543,241,635"/>
+<area shape="rect" id="node6" href="$classPhysic.html" title="permettant de gerer les caracteristiques physique d&#39;un joueur" alt="" coords="265,463,355,716"/>
+<area shape="rect" id="node7" href="$classVector2D.html" title="class permettant de gerer des vecteurs" alt="" coords="257,147,363,371"/>
+</map>

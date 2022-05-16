@@ -1,0 +1,4 @@
+<map id="terrain" name="terrain">
+<area shape="rect" id="node1" title=" " alt="" coords="5,160,112,369"/>
+<area shape="rect" id="node2" href="$classTexture.html" title="class permettant de gerer les textures d&#39;un personnage" alt="" coords="16,5,101,97"/>
+</map>

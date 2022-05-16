@@ -1,0 +1,5 @@
+<map id="Menu" name="Menu">
+<area shape="rect" id="node1" title="permettant de gerer le menu" alt="" coords="11,461,85,568"/>
+<area shape="rect" id="node2" href="$classTexture.html" title="class permettant de gerer les textures d&#39;un personnage" alt="" coords="5,5,91,97"/>
+<area shape="rect" id="node3" href="$classBouton.html" title="permettant de gerer les boutons du menu" alt="" coords="82,160,201,355"/>
+</map>

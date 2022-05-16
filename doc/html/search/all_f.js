@@ -1,8 +1,5 @@
 var searchData=
 [
-  ['_7ecompetence_64',['~Competence',['../classCompetence.html#a69b58db16660b5cf76861a444385a205',1,'Competence']]],
-  ['_7epersonnage_65',['~Personnage',['../classPersonnage.html#a05bdf2a469885bb1fbb6c2e8f98972ab',1,'Personnage']]],
-  ['_7ephysic_66',['~Physic',['../classPhysic.html#a34cfc9860bd0822bcc554dc9e076c9f0',1,'Physic']]],
-  ['_7eterrain_67',['~terrain',['../classterrain.html#af2c63d5c5044ef71b5621110e4aaccf0',1,'terrain']]],
-  ['_7evector2d_68',['~Vector2D',['../classVector2D.html#ac0f819527d3966874c4c9bb72ab9f67e',1,'Vector2D']]]
+  ['quit_103',['quit',['../classMenu.html#a4a1ce4792795b94a116f0588765c58a2',1,'Menu::quit()'],['../classJeu.html#a932262561d636b0b7eadc32e18e2ddb2',1,'Jeu::quit()'],['../classJeuSDL.html#a1e7e52bc54d4a2869c655b1fc001c6f3',1,'JeuSDL::quit()']]],
+  ['quitpartie_104',['quitPartie',['../classJeu.html#af5d3ab14d893990eba15670668a44701',1,'Jeu']]]
 ];

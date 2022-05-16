@@ -1,10 +1,14 @@
 var searchData=
 [
-  ['personnage_31',['Personnage',['../classPersonnage.html',1,'Personnage'],['../classPersonnage.html#abec36eb0310adc71f3375297fc590c65',1,'Personnage::Personnage()']]],
-  ['personnage_2eh_32',['Personnage.h',['../Personnage_8h.html',1,'']]],
-  ['phy_33',['phy',['../classPersonnage.html#a0647985428151675b3f563e4ae3bfde6',1,'Personnage']]],
-  ['physic_34',['Physic',['../classPhysic.html',1,'Physic'],['../classPhysic.html#a861135e64e4a93d7d119f822b8c5aed8',1,'Physic::Physic()']]],
-  ['physic_2eh_35',['Physic.h',['../Physic_8h.html',1,'']]],
-  ['placerbouton_36',['placerBouton',['../classBouton.html#a9e57fd1bb6ea450813a5895d56c3a9e4',1,'Bouton']]],
-  ['posisvalide_37',['posisvalide',['../classterrain.html#aaf6ebf1977bf42918efc441cc2e0c31c',1,'terrain']]]
+  ['j_48',['J',['../classJeuSDL.html#a41e76b1df0e8181d49bb1a018b074128',1,'JeuSDL']]],
+  ['jeu_49',['Jeu',['../classJeu.html',1,'']]],
+  ['jeu_2ecpp_50',['Jeu.cpp',['../Jeu_8cpp.html',1,'']]],
+  ['jeu_2eh_51',['Jeu.h',['../Jeu_8h.html',1,'']]],
+  ['jeusdl_52',['JeuSDL',['../classJeuSDL.html',1,'JeuSDL'],['../classJeuSdl.html',1,'JeuSdl'],['../classJeuSDL.html#ad4f8efd87bd5fdc2b384d2bc8bd95eed',1,'JeuSDL::JeuSDL()']]],
+  ['jeusdl_2ecpp_53',['JeuSDL.cpp',['../JeuSDL_8cpp.html',1,'']]],
+  ['jeusdl_2eh_54',['JeuSDL.h',['../JeuSDL_8h.html',1,'']]],
+  ['jeutxt_55',['JeuTxt',['../classJeuTxt.html',1,'']]],
+  ['jeutxt_2ecpp_56',['JeuTXT.cpp',['../JeuTXT_8cpp.html',1,'']]],
+  ['jeutxt_2eh_57',['JeuTXT.h',['../JeuTXT_8h.html',1,'']]],
+  ['jtxt_58',['Jtxt',['../classJeuTxt.html#a5fafa6dd3c52216280bc75fbc53a40c6',1,'JeuTxt']]]
 ];

@@ -5,10 +5,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Anime fighter: Class Members - Functions</title>
+<title>Anime Fighter: Class Members - Functions</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -21,7 +25,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Anime fighter
+   <div id="projectname">Anime Fighter
    </div>
   </td>
  </tr>
@@ -46,6 +50,22 @@ $(function() {
 /* @license-end */</script>
 <div id="main-nav"></div>
 </div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('functions_func.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -64,8 +84,17 @@ $(function() {
 &#160;
 
 <h3><a id="index_a"></a>- a -</h3><ul>
+<li>actionsAutomatique()
+: <a class="el" href="classJeu.html#ac6b7244ac6009403b9f2cce7150925dd">Jeu</a>
+</li>
+<li>actionsMenu()
+: <a class="el" href="classJeu.html#a26fdf94f008db81070f735f6ef496931">Jeu</a>
+</li>
 <li>afficher()
 : <a class="el" href="classCompetence.html#afd68f9a5fb49772d6881c45b72934ed1">Competence</a>
+</li>
+<li>Afficher()
+: <a class="el" href="classJeuSDL.html#a8c645e38882e32b6ec60695cc44a9723">JeuSDL</a>
 </li>
 <li>afficherEtat()
 : <a class="el" href="classPersonnage.html#af7e41a233543abfdc45ac7c3cd41416c">Personnage</a>
@@ -80,6 +109,12 @@ $(function() {
 
 
 <h3><a id="index_b"></a>- b -</h3><ul>
+<li>bougerAdroite()
+: <a class="el" href="classPersonnage.html#a0098dcef539274fd5eef26ad5afcb52b">Personnage</a>
+</li>
+<li>bougerAgauche()
+: <a class="el" href="classPersonnage.html#ab2d74aef75b7243dc60b1d9e488aeeaf">Personnage</a>
+</li>
 <li>Bouton()
 : <a class="el" href="classBouton.html#ad1e4f684cad81db47393df0be7a65658">Bouton</a>
 </li>
@@ -92,6 +127,9 @@ $(function() {
 </li>
 <li>changerCompetence()
 : <a class="el" href="classPersonnage.html#a10595844614659363eb31e374970b209">Personnage</a>
+</li>
+<li>clavierUP()
+: <a class="el" href="classJeuSDL.html#a644711235ac9abbec080723ccd7884ff">JeuSDL</a>
 </li>
 <li>Competence()
 : <a class="el" href="classCompetence.html#a13eef314ce788330f875f7cf297dbb87">Competence</a>
@@ -113,8 +151,12 @@ $(function() {
 <li>getDimx()
 : <a class="el" href="classterrain.html#ae3701cf1c3cabb468150f10e64c779ab">terrain</a>
 </li>
+<li>getDimy()
+: <a class="el" href="classterrain.html#af5a91d5d1ab66f09323a1fe5feae1ebd">terrain</a>
+</li>
 <li>geth()
 : <a class="el" href="classBouton.html#add029f37be0691be83aeeaeb833d92b3">Bouton</a>
+, <a class="el" href="classRect.html#a7899115a0575681683624b040c87b83c">Rect</a>
 </li>
 <li>getPos()
 : <a class="el" href="classPhysic.html#a66e5acbadfc32b25451d8614bd8ffea1">Physic</a>
@@ -133,6 +175,7 @@ $(function() {
 </li>
 <li>getw()
 : <a class="el" href="classBouton.html#ae378a1b988a4ddc36e552eacdb3bb12b">Bouton</a>
+, <a class="el" href="classRect.html#a137c85a78edfc8dee39f1a50143895dc">Rect</a>
 </li>
 <li>getx()
 : <a class="el" href="classBouton.html#a3b38a35455a95015638cea09914a2b6b">Bouton</a>
@@ -144,14 +187,62 @@ $(function() {
 </li>
 <li>gety()
 : <a class="el" href="classBouton.html#aa05e4f90d20259efcd326b6c86367bdb">Bouton</a>
+, <a class="el" href="classRect.html#a2ec3e8b2a3cd3ae65b12852966772aa1">Rect</a>
 , <a class="el" href="classVector2D.html#a9dad71b7f9a7b1e3f45e5807f2f5d658">Vector2D</a>
 </li>
 </ul>
 
 
+<h3><a id="index_i"></a>- i -</h3><ul>
+<li>init()
+: <a class="el" href="classJeu.html#af8832b6cdb31f97f5dec8ed4e38a5200">Jeu</a>
+, <a class="el" href="classJeuSDL.html#abbae3ee89e46cb4900c35fdfb2675fbc">JeuSDL</a>
+</li>
+<li>initPartie()
+: <a class="el" href="classJeu.html#ac482be638e7ea44d78eecc8af2fbcef9">Jeu</a>
+</li>
+</ul>
+
+
+<h3><a id="index_j"></a>- j -</h3><ul>
+<li>JeuSDL()
+: <a class="el" href="classJeuSDL.html#ad4f8efd87bd5fdc2b384d2bc8bd95eed">JeuSDL</a>
+</li>
+</ul>
+
+
+<h3><a id="index_k"></a>- k -</h3><ul>
+<li>KeyboardEventsLuffy()
+: <a class="el" href="classJeuSDL.html#ac9b95a94056ec7eb7a59a65c486acd03">JeuSDL</a>
+</li>
+<li>KeyboardEventsZoro()
+: <a class="el" href="classJeuSDL.html#ae8b081b7e4c27079cccb3a576f8ff699">JeuSDL</a>
+</li>
+</ul>
+
+
+<h3><a id="index_l"></a>- l -</h3><ul>
+<li>loadImage()
+: <a class="el" href="classJeuSDL.html#a4e81262b9bd6e3f8a1952ae2ee81b2fb">JeuSDL</a>
+</li>
+</ul>
+
+
 <h3><a id="index_m"></a>- m -</h3><ul>
+<li>mainBoucle()
+: <a class="el" href="classJeuSDL.html#a42aeb9d926bbb35c82be878f4732349b">JeuSDL</a>
+</li>
 <li>Menu()
 : <a class="el" href="classMenu.html#ad466dd83355124a6ed958430450bfe94">Menu</a>
+</li>
+<li>menuaff()
+: <a class="el" href="classJeuTxt.html#ad66b851cb8d00ff3f1e81e9755cf687d">JeuTxt</a>
+</li>
+<li>MPClavierDown()
+: <a class="el" href="classJeu.html#af60429d2d6f380b62fe91fb7f9d739dd">Jeu</a>
+</li>
+<li>MPClavierUp()
+: <a class="el" href="classJeu.html#af16a3353485c1bf66a372c4e9b321bbb">Jeu</a>
 </li>
 </ul>
 
@@ -185,6 +276,17 @@ $(function() {
 </ul>
 
 
+<h3><a id="index_q"></a>- q -</h3><ul>
+<li>quit()
+: <a class="el" href="classJeu.html#a932262561d636b0b7eadc32e18e2ddb2">Jeu</a>
+, <a class="el" href="classJeuSDL.html#a1e7e52bc54d4a2869c655b1fc001c6f3">JeuSDL</a>
+</li>
+<li>quitPartie()
+: <a class="el" href="classJeu.html#af5d3ab14d893990eba15670668a44701">Jeu</a>
+</li>
+</ul>
+
+
 <h3><a id="index_r"></a>- r -</h3><ul>
 <li>recevoirDegats()
 : <a class="el" href="classPersonnage.html#ab0262abb3af05325347b9f8d46f4089d">Personnage</a>
@@ -196,8 +298,23 @@ $(function() {
 
 
 <h3><a id="index_s"></a>- s -</h3><ul>
+<li>sauter()
+: <a class="el" href="classPersonnage.html#ae88a1a3c1a475c6a6756454eb2224b4c">Personnage</a>
+</li>
+<li>sauterAdroite()
+: <a class="el" href="classPersonnage.html#a39a093b34ce696c44993d5344102c251">Personnage</a>
+</li>
+<li>sauterAgauche()
+: <a class="el" href="classPersonnage.html#a8f104704fd177785db936c0f3b593de1">Personnage</a>
+</li>
+<li>setCaract()
+: <a class="el" href="classterrain.html#ad4e15ee9ccd3bf1e9a32cf51b99a1950">terrain</a>
+</li>
 <li>setDim()
 : <a class="el" href="classterrain.html#a8a93375ab0b5f35e09ae394044b6addd">terrain</a>
+</li>
+<li>seth()
+: <a class="el" href="classRect.html#a87fd1424ddfc3abde59ea914dd2000a7">Rect</a>
 </li>
 <li>setPos()
 : <a class="el" href="classPhysic.html#abf6c89a49b9d3ac4c6bbb6053ea4a32f">Physic</a>
@@ -220,12 +337,22 @@ $(function() {
 <li>setVity()
 : <a class="el" href="classPhysic.html#a0a3b0b65bf21f5a82c6aac8f31b73634">Physic</a>
 </li>
+<li>setw()
+: <a class="el" href="classRect.html#a3f0bb1ec7f592827eb40e0d7dd86285c">Rect</a>
+</li>
 <li>setx()
 : <a class="el" href="classRect.html#a3544d80fe970a86d4ce7fdcba553f3b1">Rect</a>
 , <a class="el" href="classVector2D.html#afbef1a6591baf1ef2039cc56a370e587">Vector2D</a>
 </li>
 <li>sety()
-: <a class="el" href="classVector2D.html#acd135045f76d5205a09df99403f12608">Vector2D</a>
+: <a class="el" href="classRect.html#aa20a6bd4b71729802def32f812b99261">Rect</a>
+, <a class="el" href="classVector2D.html#acd135045f76d5205a09df99403f12608">Vector2D</a>
+</li>
+<li>SPClavierDown()
+: <a class="el" href="classJeu.html#a289711f0f3aa08e60c70a1a7faf87ab6">Jeu</a>
+</li>
+<li>SPClavierUp()
+: <a class="el" href="classJeu.html#a053dafec017a24bf6117dfac1d27737b">Jeu</a>
 </li>
 </ul>
 
@@ -242,6 +369,25 @@ $(function() {
 </li>
 <li>ticks()
 : <a class="el" href="classPhysic.html#a165bff5529c87bb0b5754c1ddf247fbe">Physic</a>
+</li>
+<li>Tuiles()
+: <a class="el" href="classTuiles.html#a3ce461d67463f0608af28188bdbbbef9">Tuiles</a>
+</li>
+<li>txtAff()
+: <a class="el" href="classJeuTxt.html#a93ba31c475363e518b74d737029145e2">JeuTxt</a>
+</li>
+<li>txtBoucle()
+: <a class="el" href="classJeuTxt.html#a23c7488f2c515079c3772e8894d820e1">JeuTxt</a>
+</li>
+</ul>
+
+
+<h3><a id="index_u"></a>- u -</h3><ul>
+<li>update()
+: <a class="el" href="classJeu.html#a6b6b7d4683d04ebab6dd03e82b41a1c3">Jeu</a>
+</li>
+<li>updatePartie()
+: <a class="el" href="classJeu.html#a3d29a45116107cd6d2a49cb774b0cbb3">Jeu</a>
 </li>
 </ul>
 
@@ -271,11 +417,14 @@ $(function() {
 </li>
 </ul>
 </div><!-- contents -->
+</div><!-- doc-content -->
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>

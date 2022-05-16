@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['estvivant_11',['estVivant',['../classPersonnage.html#a8ac05b0141c79830b547d80a40cc896f',1,'Personnage']]]
+  ['dimx_25',['dimx',['../classterrain.html#a6c34f7a6a5a4381b446a496ff3cea0a8',1,'terrain']]],
+  ['dimy_26',['dimy',['../classterrain.html#ab7b3390b2b425761496336d782e53253',1,'terrain']]]
 ];

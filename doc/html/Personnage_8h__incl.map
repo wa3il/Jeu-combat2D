@@ -1,0 +1,15 @@
+<map id="src/Personnage.h" name="src/Personnage.h">
+<area shape="rect" id="node1" title="fichier de déclaration de la class Personnage" alt="" coords="341,5,465,32"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,155,71,181"/>
+<area shape="rect" id="node3" href="$Competence_8h.html" title="fichier de déclaration de la class competance" alt="" coords="211,80,318,107"/>
+<area shape="rect" id="node9" href="$Physic_8h.html" title="fichier de déclaration de la class Physic" alt="" coords="367,80,440,107"/>
+<area shape="rect" id="node11" href="$Texture_8h.html" title="fichier de déclaration de la class texture" alt="" coords="453,155,529,181"/>
+<area shape="rect" id="node12" href="$Terrain_8h.html" title="fichier de déclaration de la class terrain" alt="" coords="562,80,634,107"/>
+<area shape="rect" id="node4" title=" " alt="" coords="562,229,634,256"/>
+<area shape="rect" id="node5" title=" " alt="" coords="317,229,372,256"/>
+<area shape="rect" id="node6" title=" " alt="" coords="234,155,295,181"/>
+<area shape="rect" id="node7" title=" " alt="" coords="95,155,159,181"/>
+<area shape="rect" id="node8" title=" " alt="" coords="370,155,429,181"/>
+<area shape="rect" id="node10" href="$Vector2D_8h.html" title="fichier de déclaration des classes rect et vector2D" alt="" coords="554,155,642,181"/>
+<area shape="rect" id="node13" href="$Constantes_8h.html" title="fichier de dÃ©claration de la class Constante" alt="" coords="717,155,817,181"/>
+</map>

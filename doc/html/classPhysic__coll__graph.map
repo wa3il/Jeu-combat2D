@@ -1,0 +1,4 @@
+<map id="Physic" name="Physic">
+<area shape="rect" id="node1" title="permettant de gerer les caracteristiques physique d&#39;un joueur" alt="" coords="13,321,103,575"/>
+<area shape="rect" id="node2" href="$classVector2D.html" title="class permettant de gerer des vecteurs" alt="" coords="5,5,111,229"/>
+</map>

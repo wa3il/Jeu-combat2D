@@ -5,10 +5,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.17"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Anime fighter: src/Physic.h Source File</title>
+<title>Anime Fighter: src/Physic.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
+<link href="navtree.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="resize.js"></script>
+<script type="text/javascript" src="navtreedata.js"></script>
+<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -21,7 +25,7 @@
  <tbody>
  <tr style="height: 56px;">
   <td id="projectalign" style="padding-left: 0.5em;">
-   <div id="projectname">Anime fighter
+   <div id="projectname">Anime Fighter
    </div>
   </td>
  </tr>
@@ -45,6 +49,23 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
+</div><!-- top -->
+<div id="side-nav" class="ui-resizable side-nav-resizable">
+  <div id="nav-tree">
+    <div id="nav-tree-contents">
+      <div id="nav-sync" class="sync"></div>
+    </div>
+  </div>
+  <div id="splitbar" style="-moz-user-select:none;" 
+       class="ui-resizable-handle">
+  </div>
+</div>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
+$(document).ready(function(){initNavTree('Physic_8h_source.html',''); initResizable(); });
+/* @license-end */
+</script>
+<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -59,11 +80,6 @@ $(function() {
 </iframe>
 </div>
 
-<div id="nav-path" class="navpath">
-  <ul>
-<li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li>  </ul>
-</div>
-</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">Physic.h</div>  </div>
@@ -79,9 +95,9 @@ $(function() {
 <div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="classPhysic.html">   22</a></span>&#160;<span class="keyword">class </span><a class="code" href="classPhysic.html">Physic</a></div>
 <div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keyword">private</span>:</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <a class="code" href="classVector2D.html">Vector2D</a> m_position; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <a class="code" href="classVector2D.html">Vector2D</a> m_vitesse; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <a class="code" href="classVector2D.html">Vector2D</a> m_acceleration; </div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="classPhysic.html#af84bd8d4b138919e2aa8cee126078524">   25</a></span>&#160;    <a class="code" href="classVector2D.html">Vector2D</a> <a class="code" href="classPhysic.html#af84bd8d4b138919e2aa8cee126078524">m_position</a>; </div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="classPhysic.html#a315a1c4c745a3607fbae2cd08d30bc7a">   26</a></span>&#160;    <a class="code" href="classVector2D.html">Vector2D</a> <a class="code" href="classPhysic.html#a315a1c4c745a3607fbae2cd08d30bc7a">m_vitesse</a>; </div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="classPhysic.html#ad7b133b7107ef7bc01f753234c85dbff">   27</a></span>&#160;    <a class="code" href="classVector2D.html">Vector2D</a> <a class="code" href="classPhysic.html#ad7b133b7107ef7bc01f753234c85dbff">m_acceleration</a>; </div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keyword">public</span>:</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;    <a class="code" href="classPhysic.html#a861135e64e4a93d7d119f822b8c5aed8">Physic</a>();</div>
 <div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
@@ -118,6 +134,7 @@ $(function() {
 <div class="line"><a name="l00127"></a><span class="lineno">  127</span>&#160; </div>
 <div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="preprocessor">#endif</span></div>
 </div><!-- fragment --></div><!-- contents -->
+</div><!-- doc-content -->
 <div class="ttc" id="aclassPhysic_html_ad1bd52f1b8b60963ba69d8e1dd77495e"><div class="ttname"><a href="classPhysic.html#ad1bd52f1b8b60963ba69d8e1dd77495e">Physic::getPosx</a></div><div class="ttdeci">float getPosx() const</div><div class="ttdoc">Get the Posx object.</div><div class="ttdef"><b>Definition:</b> Physic.cpp:18</div></div>
 <div class="ttc" id="aclassPhysic_html_a23b112e4e17ff0a851967b08de56790d"><div class="ttname"><a href="classPhysic.html#a23b112e4e17ff0a851967b08de56790d">Physic::getPosy</a></div><div class="ttdeci">float getPosy() const</div><div class="ttdoc">Get the Posy object.</div><div class="ttdef"><b>Definition:</b> Physic.cpp:19</div></div>
 <div class="ttc" id="aclassPhysic_html_aa7ed49815a6d2ffe85ab715291691d89"><div class="ttname"><a href="classPhysic.html#aa7ed49815a6d2ffe85ab715291691d89">Physic::setVitx</a></div><div class="ttdeci">void setVitx(float x)</div><div class="ttdoc">Set the Vitx object.</div><div class="ttdef"><b>Definition:</b> Physic.cpp:45</div></div>
@@ -127,18 +144,24 @@ $(function() {
 <div class="ttc" id="aclassVector2D_html"><div class="ttname"><a href="classVector2D.html">Vector2D</a></div><div class="ttdoc">class permettant de gerer des vecteurs</div><div class="ttdef"><b>Definition:</b> Vector2D.h:21</div></div>
 <div class="ttc" id="aclassPhysic_html_a0a3b0b65bf21f5a82c6aac8f31b73634"><div class="ttname"><a href="classPhysic.html#a0a3b0b65bf21f5a82c6aac8f31b73634">Physic::setVity</a></div><div class="ttdeci">void setVity(float y)</div><div class="ttdoc">Set the Vity object.</div><div class="ttdef"><b>Definition:</b> Physic.cpp:48</div></div>
 <div class="ttc" id="aclassPhysic_html_abf6c89a49b9d3ac4c6bbb6053ea4a32f"><div class="ttname"><a href="classPhysic.html#abf6c89a49b9d3ac4c6bbb6053ea4a32f">Physic::setPos</a></div><div class="ttdeci">void setPos(float x, float y)</div><div class="ttdoc">Set the Pos object.</div><div class="ttdef"><b>Definition:</b> Physic.cpp:21</div></div>
+<div class="ttc" id="aclassPhysic_html_ad7b133b7107ef7bc01f753234c85dbff"><div class="ttname"><a href="classPhysic.html#ad7b133b7107ef7bc01f753234c85dbff">Physic::m_acceleration</a></div><div class="ttdeci">Vector2D m_acceleration</div><div class="ttdef"><b>Definition:</b> Physic.h:27</div></div>
 <div class="ttc" id="aclassPhysic_html_acfe73700afac7671df35b5efea425875"><div class="ttname"><a href="classPhysic.html#acfe73700afac7671df35b5efea425875">Physic::setVit</a></div><div class="ttdeci">void setVit(float x, float y)</div><div class="ttdoc">Set the Vit object.</div><div class="ttdef"><b>Definition:</b> Physic.cpp:40</div></div>
 <div class="ttc" id="aclassPhysic_html_a46296ab3b766659d9058c0f9b56a5b66"><div class="ttname"><a href="classPhysic.html#a46296ab3b766659d9058c0f9b56a5b66">Physic::setPosx</a></div><div class="ttdeci">void setPosx(float x)</div><div class="ttdoc">Set the Posx object.</div><div class="ttdef"><b>Definition:</b> Physic.cpp:26</div></div>
+<div class="ttc" id="aclassPhysic_html_af84bd8d4b138919e2aa8cee126078524"><div class="ttname"><a href="classPhysic.html#af84bd8d4b138919e2aa8cee126078524">Physic::m_position</a></div><div class="ttdeci">Vector2D m_position</div><div class="ttdef"><b>Definition:</b> Physic.h:25</div></div>
 <div class="ttc" id="aclassPhysic_html_afcf801113b0a593ee5f88d9b3cee56ee"><div class="ttname"><a href="classPhysic.html#afcf801113b0a593ee5f88d9b3cee56ee">Physic::setPosy</a></div><div class="ttdeci">void setPosy(float y)</div><div class="ttdoc">Set the Posy object.</div><div class="ttdef"><b>Definition:</b> Physic.cpp:30</div></div>
+<div class="ttc" id="aclassPhysic_html_a315a1c4c745a3607fbae2cd08d30bc7a"><div class="ttname"><a href="classPhysic.html#a315a1c4c745a3607fbae2cd08d30bc7a">Physic::m_vitesse</a></div><div class="ttdeci">Vector2D m_vitesse</div><div class="ttdef"><b>Definition:</b> Physic.h:26</div></div>
 <div class="ttc" id="aclassPhysic_html_a149a0ea318d6fe780c5ea64f3d966e6e"><div class="ttname"><a href="classPhysic.html#a149a0ea318d6fe780c5ea64f3d966e6e">Physic::getVit</a></div><div class="ttdeci">Vector2D getVit() const</div><div class="ttdoc">Get the Vit object.</div><div class="ttdef"><b>Definition:</b> Physic.cpp:38</div></div>
 <div class="ttc" id="aclassPhysic_html_a34cfc9860bd0822bcc554dc9e076c9f0"><div class="ttname"><a href="classPhysic.html#a34cfc9860bd0822bcc554dc9e076c9f0">Physic::~Physic</a></div><div class="ttdeci">~Physic()</div><div class="ttdoc">Destroy the Physic object.</div><div class="ttdef"><b>Definition:</b> Physic.cpp:11</div></div>
 <div class="ttc" id="aclassPhysic_html_a66e5acbadfc32b25451d8614bd8ffea1"><div class="ttname"><a href="classPhysic.html#a66e5acbadfc32b25451d8614bd8ffea1">Physic::getPos</a></div><div class="ttdeci">Vector2D getPos() const</div><div class="ttdoc">Get the Pos object.</div><div class="ttdef"><b>Definition:</b> Physic.cpp:16</div></div>
 <div class="ttc" id="aclassPhysic_html_a165bff5529c87bb0b5754c1ddf247fbe"><div class="ttname"><a href="classPhysic.html#a165bff5529c87bb0b5754c1ddf247fbe">Physic::ticks</a></div><div class="ttdeci">void ticks(const float deltaTime)</div><div class="ttdoc">Fonction permettant d'activé la gravité</div><div class="ttdef"><b>Definition:</b> Physic.cpp:56</div></div>
 <!-- start footer part -->
-<hr class="footer"/><address class="footer"><small>
-Generated by &#160;<a href="http://www.doxygen.org/index.html">
-<img class="footer" src="doxygen.png" alt="doxygen"/>
-</a> 1.8.17
-</small></address>
+<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
+  <ul>
+    <li class="navelem"><a class="el" href="dir_68267d1309a1af8e8297ef4c3efbcdba.html">src</a></li><li class="navelem"><a class="el" href="Physic_8h.html">Physic.h</a></li>
+    <li class="footer">Generated by
+    <a href="http://www.doxygen.org/index.html">
+    <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.17 </li>
+  </ul>
+</div>
 </body>
 </html>

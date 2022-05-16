@@ -268,10 +268,14 @@ void JeuSDL::mainBoucle(){
 
 
 
-        //Rectangle Points de vie :
+        /* **********Rectangle Points de vie********** : */
+        SDL_Texture * texFeu = loadImage("./data/feu.png");
         SDL_Rect hp_perso_MP ={10, 20, 4*J.MP.getVie(), 30};
         SDL_Rect hp_perso_SP ={WINDOW_SIZE_WIDTH - 410 , 20, 4*J.SP.getVie(), 30};
 
+        SDL_Rect borderMP = {hp_perso_MP.x - 5, hp_perso_MP.y - 5, 410, 40 };
+        SDL_Rect borderSP = {hp_perso_SP.x - 5, hp_perso_SP.y - 5, 410, 40 };
+        
 
         //gestion delta time
         LAST = NOW;
@@ -386,12 +390,16 @@ void JeuSDL::mainBoucle(){
                 SDL_RenderCopy(renderer, texSP, NULL, &rectSPlayer);
             }
 
-            //affichage des pv
+            //affichage des pv    
             SDL_SetRenderDrawColor(renderer, 255 - 2.5 * J.MP.getVie(), 2.5 * J.MP.getVie(), 0 ,255);
-            SDL_RenderFillRect(renderer, &hp_perso_MP);
+            SDL_RenderFillRect(renderer, &hp_perso_MP); 
 
-            SDL_SetRenderDrawColor(renderer,255 - 2.5 * J.SP.getVie(),2.5 * J.SP.getVie(), 0,255);
+            SDL_SetRenderDrawColor(renderer,255 - 2.5 * J.SP.getVie(),2.5 * J.SP.getVie(), 0,255);    
             SDL_RenderFillRect(renderer, &hp_perso_SP);
+
+            SDL_RenderCopy(renderer, texFeu, NULL, &borderMP);
+            SDL_RenderCopy(renderer, texFeu, NULL, &borderSP);
+            
             
                        ////////////////////////////////////affichage fin de partie///////////////////////////////////////
 

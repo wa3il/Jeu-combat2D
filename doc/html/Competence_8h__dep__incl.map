@@ -1,0 +1,14 @@
+<map id="src/Competence.h" name="src/Competence.h">
+<area shape="rect" id="node1" title="fichier de déclaration de la class competance" alt="" coords="236,5,365,32"/>
+<area shape="rect" id="node2" href="$Competence_8cpp.html" title=" " alt="" coords="151,80,293,107"/>
+<area shape="rect" id="node3" href="$Personnage_8h.html" title="fichier de déclaration de la class Personnage" alt="" coords="317,80,441,107"/>
+<area shape="rect" id="node4" href="$Jeu_8h.html" title=" " alt="" coords="216,155,321,181"/>
+<area shape="rect" id="node6" href="$JeuSDL_8h.html" title="fichier d&#39;implementation de la classeJeuSDl" alt="" coords="338,229,461,256"/>
+<area shape="rect" id="node12" href="$Personnage_8cpp.html" title=" " alt="" coords="417,155,555,181"/>
+<area shape="rect" id="node5" href="$Jeu_8cpp.html" title=" " alt="" coords="28,229,147,256"/>
+<area shape="rect" id="node9" href="$JeuTXT_8h.html" title="fichier de déclaration de la class JeuTxt" alt="" coords="171,229,289,256"/>
+<area shape="rect" id="node7" href="$JeuSDL_8cpp.html" title=" " alt="" coords="328,304,465,331"/>
+<area shape="rect" id="node8" href="$mainSDL_8cpp.html" title=" " alt="" coords="490,304,634,331"/>
+<area shape="rect" id="node10" href="$JeuTXT_8cpp.html" title=" " alt="" coords="5,304,137,331"/>
+<area shape="rect" id="node11" href="$mainTXT_8cpp.html" title=" " alt="" coords="162,304,301,331"/>
+</map>

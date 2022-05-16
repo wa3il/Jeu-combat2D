@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['menu_108',['Menu',['../classMenu.html#ad466dd83355124a6ed958430450bfe94',1,'Menu::Menu()'],['../classMenu.html#a4884032fd336cbfadbe3f8b67bb10b41',1,'Menu::Menu(int w, int h)']]]
+  ['init_228',['init',['../classJeu.html#af8832b6cdb31f97f5dec8ed4e38a5200',1,'Jeu::init()'],['../classJeuSDL.html#abbae3ee89e46cb4900c35fdfb2675fbc',1,'JeuSDL::init()']]],
+  ['initpartie_229',['initPartie',['../classJeu.html#ac482be638e7ea44d78eecc8af2fbcef9',1,'Jeu']]]
 ];

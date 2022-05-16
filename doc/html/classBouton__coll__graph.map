@@ -1,0 +1,4 @@
+<map id="Bouton" name="Bouton">
+<area shape="rect" id="node1" title="permettant de gerer les boutons du menu" alt="" coords="5,160,124,355"/>
+<area shape="rect" id="node2" href="$classTexture.html" title="class permettant de gerer les textures d&#39;un personnage" alt="" coords="22,5,107,97"/>
+</map>
