@@ -178,6 +178,8 @@ void Jeu::SPClavierUp(int touche){
                 //MP.tex.isSprite = false;
             break; 
 
+         
+
             case 3 :
                 MP.tex.url = "./data/zoro/zoroD.png";
                 MP.tex.lettre = "Z";

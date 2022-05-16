@@ -44,7 +44,7 @@ void JeuSDL::init(){
     //Initialisation VIDEO ET AUDIO
      if (0 != SDL_Init(SDL_INIT_VIDEO))  {cout<<"Erreur SDL_Init : "<< SDL_GetError()<<endl; }
 
-    window = SDL_CreateWindow("SDL2", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_SIZE_WIDTH, WINDOW_SIZE_HEIGHT, SDL_WINDOW_SHOWN);
+    window = SDL_CreateWindow("Anime Fighter", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, WINDOW_SIZE_WIDTH, WINDOW_SIZE_HEIGHT, SDL_WINDOW_SHOWN);
 
     if(NULL == window)   {  cout<< "Erreur SDL_CreateWindow : "<< SDL_GetError()<<endl; }
 
@@ -153,15 +153,15 @@ void JeuSDL::clavierUP(SDL_Event events){
             case SDLK_LEFT : J.SPClavierUp(0) ; break;
             case SDLK_RIGHT: J.SPClavierUp(1) ; break;
             case SDLK_UP   : J.SPClavierUp(2) ; break;
-            case SDLK_DOWN : J.SPClavierUp(3) ; break;
-            case SDLK_m    : J.SPClavierUp(4) ; break;
-            case SDLK_n    : J.SPClavierUp(5) ; break;
+            case SDLK_DOWN : J.SPClavierUp(1) ; break;
+            case SDLK_m    : J.SPClavierUp(1) ; break;
+            case SDLK_n    : J.SPClavierUp(1) ; break;
     }
 }
 
 
 
-void JeuSDL::boucleAcceuil(){
+void JeuSDL::mainBoucle(){
    
     J.init();
     
@@ -268,10 +268,14 @@ void JeuSDL::boucleAcceuil(){
 
 
 
-        //Rectangle Points de vie :
+        /* **********Rectangle Points de vie********** : */
+        SDL_Texture * texFeu = loadImage("./data/feu.png");
         SDL_Rect hp_perso_MP ={10, 20, 4*J.MP.getVie(), 30};
         SDL_Rect hp_perso_SP ={WINDOW_SIZE_WIDTH - 410 , 20, 4*J.SP.getVie(), 30};
 
+        SDL_Rect borderMP = {hp_perso_MP.x - 5, hp_perso_MP.y - 5, 410, 40 };
+        SDL_Rect borderSP = {hp_perso_SP.x - 5, hp_perso_SP.y - 5, 410, 40 };
+        
 
         //gestion delta time
         LAST = NOW;
@@ -386,12 +390,16 @@ void JeuSDL::boucleAcceuil(){
                 SDL_RenderCopy(renderer, texSP, NULL, &rectSPlayer);
             }
 
-            //affichage des pv
+            //affichage des pv    
             SDL_SetRenderDrawColor(renderer, 255 - 2.5 * J.MP.getVie(), 2.5 * J.MP.getVie(), 0 ,255);
-            SDL_RenderFillRect(renderer, &hp_perso_MP);
+            SDL_RenderFillRect(renderer, &hp_perso_MP); 
 
-            SDL_SetRenderDrawColor(renderer,255 - 2.5 * J.SP.getVie(),2.5 * J.SP.getVie(), 0,255);
+            SDL_SetRenderDrawColor(renderer,255 - 2.5 * J.SP.getVie(),2.5 * J.SP.getVie(), 0,255);    
             SDL_RenderFillRect(renderer, &hp_perso_SP);
+
+            SDL_RenderCopy(renderer, texFeu, NULL, &borderMP);
+            SDL_RenderCopy(renderer, texFeu, NULL, &borderSP);
+            
             
                        ////////////////////////////////////affichage fin de partie///////////////////////////////////////
 
@@ -433,4 +441,3 @@ void JeuSDL::quit(){
     SDL_Quit();
     
 }
-
