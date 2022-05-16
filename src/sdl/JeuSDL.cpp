@@ -123,12 +123,13 @@ void JeuSDL::KeyboardEventsLuffy(bool &isSprite){
         isSprite = false;
     }
 
-    else if(state[SDL_SCANCODE_Y]){
+    else if(state[SDL_SCANCODE_E]){
         J.MPClavierDown(4);
         isSprite = true;
+        SDL_Delay(20);
     }
 
-    else if(state[SDL_SCANCODE_U]){
+    else if(state[SDL_SCANCODE_A]){
         J.MPClavierDown(5);
         isSprite = true;
     }
@@ -151,18 +152,18 @@ void JeuSDL::KeyboardEventsZoro(bool &isSprite){
         isSprite = true;
     }
     else if(state[SDL_SCANCODE_UP]){
-       // J.SPClavierDown(2);
+        J.SPClavierDown(2);
         isSprite = false;
     }
     else if(state[SDL_SCANCODE_DOWN]){
        J.SPClavierDown(3);
        isSprite = false;
     }                
-    else if(state[SDL_SCANCODE_B]){
+    else if(state[SDL_SCANCODE_M]){
         J.SPClavierDown(4);
         isSprite = true;
     }
-    else if(state[SDL_SCANCODE_N]){
+    else if(state[SDL_SCANCODE_L]){
         J.SPClavierDown(5);
         isSprite = true;
     }
@@ -179,13 +180,13 @@ void JeuSDL::clavierUP(SDL_Event events){
             case SDLK_q    : J.MPClavierUp(1) ; break;     
             case SDLK_z    : J.MPClavierUp(2) ; break;
             case SDLK_s    : J.MPClavierUp(3) ; break;
-            case SDLK_y    : J.MPClavierUp(4) ; break;
-            case SDLK_u    : J.MPClavierUp(5) ; break;
+            case SDLK_e    : J.MPClavierUp(4) ; break;
+            case SDLK_a    : J.MPClavierUp(5) ; break;
             case SDLK_LEFT : J.SPClavierUp(0) ; break;
             case SDLK_RIGHT: J.SPClavierUp(1) ; break;
             case SDLK_UP   : J.SPClavierUp(2) ; break;
             case SDLK_DOWN : J.SPClavierUp(3) ; break;
-            case SDLK_b    : J.SPClavierUp(4) ; break;
+            case SDLK_m    : J.SPClavierUp(4) ; break;
             case SDLK_n    : J.SPClavierUp(5) ; break;
     }
 }
@@ -202,7 +203,7 @@ void JeuSDL::boucleAcceuil(){
     float deltaTime = 0;
     float t =0;
     
-    //Variables méthode 2:
+/*     //Variables méthode 2:
     const double g = 9.81;
     const double pi = 3.14;
     int v_init = 5;
@@ -211,7 +212,7 @@ void JeuSDL::boucleAcceuil(){
     double v_y = sin(angle_init)*v_init;
 
 	// La position relative 
-    Vector2D posRel(0,0);
+    Vector2D posRel(0,0); */
 
     ///////////////////////////
 
@@ -289,7 +290,15 @@ void JeuSDL::boucleAcceuil(){
         //textures
         SDL_Texture * texSP = loadImage(J.SP.tex.url);
         
-        cout<<J.MP.phy.getPosx()<<endl;
+
+
+
+        //Rectangle Points de vie :
+        SDL_Rect hp_perso_MP ={10, 10, 4*J.MP.getVie(), 20};
+        SDL_Rect hp_perso_SP ={WINDOW_SIZE_WIDTH - 410 , 10, 4*J.SP.getVie(), 20};
+
+        //Rectangle Luffy VS Zoro
+
         //gestion delta time
         LAST = NOW;
         NOW = clock();
@@ -310,7 +319,7 @@ void JeuSDL::boucleAcceuil(){
                 case SDL_KEYDOWN:
                     switch(events.key.keysym.sym){
                         case SDLK_UP:
-                         J.MP.sauterAdroite(t);
+                         /* J.MP.sauterAdroite(t); */
                         break;
                     }
                 break;
@@ -319,7 +328,6 @@ void JeuSDL::boucleAcceuil(){
                 clavierUP(events);
                 break;
 
-                
                 case SDL_MOUSEBUTTONDOWN:
 
                 int x = events.button.x ;
@@ -346,7 +354,7 @@ void JeuSDL::boucleAcceuil(){
         }
     
         
-        //On calcule la valeur relative de y:
+        /* //On calcule la valeur relative de y:
         posRel.setx((int)(0.2f*v_x*t));
         posRel.sety((int)((0.2f*v_y*t)-((g*t*t)/700)));
 
@@ -354,13 +362,13 @@ void JeuSDL::boucleAcceuil(){
 
         J.MP.phy.setPosx(J.MP.phy.getPosx() + posRel.getx());
         J.MP.phy.setPosy(J.MP.phy.getPosy() - posRel.gety());
-
+ */
         
       
         KeyboardEventsLuffy(isSpriteL);
         KeyboardEventsZoro(isSpriteZ);
 
-        t=t+5;
+        //t=t+5;
         //SDL_Delay(500);
 
 
@@ -413,6 +421,14 @@ void JeuSDL::boucleAcceuil(){
             {
                 SDL_RenderCopy(renderer, texSP, NULL, &rectSPlayer);
             }
+
+            //affichage des pv
+            SDL_SetRenderDrawColor(renderer, 255 - 2.5 * J.MP.getVie(), 2.5 * J.MP.getVie(), 0 ,255);
+            SDL_RenderFillRect(renderer, &hp_perso_MP);
+
+            SDL_SetRenderDrawColor(renderer,255 - 2.5 * J.SP.getVie(),2.5 * J.SP.getVie(), 0,255);
+            SDL_RenderFillRect(renderer, &hp_perso_SP);
+
         }
       
         SDL_RenderPresent(renderer);

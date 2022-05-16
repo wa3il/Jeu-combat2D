@@ -26,7 +26,7 @@ void JeuTxt :: menuaff(){
     // pour utiliser les arrows key sur l'ecran
     keypad(stdscr,true);
 
-    string choices[3]={Jtxt.menu.start.tex.lettre, Jtxt.menu.quit.tex.lettre};
+    string choices[3]={Jtxt.menu.start.tex.lettre,Jtxt.menu.quit.tex.lettre};
     //string choices[3]={"Play","Help","quitter"};
     int choice;
     int highlight = 0;
@@ -70,11 +70,11 @@ void JeuTxt :: menuaff(){
         for(int y=0; y<Jtxt.ter1.getDimy();++y){
             //on cherche dans le modul terrain pour placer les murs
             if(Jtxt.ter1.getXY(x,y) == '0') mvprintw(x,y*10,"__________");
-            if(Jtxt.ter1.getXY(x,y) == '#')mvprintw(x,y*10,Jtxt.ter1.tex.lettre);
+            if(Jtxt.ter1.getXY(x,y) == '#') mvprintw(x,y*10,Jtxt.ter1.tex.lettre);
         }
     }
-    mvprintw(Jtxt.SP.phy.getPosy(),Jtxt.SP.phy.getPosx() , Jtxt.SP.tex.lettre);
-    mvprintw(Jtxt.MP.phy.getPosy(),Jtxt.MP.phy.getPosx() , Jtxt.MP.tex.lettre);
+    mvprintw(Jtxt.SP.phy.getPosy(),Jtxt.SP.phy.getPosx() * 10 , Jtxt.SP.tex.lettre);
+    mvprintw(Jtxt.MP.phy.getPosy(),Jtxt.MP.phy.getPosx() * 10 , Jtxt.MP.tex.lettre);
 }
 
 void JeuTxt :: txtBoucle(){
@@ -97,19 +97,23 @@ void JeuTxt :: txtBoucle(){
         //deltaTime
         LAST = NOW;
         NOW = clock();
-        float deltaTime = (float)((NOW - LAST)/CLOCKS_PER_SEC);
+        float deltaTime = (float)((NOW - LAST)/5000);
+
         txtAff();
         usleep(10000);
 
-        //j.actionsClavier();
+
+        nodelay (stdscr, TRUE);
+        Jtxt.updatePartie(deltaTime);
         int c = getch();
 
         switch (c)
         {
         //mouvements MP
+            case 'z' :  Jtxt.MPClavierDown(2); break;
             case 'q' :  Jtxt.MPClavierDown(1); break;
             case 'd' : Jtxt.MPClavierDown(0); break;
-            case 'z' :  Jtxt.MPClavierDown(2); break;
+
             //S'accroupir MP
             case 's' : Jtxt.MPClavierDown(3); break;
             //attaquer MP
@@ -117,9 +121,9 @@ void JeuTxt :: txtBoucle(){
             case 'a' : Jtxt.MPClavierDown(5); break;
 
             //mouvements SP
-            case KEY_LEFT:  Jtxt.SPClavierDown(0); break;
-            case KEY_RIGHT: Jtxt.SPClavierDown(1); break;
             case KEY_UP:  Jtxt.SPClavierDown(2); break;
+            case KEY_LEFT:  Jtxt.SPClavierDown(1); break;
+            case KEY_RIGHT: Jtxt.SPClavierDown(0); break;
             //s'accroupir SP
             case KEY_DOWN: Jtxt.SPClavierDown(3); break;
             //attaquer SP

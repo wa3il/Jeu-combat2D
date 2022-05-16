@@ -56,7 +56,7 @@ terrain :: ~terrain(){}
 char terrain::getXY(int x,int y){ return this->ter[x][y];}
 
 bool terrain::posisvalide(int x,int y){
-     return ((ter[x][y] != '#') && (x>= 0) && (x<dimx)&& (y >= 0) && (y<dimx));
+     return ((ter[x][y] != '#') && (x>= 0) && (x<=dimx)&& (y >= 0) && (y<=dimx));
 }
 
 int terrain::getDimx(){return this->dimx;}
@@ -66,4 +66,5 @@ void terrain::setDim(int dimx, int dimy){
     this -> dimx = dimx;
     this -> dimy = dimy;
 }
+
 

@@ -36,6 +36,8 @@ class terrain{
 
         void setDim(int dimx, int dimy);
 
+        bool isPlatform();
+
         Texture tex;
 
 };

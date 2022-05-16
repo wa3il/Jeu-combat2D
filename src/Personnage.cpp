@@ -27,21 +27,22 @@ Personnage::~Personnage()
 //mouvements
 
 void Personnage::bougerAgauche(float xg,terrain& t){
-	if(t.posisvalide(this->phy.getPosx(), this->phy.getPosy()))
+	if(t.posisvalide(this->phy.getPosx()-10, this->phy.getPosy()))
 		this->phy.setPosx(this->phy.getPosx()-xg );
+		
 }
 
 void Personnage::bougerAdroite(float xd,terrain& t){
-	if(t.posisvalide(this->phy.getPosx(), this->phy.getPosy()))
+	if(t.posisvalide(this->phy.getPosx()+10, this->phy.getPosy()))
 		this->phy.setPosx(this->phy.getPosx()+xd );
 }
 
 void Personnage::sauter(float yh,terrain& t){
-	if(t.posisvalide(this->phy.getPosx(), this->phy.getPosy()))
+	if(t.posisvalide(this->phy.getPosx(), this->phy.getPosy()+10))
 		this->phy.setPosy(this->phy.getPosy()-yh );
 }
 
-void Personnage::sauterAdroite(float &t){
+/* void Personnage::sauterAdroite(float &t){
 	//Variables méthode 2:
     const double g = 9.81;
     const double pi = 3.14;
@@ -62,7 +63,7 @@ void Personnage::sauterAdroite(float &t){
 	this->phy.setPosx(this->phy.getPosx() + posRel.getx());
 	this->phy.setPosy(this->phy.getPosy() - posRel.gety());
 	
-}
+} */
 
 void Personnage::sauterAgauche(){
 
@@ -84,35 +85,40 @@ void Personnage::recevoirDegats(int nbDegats)
 
 void Personnage::attaquer(Personnage& cible)
 {
-	/* if (((cible.getx() - this->getx() > -100 ) && (cible.getx() - this->getx() <= 0)) || ((cible.getx() - this->getx() < 100 ) && (cible.getx() - this->getx() >= 0)) ) {
-		if((cible.gety() - this->gety() > -50 && cible.gety() - this->gety() <= 0) || (cible.gety() - this->gety() < 50 && cible.gety() - this->gety() >= 0)) {
+	if (((cible.phy.getPosx() - this->phy.getPosx() > -100 ) && 
+		(cible.phy.getPosx() - this->phy.getPosx() <= 0)) || 
+		((cible.phy.getPosx() - this->phy.getPosx() < 100 ) && 
+		(cible.phy.getPosx() - this->phy.getPosx() >= 0))) 
+		{
+			if((cible.phy.getPosy() - this->phy.getPosy() > -50 && cible.phy.getPosy() - this->phy.getPosy() <= 0) || 
+				(cible.phy.getPosy() - this->phy.getPosy() < 50 && cible.phy.getPosy() - this->phy.getPosy() >= 0)) 
+				{
+					cout << "MP ou SP" << " attaque " << "MP ou SP" << endl;
+					cible.recevoirDegats(m_competence->getDegats());
 
-			cout << m_nom << " attaque " << cible.getNom() << endl;
-			cible.recevoirDegats(m_competence->getDegats());
-
-		}
+				}
 		
-	} */
+		}
 }
 
 void Personnage::attaqueUltime(Personnage& cible)
 {
-	/* if (m_mana > 0 && m_vie > 0) 
+	if (m_mana > 0 && m_vie > 0) 
 	{
-			cout << m_nom << " lance l'attaque ultime sur " << cible.getNom() << endl;
+			cout << "MP ou SP" << " lance l'attaque ultime sur " << "MP ou SP" << endl;
 			m_mana -= 50;
 			cible.recevoirDegats(50);
 	}
 		else if(m_mana<=0) 
 		{ 
-			cout << m_nom << " n a pas assez de mana pour lancer l'attque ultime !" << endl; 
+			cout << "MP ou SP" << " n a pas assez de mana pour lancer l'attque ultime !" << endl; 
 			m_mana = 0;
 		}
 
 			else 
 			{ 
-				cout << m_nom << " est mort !" << endl; 
-			} */
+				cout << "MP ou SP" << " est mort !" << endl; 
+			}
 	
 }
 
