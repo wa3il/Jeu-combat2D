@@ -129,10 +129,6 @@ void Personnage::attaqueUltime(Personnage& cible)
 
 
 
-
-
-
-
 //Vie et Etat
 
 bool Personnage::estVivant() const
@@ -163,16 +159,7 @@ void Personnage::afficherEtat() const
 	
 }
 
-void Personnage::boirePotionDeVie(int quantitePotion)
-{
-	m_vie += quantitePotion;
-	if (m_vie > 100)
-	{
-		m_vie = 100;
-	}
-	cout  << " boit une potion et se remet a " << m_vie << " points de vie" << endl;
-	
-}
+
 
 
 

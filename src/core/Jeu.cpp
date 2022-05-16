@@ -5,7 +5,6 @@ using namespace std;
 
 void Jeu :: actionsAutomatique(){
     
-
 	if (MP.phy.getPosy() > WINDOW_SIZE_HEIGHT - HAUTEUR_SPRITE){
 
         MP.phy.setPosy(WINDOW_SIZE_HEIGHT - HAUTEUR_SPRITE);
@@ -40,28 +39,26 @@ void Jeu :: MPClavierDown(int touche)
     {
         //MP/////////////////////////////////////////////////////////
         case 0:
-            MP.bougerAdroite(10.0f, ter1);
+            MP.bougerAdroite(5.0f, ter1);
             MP.tex.url = "./data/luffy/luffyCourtD.png";//Sprite Courir a corriger
             //MP.tex.isSprite = true;          
 
         break;     
                             
         case 1: //gauche a inverser
-            MP.bougerAgauche(10.0f, ter1);
+            MP.bougerAgauche(5.0f, ter1);
             MP.tex.url = "./data/luffy/luffyCourtG.png";//Sprite Courir
             //MP.tex.isSprite = true;
         break;       
 
         case 2:                
-                MP.sauter(10.0f, ter1);
+                MP.sauter(8.0f, ter1);
                 MP.tex.url= "./data/luffy/luffySauteD.png";
-                //MP.tex.isSprite = false;
         break;
 
         case 3 :
             MP.tex.url = "./data/luffy/luffyAccroupiD.png";//Personnage accroupi pour SDL
             MP.tex.lettre = "l";//Personnage accroupi en TXT
-            //MP.tex.isSprite = false;
         break;
         
 
@@ -98,7 +95,10 @@ void Jeu::MPClavierUp(int touche)
             break; 
 
             case 2:
-
+            if(MP.phy.getPosy()== WINDOW_SIZE_HEIGHT - HAUTEUR_SPRITE)
+                {
+                    MP.tex.url = "./data/luffy/luffyD.png";
+                }
             break;
 
             case 3 :
@@ -123,20 +123,20 @@ void Jeu::SPClavierDown(int touche)
     switch(touche)
         {
             case 0:
-                SP.bougerAgauche(10.0f, ter1);     
+                SP.bougerAgauche(5.0f, ter1);     
                 SP.tex.url = "./data/zoro/zoroCourtD.png";
                 //MP.tex.isSprite = true;
                 
             break;
 
             case 1:
-                SP.bougerAdroite(10.0f, ter1);     
+                SP.bougerAdroite(5.0f, ter1);     
                 SP.tex.url = "./data/zoro/zoroCourtG.png";
                 //MP.tex.isSprite = true;
             break; 
 
             case 2:
-                SP.sauter(10.0f, ter1);
+                SP.sauter(5.0f, ter1);
                 SP.tex.url = "./data/zoro/zoroSauteD.png"; 
                 //MP.tex.isSprite = false;
             break;
@@ -170,15 +170,18 @@ void Jeu::SPClavierUp(int touche){
         {
             case 0:
                 SP.tex.url = "./data/zoro/zoroD.png";
-                //MP.tex.isSprite = false;
             break;
 
             case 1:
                 SP.tex.url = "./data/zoro/zoroG.png";
-                //MP.tex.isSprite = false;
             break; 
 
-            case 3 :
+            case 4 :
+                MP.tex.url = "./data/zoro/zoroD.png";
+                MP.tex.lettre = "Z";
+            break;
+
+            case 5 :
                 MP.tex.url = "./data/zoro/zoroD.png";
                 MP.tex.lettre = "Z";
             break;
@@ -211,7 +214,7 @@ void Jeu::initPartie(){
     const int MPinitx = LARGEUR_SPRITE ;
     const int MPinity = WINDOW_SIZE_HEIGHT - HAUTEUR_SPRITE ;
     const int SPinitx = WINDOW_SIZE_WIDTH - 2*LARGEUR_SPRITE;
-    const int SPinity = WINDOW_SIZE_HEIGHT - HAUTEUR_SPRITE;
+    const int SPinity = WINDOW_SIZE_HEIGHT - HAUTEUR_SPRITE + 20;
    
     MP.phy.setPos(MPinitx,MPinity);
     SP.phy.setPos(SPinitx,SPinity);
@@ -254,7 +257,8 @@ void Jeu::updatePartie(float deltaTime){
  
     this->actionsAutomatique();
     MP.phy.ticks(deltaTime); //gravité MP
-    SP.phy.ticks(deltaTime); //gravité SP)
+    SP.phy.ticks(deltaTime); //gravité SP
+
 
 
 

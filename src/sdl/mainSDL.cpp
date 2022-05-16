@@ -6,7 +6,7 @@ int main(void){
 
     JeuSDL j1;
     j1.init();
-    j1.boucleAcceuil();
+    j1.mainBoucle();
     j1.quit();
 
     

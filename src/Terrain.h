@@ -1,22 +1,41 @@
+/**
+ * @file Terrain.h
+ * @brief fichier de déclaration de la class terrain
+ * @version 0.1
+ * @date 2022-05-16
+ * 
+ * @copyright Copyright (c) 2022
+ * 
+ */
+
+#ifndef TERRAIN_H
+#define TERRAIN_H
+
 #include <iostream>
-#include <string>
 #include "Texture.h"
-#include"Constantes.h"
-#include"Vector2D.h"
+#include "Constantes.h"
+#include "Vector2D.h"
 
-
+/**
+ * \class Terrain
+ * \brief class permettant de gerer un terrain
+ */
 class terrain{
     private:
-        int dimx,dimy; // dimension du terrain
-        const char* caract[WINDOW_SIZE_WIDTH][WINDOW_SIZE_HEIGHT]; //terrain
-    public:
-        
+        int dimx,dimy; /*!< dimension du terrain */
+        const char *caract[WINDOW_SIZE_WIDTH][WINDOW_SIZE_HEIGHT]; /*!< tableau de caractere */
 
-        /** Constructeur/destructeur
+    public:
+        /** 
          * @brief Construct a new terrain object
          * 
          */
         terrain();
+
+        /**
+         * @brief Destroy the terrain object
+         * 
+         */
         ~terrain(); 
 
         /** Fonction posisvalide
@@ -31,14 +50,19 @@ class terrain{
          */
         const char* getXY(int x,int y);
 
-        /** Mutateur et accesseur
+        /**
          * @brief getDimension () => entier
          * 
          */
         int getDimx();
         int getDimy();
 
-       
+        /**
+         * @brief Set the Dim object
+         * 
+         * @param dimx 
+         * @param dimy 
+         */
         void setDim(int dimx, int dimy);
         void setCaract(int x,int y ,const char* car);
 
@@ -57,3 +81,6 @@ class Tuiles{
     int width , height;
     
 };
+
+
+#endif
