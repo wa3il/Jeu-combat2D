@@ -33,7 +33,6 @@ public:
 
     void ticks(const float deltaTime);//gravité
 
-    bool PofloatRect(const Vector2D &p, const Rect &r);
 
 };
 

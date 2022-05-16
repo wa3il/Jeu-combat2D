@@ -18,7 +18,7 @@ public:
 
 
     //mouvements
-    void bougerAdroite(float xd/* ,terrain& t */);
+    void bougerAdroite(float xd,terrain& t);
     void bougerAgauche(float xg,terrain& t);
     void sauter(float yh,terrain& t);
     void sauterAdroite(float& t);
@@ -28,7 +28,6 @@ public:
     void recevoirDegats(int nbDegats);
     void attaquer(Personnage& cible);
     void attaqueUltime(Personnage& cible);
-    void changerCompetence(int degatsNouvelleCompetence);
 
     //Vie et etat  
     void boirePotionDeVie(int quantitePotion);
@@ -39,6 +38,8 @@ public:
 
     //test Regression
     void testRegression();
+    //bool isColl(const Personnage &MP, const Personnage &SP);
+
 
     Physic phy;
     Texture tex;

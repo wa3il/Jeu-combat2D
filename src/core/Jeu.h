@@ -19,6 +19,7 @@ class Jeu{
     Personnage MP;
     Personnage SP;
     terrain ter1;
+    Tuiles tuile[24];
     Menu menu;
 
   

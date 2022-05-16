@@ -63,10 +63,5 @@ void Physic::ticks(const float deltaTime){//tirer le personnage vers le bas
 
 }
 
-///////////////////////////////////
-//test Collision
-bool Physic::PofloatRect(const Vector2D &p, const Rect &r){
 
-    return (p.getx() >= r.getx() && p.gety() >= r.gety() && p.getx() < r.getx() + r.getw() && p.gety() < r.gety() + r.geth());
-}
 

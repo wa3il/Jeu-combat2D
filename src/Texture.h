@@ -14,7 +14,6 @@ class Texture{
     
     const char* url;
     const char* lettre;
-    //bool isSprite;
 
     Texture();
 

@@ -32,8 +32,8 @@ void Personnage::bougerAgauche(float xg,terrain& t){
 		
 }
 
-void Personnage::bougerAdroite(float xd/* ,terrain& t */){
-	/* if(t.posisvalide(this->phy.getPosx()+10, this->phy.getPosy())) */
+void Personnage::bougerAdroite(float xd,terrain& t){
+	if(t.posisvalide(this->phy.getPosx()+10, this->phy.getPosy()))
 		this->phy.setPosx(this->phy.getPosx()+xd );
 }
 
@@ -103,30 +103,33 @@ void Personnage::attaquer(Personnage& cible)
 
 void Personnage::attaqueUltime(Personnage& cible)
 {
-	if (m_mana > 0 && m_vie > 0) 
-	{
-			cout << "MP ou SP" << " lance l'attaque ultime sur " << "MP ou SP" << endl;
-			m_mana -= 50;
-			cible.recevoirDegats(50);
-	}
-		else if(m_mana<=0) 
-		{ 
-			cout << "MP ou SP" << " n a pas assez de mana pour lancer l'attque ultime !" << endl; 
-			m_mana = 0;
-		}
-
-			else 
-			{ 
-				cout << "MP ou SP" << " est mort !" << endl; 
+	if (((cible.phy.getPosx() - this->phy.getPosx() > -100 ) && 
+		(cible.phy.getPosx() - this->phy.getPosx() <= 0)) || 
+		((cible.phy.getPosx() - this->phy.getPosx() < 100 ) && 
+		(cible.phy.getPosx() - this->phy.getPosx() >= 0))) 
+		{
+			if (m_mana > 0 && m_vie > 0) 
+			{
+					cout << "MP ou SP" << " lance l'attaque ultime sur " << "MP ou SP" << endl;
+					m_mana -= 50;
+					cible.recevoirDegats(10);
 			}
-	
+				else if(m_mana<=0) 
+				{ 
+					cout << "MP ou SP" << " n a pas assez de mana pour lancer l'attque ultime !" << endl; 
+					m_mana = 0;
+				}
+
+					else 
+					{ 
+						cout << "MP ou SP" << " est mort !" << endl; 
+					}
+		}	
 }
 
-void Personnage::changerCompetence(int degatsNouvelleCompetence)
-{
-	/* m_competence->changer(nomNouvelleCompetence, degatsNouvelleCompetence);
-	cout <<"  => Changement de competence : " << nomNouvelleCompetence << endl; */
-}
+
+
+
 
 
 

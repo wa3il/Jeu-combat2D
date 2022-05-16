@@ -5,5 +5,4 @@ using namespace std;
 Texture::Texture(){
     url = "";
     lettre ="-";
-    //isSprite = false;
 }

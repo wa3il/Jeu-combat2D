@@ -18,53 +18,16 @@ void Jeu :: actionsAutomatique(){
         SP.phy.setVity(0.0f);	
     } 
 
-/* 	if (MP.phy.getPosy() < 0 ){
 
-        MP.phy.setPosy(0);
-        MP.phy.setVity(0.0f);	
-    } 
-
-    if (SP.phy.getPosy() < 0 ){
-
-        SP.phy.setPosy(0);
-        SP.phy.setVity(0.0f);	
-    } 
+/* 
+        if (MP.phy.getPosx() + LARGEUR_SPRITE <= SP.phy.getPosx()  && 
+            MP.phy.getPosx() + LARGEUR_SPRITE > SP.phy.getPosx() + LARGEUR_SPRITE && 
+            MP.phy.getPosy() < SP.phy.getPosy() + HAUTEUR_SPRITE &&
+            MP.phy.getPosy() + HAUTEUR_SPRITE > SP.phy.getPosy())
+                {
+                    std::cout<<"ouuiiiiiizegfioef"<<std::endl;
+                } */
     
-    if (MP.phy.getPosx() < 0 ){
-
-        MP.phy.setPosx(0);
-        MP.phy.setVitx(0.0f);	
-    } 
-
-    if (SP.phy.getPosx() < 0 ){
-
-        SP.phy.setPosx(0);
-        SP.phy.setVitx(0.0f);	
-    } 
-
-    if (MP.phy.getPosx() > WINDOW_SIZE_WIDTH -LARGEUR_SPRITE ){
-
-        MP.phy.setPosx(WINDOW_SIZE_WIDTH -LARGEUR_SPRITE);
-        MP.phy.setVitx(0.0f);	
-    } 
-
-    if (SP.phy.getPosx() > WINDOW_SIZE_WIDTH -LARGEUR_SPRITE ){
-
-        SP.phy.setPosx(WINDOW_SIZE_WIDTH -LARGEUR_SPRITE);
-        SP.phy.setVitx(0.0f);	
-    } 
-
-    for(int i=0;i<NOMBRE_BLOCS_HAUTEUR;i++)//boucle pour collision avec tuiles
-    {
-        for(int j=0;j<NOMBRE_BLOCS_LARGEUR;j++)
-        {   
-            if(ter1.getXY(i,j) == '#'){
-
-
-
-            }
-        }
-    } */
 
 }
 
@@ -77,7 +40,7 @@ void Jeu :: MPClavierDown(int touche)
     {
         //MP/////////////////////////////////////////////////////////
         case 0:
-            MP.bougerAdroite(10.0f/* , ter1 */);
+            MP.bougerAdroite(10.0f, ter1);
             MP.tex.url = "./data/luffy/luffyCourtD.png";//Sprite Courir a corriger
             //MP.tex.isSprite = true;          
 
@@ -110,7 +73,7 @@ void Jeu :: MPClavierDown(int touche)
         break;
 
         case 5:
-            MP.attaquer(SP);
+            MP.attaqueUltime(SP);
             MP.tex.url = "./data/luffy/luffyAttaqueB.png"; //attaqueB
             MP.tex.lettre = "LL";
             //MP.tex.isSprite = true; 
@@ -167,7 +130,7 @@ void Jeu::SPClavierDown(int touche)
             break;
 
             case 1:
-                SP.bougerAdroite(10.0f/* , ter1 */);     
+                SP.bougerAdroite(10.0f, ter1);     
                 SP.tex.url = "./data/zoro/zoroCourtG.png";
                 //MP.tex.isSprite = true;
             break; 
@@ -185,12 +148,14 @@ void Jeu::SPClavierDown(int touche)
             break;
 
             case 4:
+                SP.attaquer(MP);
                 SP.tex.url = "./data/zoro/zoroAttaqueA.png"; //attaqueA
                 SP.tex.lettre = "ZZ"; 
                 //MP.tex.isSprite = true;
             break;
 
             case 5:
+                SP.attaqueUltime(MP);
                 SP.tex.url = "./data/zoro/zoroAttaqueB.png"; //attaqueB
                 SP.tex.lettre = "ZZ"; 
                 //MP.tex.isSprite = true;
@@ -237,7 +202,7 @@ void Jeu::SPClavierUp(int touche){
 
 void Jeu::initPartie(){
     //initialisation du terrain
-    ter1.setDim(10,58);
+    ter1.setDim(WINDOW_SIZE_WIDTH,WINDOW_SIZE_HEIGHT);
    
     ter1.tex.url = "./data/background/sunny.jpg"; //SDL
     ter1.tex.lettre="#" ; //TXT
@@ -257,6 +222,32 @@ void Jeu::initPartie(){
     SP.tex.url = "./data/zoro/zoroD.png" ; //personnage ZORO debout
     SP.tex.lettre = "Z";//Personnage debout
 
+    // Initialisation des tuiles:
+    for(int i=0 ;i<12;i++){
+        tuile[i].pos.setx(i*LARGEUR_TILE);
+        tuile[i].pos.sety(WINDOW_SIZE_HEIGHT-HAUTEUR_TILE);
+        ter1.setCaract(i,WINDOW_SIZE_HEIGHT - HAUTEUR_TILE,"#");
+        std::cout <<ter1.getXY(i,WINDOW_SIZE_WIDTH-HAUTEUR_TILE)<<std::endl;
+
+    }
+
+    for (int j=12;j<15;j++){
+        tuile[j].pos.setx((j-11) * LARGEUR_TILE);
+        tuile[j].pos.sety(WINDOW_SIZE_HEIGHT/2);
+        ter1.setCaract(j,WINDOW_SIZE_HEIGHT/4,"#");
+    }
+    for(int k=15;k<18;k++){
+        tuile[k].pos.setx((k-7) * LARGEUR_TILE);
+        tuile[k].pos.sety(WINDOW_SIZE_HEIGHT/2);
+        ter1.setCaract(k,WINDOW_SIZE_HEIGHT/4, "#");
+    }
+
+    for(int l=18;l<24;l++){
+        tuile[l].pos.setx((l-15) * LARGEUR_TILE);
+        tuile[l].pos.sety(WINDOW_SIZE_HEIGHT/2);
+        ter1.setCaract(l, WINDOW_SIZE_HEIGHT/2, "#");
+
+    }
 }
 
 void Jeu::updatePartie(float deltaTime){
@@ -265,10 +256,6 @@ void Jeu::updatePartie(float deltaTime){
     MP.phy.ticks(deltaTime); //gravité MP
     SP.phy.ticks(deltaTime); //gravité SP)
 
-/*     if(MP.phy.getPosy() == WINDOW_SIZE_HEIGHT - HAUTEUR_SPRITE) 
-        {
-            MP.tex.url= "./data/luffy/luffyD.png";
-        } */
 
 
 

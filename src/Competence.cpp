@@ -2,7 +2,7 @@
 
 using namespace std;
 
-Competence::Competence() : m_nom("epee rouillee"), m_degats(10)
+Competence::Competence() : m_nom("Attaque A"), m_degats(2)
 {
 
 }

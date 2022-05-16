@@ -69,8 +69,9 @@ void JeuTxt :: menuaff(){
     for(int x=0; x<Jtxt.ter1.getDimx();++x){
         for(int y=0; y<Jtxt.ter1.getDimy();++y){
             //on cherche dans le module terrain pour placer les plateformes
-            if(Jtxt.ter1.getXY(x,y) == '0') mvprintw(x,y,"_");
-            if(Jtxt.ter1.getXY(x,y) == '#') mvprintw(x,y,Jtxt.ter1.tex.lettre);
+            if(Jtxt.ter1.getXY(x,y) == "0") mvprintw(x,y,"_");
+            if(Jtxt.ter1.getXY(x,y) == "#") mvprintw(x,y,Jtxt.ter1.tex.lettre);
+            //std::cout<<Jtxt.ter1.getXY(x,y)<<std::endl;
         }
     }
     mvprintw(Jtxt.SP.phy.getPosy(),Jtxt.SP.phy.getPosx(), Jtxt.SP.tex.lettre);

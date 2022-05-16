@@ -63,43 +63,7 @@ void JeuSDL::init(){
 
 
 
-void JeuSDL::Afficher(SDL_Texture *texture, SDL_Surface* tileset,int nbl,int nbh)
-{
-    int i,j;
-    SDL_Rect Rect_dest;
-    SDL_Rect Rect_source;
-    Rect_dest.w = LARGEUR_TILE;
-    Rect_dest.h = HAUTEUR_TILE;
 
-    texture=SDL_CreateTextureFromSurface(renderer,tileset);
-    for(i=0;i< nbh;i++)
-    {
-        for(j=0;j<nbl ;j++)
-        {   
-            if(J.ter1.getXY(i,j) == '#') {
-                Rect_source.x=0;
-                Rect_source.y=0;
-                Rect_source.w=LARGEUR_TILE;
-                Rect_source.h=HAUTEUR_TILE;
-
-            }
-            else {
-                Rect_source = {NULL};
-            
-            }
-            
-                Rect_dest.x = j * WINDOW_SIZE_WIDTH / LARGEUR_TILE;
-                Rect_dest.y = i * WINDOW_SIZE_HEIGHT / HAUTEUR_TILE;
-            
-
-            SDL_RenderCopy(renderer, texture, &Rect_source, &Rect_dest);
-            
-            
-        }
-
-    }
-    SDL_DestroyTexture(texture);
-}
 
 
 
@@ -205,20 +169,8 @@ void JeuSDL::boucleAcceuil(){
     float NOW = clock();
     float LAST = 0;
     float deltaTime = 0;
-    float t =0;
+
     
-/*     //Variables méthode 2:
-    const double g = 9.81;
-    const double pi = 3.14;
-    int v_init = 5;
-    int angle_init = pi/2.f;
-	double v_x = cos(angle_init)*v_init;
-    double v_y = sin(angle_init)*v_init;
-
-	// La position relative 
-    Vector2D posRel(0,0); */
-
-    ///////////////////////////
 
    
     ////chargement de texture
@@ -256,17 +208,21 @@ void JeuSDL::boucleAcceuil(){
 
 
 
+
     //chargement de la surface des tiles : 
-    SDL_Surface *tileset;
-    SDL_Texture *texTuile = NULL;
-    tileset = IMG_Load("./data/plateforme/2.png");
-   
 
-    
-  
+    SDL_Texture * tileset = loadImage("./data/plateforme/2.png");
 
+    SDL_Rect Rect_dest[24] ;
 
+    for(int i=0;i<24;i++)
+    {
+        Rect_dest[i] = SDL_Rect{J.tuile[i].pos.getx(),
+                                J.tuile[i].pos.gety(),
+                                LARGEUR_TILE,
+                                HAUTEUR_TILE};
 
+    }
 
 
 
@@ -274,7 +230,7 @@ void JeuSDL::boucleAcceuil(){
    //interupteur :
     bool isOpen = true;
     bool onMenu = true;
-    //booleen pour les sprits
+    //booleen pour les sprites
     bool isSpriteL = true ;
     bool isSpriteZ = true;
 
@@ -334,14 +290,6 @@ void JeuSDL::boucleAcceuil(){
                     isOpen = false;
                 break;
                 
-                case SDL_KEYDOWN:
-                    switch(events.key.keysym.sym){
-                        case SDLK_UP:
-                         /* J.MP.sauterAdroite(t); */
-                        break;
-                    }
-                break;
-                
                 case SDL_KEYUP:
                 clavierUP(events);
                 break;
@@ -372,22 +320,9 @@ void JeuSDL::boucleAcceuil(){
         }
     
         
-        /* //On calcule la valeur relative de y:
-        posRel.setx((int)(0.2f*v_x*t));
-        posRel.sety((int)((0.2f*v_y*t)-((g*t*t)/700)));
-
-        //On calcule maintenant les valeurs absolues
-
-        J.MP.phy.setPosx(J.MP.phy.getPosx() + posRel.getx());
-        J.MP.phy.setPosy(J.MP.phy.getPosy() - posRel.gety());
- */
-        
       
         KeyboardEventsLuffy(isSpriteL);
         KeyboardEventsZoro(isSpriteZ);
-
-        //t=t+5;
-        //SDL_Delay(500);
 
 
 
@@ -396,22 +331,7 @@ void JeuSDL::boucleAcceuil(){
         //Transparence :
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
         SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
-/* 
-        if(!J.MP.estVivant() || !J.SP.estVivant())
-            {   
-                //Chargement de la font d'écriture
-                TTF_Font * font = TTF_OpenFont("arial.ttf", 50);
-                SDL_Rect rectFin = {0, 0, WINDOW_SIZE_WIDTH, WINDOW_SIZE_HEIGHT};
 
-                //Rectangle Joueur gagnant :
-                SDL_Surface * surfaceText = TTF_RenderUTF8_Blended(font, "Fin", { 255, 255, 255, 255 });
-                SDL_Texture * textureFin = SDL_CreateTextureFromSurface(renderer, surfaceText);
-                SDL_RenderFillRect(renderer, &rectFin);
-                //SDL_RenderCopy(renderer, textureFin, NULL, &rectFin);
-                SDL_FreeSurface(surfaceText);
-                TTF_CloseFont(font);
-
-            } */
         
         if(onMenu)
         {
@@ -433,10 +353,16 @@ void JeuSDL::boucleAcceuil(){
             SDL_RenderCopy(renderer, ter1Tex, NULL,&WinRect );
         
             //affichage des tuiles (plateforme) :
-            Afficher(texTuile,tileset,NOMBRE_BLOCS_LARGEUR,NOMBRE_BLOCS_HAUTEUR);
+            for(int i=0 ; i<24;i++)
+            {
+                SDL_RenderCopy(renderer, tileset, NULL, &Rect_dest[i] );
+            }
+
+            //Affichage LUFFY VS ZORO
             SDL_RenderCopy(renderer, texVS, NULL, &VS); 
 
 
+ 
 
          
 
@@ -467,7 +393,24 @@ void JeuSDL::boucleAcceuil(){
             SDL_SetRenderDrawColor(renderer,255 - 2.5 * J.SP.getVie(),2.5 * J.SP.getVie(), 0,255);
             SDL_RenderFillRect(renderer, &hp_perso_SP);
             
+                       ////////////////////////////////////affichage fin de partie///////////////////////////////////////
 
+            if(!J.MP.estVivant() || !J.SP.estVivant())
+            {   
+                //Chargement de la font d'écriture
+                //TTF_Font * font = TTF_OpenFont("arial.ttf", 50);
+                SDL_Rect rectFin = {0, 0, WINDOW_SIZE_WIDTH, WINDOW_SIZE_HEIGHT};
+
+                //Rectangle Joueur gagnant :
+                //SDL_Surface * surfaceText = TTF_RenderUTF8_Blended(font, "Fin", { 255, 255, 255, 255 });
+                //SDL_Texture * textureFin = SDL_CreateTextureFromSurface(renderer, surfaceText);
+                SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+                SDL_RenderFillRect(renderer, &rectFin);
+                //SDL_RenderCopy(renderer, textureFin, NULL, &rectFin);
+                //SDL_FreeSurface(surfaceText);
+                //TTF_CloseFont(font);
+
+            }
 
         }
       
