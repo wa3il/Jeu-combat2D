@@ -28,15 +28,15 @@ git clone https://forge.univ-lyon1.fr/p1811588/rpg.git
 - Entrez les commandes suivantes sur un terminal :
 
 ```
-cd rpg
+cd Animefighter
 ```
 - Version Texte :
 ```
-make StartTxt
+make startTxt
 ```
 - Version graphique :
 ```
-make StartSdl
+make startSdl
 ```
 
 ### Organisation de l'archive :
