@@ -1,0 +1,226 @@
+\hypertarget{classPersonnage}{}\doxysection{Personnage Class Reference}
+\label{classPersonnage}\index{Personnage@{Personnage}}
+
+
+permettant de gerer les caracteristiques d\textquotesingle{}un personnage  
+
+
+
+
+{\ttfamily \#include $<$Personnage.\+h$>$}
+
+
+
+Collaboration diagram for Personnage\+:
+% FIG 0
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPersonnage_abec36eb0310adc71f3375297fc590c65}{Personnage}} ()
+\begin{DoxyCompactList}\small\item\em Construct a new \mbox{\hyperlink{classPersonnage}{Personnage}} object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classPersonnage_a05bdf2a469885bb1fbb6c2e8f98972ab}{$\sim$\+Personnage}} ()
+\begin{DoxyCompactList}\small\item\em Destroy the \mbox{\hyperlink{classPersonnage}{Personnage}} object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classPersonnage_a0098dcef539274fd5eef26ad5afcb52b}\label{classPersonnage_a0098dcef539274fd5eef26ad5afcb52b}} 
+void {\bfseries bouger\+Adroite} (float xd, \mbox{\hyperlink{classterrain}{terrain}} \&t)
+\item 
+\mbox{\Hypertarget{classPersonnage_ab2d74aef75b7243dc60b1d9e488aeeaf}\label{classPersonnage_ab2d74aef75b7243dc60b1d9e488aeeaf}} 
+void {\bfseries bouger\+Agauche} (float xg, \mbox{\hyperlink{classterrain}{terrain}} \&t)
+\item 
+\mbox{\Hypertarget{classPersonnage_ae88a1a3c1a475c6a6756454eb2224b4c}\label{classPersonnage_ae88a1a3c1a475c6a6756454eb2224b4c}} 
+void {\bfseries sauter} (float yh, \mbox{\hyperlink{classterrain}{terrain}} \&t)
+\item 
+\mbox{\Hypertarget{classPersonnage_a39a093b34ce696c44993d5344102c251}\label{classPersonnage_a39a093b34ce696c44993d5344102c251}} 
+void {\bfseries sauter\+Adroite} (float \&t)
+\item 
+\mbox{\Hypertarget{classPersonnage_a8f104704fd177785db936c0f3b593de1}\label{classPersonnage_a8f104704fd177785db936c0f3b593de1}} 
+void {\bfseries sauter\+Agauche} ()
+\item 
+void \mbox{\hyperlink{classPersonnage_ab0262abb3af05325347b9f8d46f4089d}{recevoir\+Degats}} (int nb\+Degats)
+\begin{DoxyCompactList}\small\item\em un personnage recoit des dégats \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPersonnage_a387b26dc32ff2c0340475ebeb62ce820}{attaquer}} (\mbox{\hyperlink{classPersonnage}{Personnage}} \&cible)
+\begin{DoxyCompactList}\small\item\em la cible recoit des dégats \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPersonnage_af3ee8e35bc324b170ded03f7adcc3c97}{attaque\+Ultime}} (\mbox{\hyperlink{classPersonnage}{Personnage}} \&cible)
+\begin{DoxyCompactList}\small\item\em un personnage recoit des dégats \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPersonnage_a10595844614659363eb31e374970b209}{changer\+Competence}} (int degats\+Nouvelle\+Competence)
+\begin{DoxyCompactList}\small\item\em permet de changer le nombre de degat \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{classPersonnage_a8ac05b0141c79830b547d80a40cc896f}{est\+Vivant}} () const
+\begin{DoxyCompactList}\small\item\em retourne vrai si le personnage a plus de 100 hp \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{classPersonnage_af7e41a233543abfdc45ac7c3cd41416c}\label{classPersonnage_af7e41a233543abfdc45ac7c3cd41416c}} 
+void \mbox{\hyperlink{classPersonnage_af7e41a233543abfdc45ac7c3cd41416c}{afficher\+Etat}} () const
+\begin{DoxyCompactList}\small\item\em affichage de l\textquotesingle{}etat des points de vie \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classPersonnage_a261cbb9bb3b23a147d0f88b10eaa1857}{get\+Vie}} ()
+\begin{DoxyCompactList}\small\item\em Get the Vie object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPersonnage_adde18763e3c315f53d16ebae8cf8b953}{set\+Vie}} (int vie)
+\begin{DoxyCompactList}\small\item\em Set the Vie object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classPersonnage_a8b827a72e42d38de1b6d29dee145a4b5}{test\+Regression}} ()
+\begin{DoxyCompactList}\small\item\em test de regression \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classPhysic}{Physic}} \mbox{\hyperlink{classPersonnage_a0647985428151675b3f563e4ae3bfde6}{phy}}
+\item 
+\mbox{\hyperlink{classTexture}{Texture}} \mbox{\hyperlink{classPersonnage_a12827b6ce6f5d35343e65a709af3c0b0}{tex}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+permettant de gerer les caracteristiques d\textquotesingle{}un personnage 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classPersonnage_abec36eb0310adc71f3375297fc590c65}\label{classPersonnage_abec36eb0310adc71f3375297fc590c65}} 
+\index{Personnage@{Personnage}!Personnage@{Personnage}}
+\index{Personnage@{Personnage}!Personnage@{Personnage}}
+\doxysubsubsection{\texorpdfstring{Personnage()}{Personnage()}}
+{\footnotesize\ttfamily Personnage\+::\+Personnage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Construct a new \mbox{\hyperlink{classPersonnage}{Personnage}} object. 
+
+\mbox{\Hypertarget{classPersonnage_a05bdf2a469885bb1fbb6c2e8f98972ab}\label{classPersonnage_a05bdf2a469885bb1fbb6c2e8f98972ab}} 
+\index{Personnage@{Personnage}!````~Personnage@{$\sim$Personnage}}
+\index{````~Personnage@{$\sim$Personnage}!Personnage@{Personnage}}
+\doxysubsubsection{\texorpdfstring{$\sim$Personnage()}{~Personnage()}}
+{\footnotesize\ttfamily Personnage\+::$\sim$\+Personnage (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Destroy the \mbox{\hyperlink{classPersonnage}{Personnage}} object. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{classPersonnage_a387b26dc32ff2c0340475ebeb62ce820}\label{classPersonnage_a387b26dc32ff2c0340475ebeb62ce820}} 
+\index{Personnage@{Personnage}!attaquer@{attaquer}}
+\index{attaquer@{attaquer}!Personnage@{Personnage}}
+\doxysubsubsection{\texorpdfstring{attaquer()}{attaquer()}}
+{\footnotesize\ttfamily void Personnage\+::attaquer (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPersonnage}{Personnage}} \&}]{cible }\end{DoxyParamCaption})}
+
+
+
+la cible recoit des dégats 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cible} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPersonnage_af3ee8e35bc324b170ded03f7adcc3c97}\label{classPersonnage_af3ee8e35bc324b170ded03f7adcc3c97}} 
+\index{Personnage@{Personnage}!attaqueUltime@{attaqueUltime}}
+\index{attaqueUltime@{attaqueUltime}!Personnage@{Personnage}}
+\doxysubsubsection{\texorpdfstring{attaqueUltime()}{attaqueUltime()}}
+{\footnotesize\ttfamily void Personnage\+::attaque\+Ultime (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classPersonnage}{Personnage}} \&}]{cible }\end{DoxyParamCaption})}
+
+
+
+un personnage recoit des dégats 
+
+
+\begin{DoxyParams}{Parameters}
+{\em cible} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPersonnage_a10595844614659363eb31e374970b209}\label{classPersonnage_a10595844614659363eb31e374970b209}} 
+\index{Personnage@{Personnage}!changerCompetence@{changerCompetence}}
+\index{changerCompetence@{changerCompetence}!Personnage@{Personnage}}
+\doxysubsubsection{\texorpdfstring{changerCompetence()}{changerCompetence()}}
+{\footnotesize\ttfamily void Personnage\+::changer\+Competence (\begin{DoxyParamCaption}\item[{int}]{degats\+Nouvelle\+Competence }\end{DoxyParamCaption})}
+
+
+
+permet de changer le nombre de degat 
+
+
+\begin{DoxyParams}{Parameters}
+{\em degats\+Nouvelle\+Competence} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPersonnage_a8ac05b0141c79830b547d80a40cc896f}\label{classPersonnage_a8ac05b0141c79830b547d80a40cc896f}} 
+\index{Personnage@{Personnage}!estVivant@{estVivant}}
+\index{estVivant@{estVivant}!Personnage@{Personnage}}
+\doxysubsubsection{\texorpdfstring{estVivant()}{estVivant()}}
+{\footnotesize\ttfamily bool Personnage\+::est\+Vivant (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+retourne vrai si le personnage a plus de 100 hp 
+
+\begin{DoxyReturn}{Returns}
+true 
+
+false 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPersonnage_a261cbb9bb3b23a147d0f88b10eaa1857}\label{classPersonnage_a261cbb9bb3b23a147d0f88b10eaa1857}} 
+\index{Personnage@{Personnage}!getVie@{getVie}}
+\index{getVie@{getVie}!Personnage@{Personnage}}
+\doxysubsubsection{\texorpdfstring{getVie()}{getVie()}}
+{\footnotesize\ttfamily int Personnage\+::get\+Vie (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get the Vie object. 
+
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\mbox{\Hypertarget{classPersonnage_ab0262abb3af05325347b9f8d46f4089d}\label{classPersonnage_ab0262abb3af05325347b9f8d46f4089d}} 
+\index{Personnage@{Personnage}!recevoirDegats@{recevoirDegats}}
+\index{recevoirDegats@{recevoirDegats}!Personnage@{Personnage}}
+\doxysubsubsection{\texorpdfstring{recevoirDegats()}{recevoirDegats()}}
+{\footnotesize\ttfamily void Personnage\+::recevoir\+Degats (\begin{DoxyParamCaption}\item[{int}]{nb\+Degats }\end{DoxyParamCaption})}
+
+
+
+un personnage recoit des dégats 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nb\+Degats} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPersonnage_adde18763e3c315f53d16ebae8cf8b953}\label{classPersonnage_adde18763e3c315f53d16ebae8cf8b953}} 
+\index{Personnage@{Personnage}!setVie@{setVie}}
+\index{setVie@{setVie}!Personnage@{Personnage}}
+\doxysubsubsection{\texorpdfstring{setVie()}{setVie()}}
+{\footnotesize\ttfamily void Personnage\+::set\+Vie (\begin{DoxyParamCaption}\item[{int}]{vie }\end{DoxyParamCaption})}
+
+
+
+Set the Vie object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vie} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classPersonnage_a8b827a72e42d38de1b6d29dee145a4b5}\label{classPersonnage_a8b827a72e42d38de1b6d29dee145a4b5}} 
+\index{Personnage@{Personnage}!testRegression@{testRegression}}
+\index{testRegression@{testRegression}!Personnage@{Personnage}}
+\doxysubsubsection{\texorpdfstring{testRegression()}{testRegression()}}
+{\footnotesize\ttfamily void Personnage\+::test\+Regression (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+test de regression 
+
+
+
+\doxysubsection{Member Data Documentation}
+\mbox{\Hypertarget{classPersonnage_a0647985428151675b3f563e4ae3bfde6}\label{classPersonnage_a0647985428151675b3f563e4ae3bfde6}} 
+\index{Personnage@{Personnage}!phy@{phy}}
+\index{phy@{phy}!Personnage@{Personnage}}
+\doxysubsubsection{\texorpdfstring{phy}{phy}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classPhysic}{Physic}} Personnage\+::phy}
+
+les vecteurs d\textquotesingle{}un personnage \mbox{\Hypertarget{classPersonnage_a12827b6ce6f5d35343e65a709af3c0b0}\label{classPersonnage_a12827b6ce6f5d35343e65a709af3c0b0}} 
+\index{Personnage@{Personnage}!tex@{tex}}
+\index{tex@{tex}!Personnage@{Personnage}}
+\doxysubsubsection{\texorpdfstring{tex}{tex}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classTexture}{Texture}} Personnage\+::tex}
+
+les textures d\textquotesingle{}un personnage 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/\mbox{\hyperlink{Personnage_8h}{Personnage.\+h}}\item 
+src/Personnage.\+cpp\end{DoxyCompactItemize}

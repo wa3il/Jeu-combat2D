@@ -1,0 +1,11 @@
+digraph "Personnage"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="{Personnage\n||+ Personnage()\l+ ~Personnage()\l+ bougerAdroite()\l+ bougerAgauche()\l+ sauter()\l+ sauterAdroite()\l+ sauterAgauche()\l+ recevoirDegats()\l+ attaquer()\l+ attaqueUltime()\land 6 more...\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="permettant de gerer les caracteristiques d'un personnage"];
+  Node2 -> Node1 [color="grey25",fontsize="10",style="solid",label=" +tex" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node2 [label="{Texture\n|+ url\l+ lettre\l|+ Texture()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classTexture.html",tooltip="class permettant de gerer les textures d'un personnage"];
+  Node3 -> Node1 [color="grey25",fontsize="10",style="solid",label=" +phy" ,arrowhead="odiamond",fontname="Helvetica"];
+  Node3 [label="{Physic\n||+ Physic()\l+ ~Physic()\l+ getPos()\l+ getPosx()\l+ getPosy()\l+ setPos()\l+ setPosx()\l+ setPosy()\l+ getVit()\l+ setVit()\l+ setVitx()\l+ setVity()\l+ ticks()\l}",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classPhysic.html",tooltip="permettant de gerer les caracteristiques physique d'un joueur"];
+}

@@ -32,11 +32,11 @@ cd rpg
 ```
 - Version Texte :
 ```
-make StartTxt
+make startTxt
 ```
 - Version graphique :
 ```
-make StartSdl
+make startSdl
 ```
 
 ### Organisation de l'archive :
