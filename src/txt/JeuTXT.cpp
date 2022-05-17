@@ -42,6 +42,9 @@ void JeuTxt :: update(){
     int choice;
     int highlight = 0;
 
+    mvwprintw(bas,2,2,"Appuyer Sur les flèches pour choisir et Entrer pour selectionner");
+    wrefresh(bas);
+
     //affichage menu
     while(1){
         for(int i = 0;i < 2; i++){
@@ -66,11 +69,17 @@ void JeuTxt :: update(){
         }
         if(choice == 10) break;
     }
+
+   
     
     if (choices[highlight] == Jtxt.menu.start.tex.lettre){
+    werase(haut);
+    werase(bas);
+    box(haut, ACS_VLINE, ACS_HLINE);
+    box(bas, ACS_VLINE, ACS_HLINE);
     mvwprintw(bas,1,1,"partie commencée");
     mvwprintw(bas,5,1,"Appuyez sur x pour Quitter!");
-    werase(haut);
+   
     wrefresh(haut);
     wrefresh(bas);
     txtBoucle();
@@ -123,13 +132,13 @@ void JeuTxt :: txtBoucle(){
    
     //initialisaton des positions de joueurs
     Jtxt.ter1.setDim(xMax,yMax);
+   
     Jtxt.MP.phy.setPos(Jtxt.ter1.getDimx()/4,Jtxt.ter1.getDimy()-2);
     Jtxt.SP.phy.setPos(3*Jtxt.ter1.getDimx()/4,Jtxt.ter1.getDimy()-2);
     
-    
 
     bool ok = true;
-    
+   
     do{
 
          txtAff();
@@ -142,10 +151,11 @@ void JeuTxt :: txtBoucle(){
 
 
         nodelay (haut, TRUE);
-        nodelay (bas, TRUE);
+       
 
+       // Jtxt.updatePartie(deltaTime);
 
-        //Jtxt.updatePartie(deltaTime);
+       
         int c = wgetch(haut);
 
         switch (c)
@@ -162,9 +172,9 @@ void JeuTxt :: txtBoucle(){
             case 'a' : Jtxt.MPClavierDown(5); break;
 
             //mouvements SP
-            case KEY_UP:  Jtxt.SPClavierDown(2); break;
-            case KEY_LEFT:  Jtxt.SPClavierDown(1); break;
-            case KEY_RIGHT: Jtxt.SPClavierDown(0); break;
+            case KEY_UP:  Jtxt.SP.sauter(Jtxt.ter1); break;
+            case KEY_LEFT:  Jtxt.SP.bougerAgauche(Jtxt.ter1); break;
+            case KEY_RIGHT: Jtxt.SP.bougerAdroite(Jtxt.ter1); break;
             //s'accroupir SP
             case KEY_DOWN: Jtxt.SPClavierDown(3); break;
             //attaquer SP
@@ -173,6 +183,7 @@ void JeuTxt :: txtBoucle(){
             //endwin 
             case 'x': ok = false; break;
         }
+       
         wrefresh(haut);
         if(c=='x'){
             endwin();
