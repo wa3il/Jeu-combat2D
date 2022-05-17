@@ -13,6 +13,7 @@
 #include <ncurses.h>
 #include "JeuTXT.h"
 #include "../core/Jeu.h"
+#include <unistd.h>
 
 /**
  * \class JeuTxt
@@ -23,6 +24,30 @@ class JeuTxt{
     public:
         
         Jeu Jtxt; /*!< objet jeu*/
+        WINDOW* haut;
+        WINDOW* bas;
+        
+
+        /**
+         * @brief fonction initialisant la fenêtre
+         * 
+         */
+        void init();
+        
+
+          /**
+         * @brief update de la fenetre
+         * 
+         */
+        void update();
+
+
+         /**
+         * @brief quit 
+         * 
+         */
+        void quit();
+
 
         /**
          * @brief fonction gerant l'affichage du jeu en boucle
@@ -30,17 +55,16 @@ class JeuTxt{
          */
         void txtBoucle();
         
-        /**
-         * @brief affichage du menu
-         * 
-         */
-        void menuaff();
 
         /**
          * @brief affichage du terrain
          * 
          */
         void txtAff();
+
+       
+
+
 
     private:
 

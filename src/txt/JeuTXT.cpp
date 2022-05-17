@@ -2,44 +2,55 @@
 #include <unistd.h>
 
 /* Clear screen and set up Curses */
-void clrscr() 
+void JeuTxt :: init() 
 {
     /* Initialise the screen */
     initscr();
     erase();
+    haut= subwin(stdscr, LINES / 2, COLS, 0, 0);          
+    bas = subwin(stdscr, LINES / 2, COLS, LINES / 2, 0); 
+    box(haut, ACS_VLINE, ACS_HLINE);
+    box(bas, ACS_VLINE, ACS_HLINE);
+    
+    refresh();
     noecho();
     raw();
     move(0, 0);
     /* Cursor off */
     curs_set(0);
-    refresh();
+   
+    /*initialise le jeu */
+    //init des joueurs
+    Jtxt.init();
+    
 }
 
-void JeuTxt :: menuaff(){
-    Jtxt.init();
-    clrscr();
+void JeuTxt :: update(){
 
     //on recupere window max y et x
-    int xMax = getmaxx(stdscr);
-    int yMax = getmaxy(stdscr);
+    int xMax = getmaxx(haut);
+    int yMax = getmaxy(haut);
+
+
+    
 
     // pour utiliser les arrows key sur l'ecran
-    keypad(stdscr,true);
+    keypad(haut,true);
 
-    string choices[3]={Jtxt.menu.start.tex.lettre,Jtxt.menu.quit.tex.lettre};
-    //string choices[3]={"Play","Help","quitter"};
+    string choices[2]={Jtxt.menu.start.tex.lettre ,Jtxt.menu.quit.tex.lettre};
+
     int choice;
     int highlight = 0;
 
     //affichage menu
     while(1){
         for(int i = 0;i < 2; i++){
-            if(i == highlight) attron(A_REVERSE);
-            mvprintw(i+yMax/2,xMax/2,choices[i].c_str());
-            attroff(A_REVERSE);
+            if(i == highlight) wattron(haut,A_REVERSE);
+            mvwprintw(haut,i+yMax/2,xMax/2,choices[i].c_str());
+            wattroff(haut,A_REVERSE);
         }
-        choice = getch();
-
+        choice = wgetch(haut);
+        
         // gestion du menu 
         switch(choice){
             case KEY_UP:
@@ -51,62 +62,91 @@ void JeuTxt :: menuaff(){
                 highlight++;
                 if(highlight == 2) highlight = 1;
                 break;
+        
         }
-
-    if(choice == 10) break;
+        if(choice == 10) break;
     }
-
-    if (choices[highlight] == Jtxt.menu.start.tex.lettre) txtBoucle();
     
-    //getch();
-    endwin();
+    if (choices[highlight] == Jtxt.menu.start.tex.lettre){
+    mvwprintw(bas,1,1,"partie commencée");
+    werase(haut);
+    wrefresh(haut);
+    wrefresh(bas);
+    txtBoucle();
+    getch();
+    }
+    
+    if (choices[highlight] == Jtxt.menu.quit.tex.lettre) endwin();
 
 }
 
- void JeuTxt :: txtAff(){
-     
-    //affichage des murs.
-    for(int x=0; x<Jtxt.ter1.getDimx();++x){
-        for(int y=0; y<Jtxt.ter1.getDimy();++y){
-            //on cherche dans le module terrain pour placer les plateformes
-            if(Jtxt.ter1.getXY(x,y) == "0") mvprintw(x,y,"_");
-            if(Jtxt.ter1.getXY(x,y) == "#") mvprintw(x,y,Jtxt.ter1.tex.lettre);
-            //std::cout<<Jtxt.ter1.getXY(x,y)<<std::endl;
-        }
+void JeuTxt :: txtAff(){
+   
+    
+   
+    /* affichage du sol.*/
+    for(int i=0 ;i<Jtxt.ter1.getDimx();i++){
+        Jtxt.ter1.setCaract(i,Jtxt.ter1.getDimy()-1,"#");
     }
-    mvprintw(Jtxt.SP.phy.getPosy(),Jtxt.SP.phy.getPosx(), Jtxt.SP.tex.lettre);
-    mvprintw(Jtxt.MP.phy.getPosy(),Jtxt.MP.phy.getPosx(), Jtxt.MP.tex.lettre);
+
+    //platforme
+    for (int j=Jtxt.ter1.getDimx()/4;j<3*Jtxt.ter1.getDimx()/4;j++){
+        Jtxt.ter1.setCaract(j,Jtxt.ter1.getDimy()/2,"#");
+    }
+
+    for(int x=0; x<Jtxt.ter1.getDimx();x++){
+        for(int y=0; y<Jtxt.ter1.getDimy();y++){
+            mvwprintw(haut,y,x,Jtxt.ter1.getXY(x,y));
+        }
+    }  
+
+    //affichage des joueurs
+    mvwprintw(haut,Jtxt.SP.phy.getPosy(),Jtxt.SP.phy.getPosx(), Jtxt.SP.tex.lettre);
+    mvwprintw(haut,Jtxt.MP.phy.getPosy(),Jtxt.MP.phy.getPosx(), Jtxt.MP.tex.lettre);
+    wrefresh(haut);
+     
 }
 
 void JeuTxt :: txtBoucle(){
+    
     
     float NOW = clock();
     float LAST = 0;
     float deltaTime = 0;
 
-    /* Clear Screen */
-    clrscr();
-    Jtxt.init();
 
-    Jtxt.MP.phy.setPos(10,10);
-    Jtxt.SP.phy.setPos(15,10);
+    //on recupere window max y et x
+    int xMax = getmaxx(haut);
+    int yMax = getmaxy(haut);
+
+    // declenchement partie
+   
+    //initialisaton des positions de joueurs
+    Jtxt.ter1.setDim(xMax,yMax);
+    Jtxt.MP.phy.setPos(Jtxt.ter1.getDimx()/4,Jtxt.ter1.getDimy()-2);
+    Jtxt.SP.phy.setPos(3*Jtxt.ter1.getDimx()/4,Jtxt.ter1.getDimy()-2);
+    
+    
 
     bool ok = true;
     
     do{
 
+         txtAff();
         //deltaTime
         LAST = NOW;
         NOW = clock();
         float deltaTime = (float)((NOW - LAST)/5000);
 
-        txtAff();
         usleep(10000);
 
 
-        nodelay (stdscr, TRUE);
+        nodelay (haut, TRUE);
+        nodelay (bas, TRUE);
+
+
         Jtxt.updatePartie(deltaTime);
-        int c = getch();
+        int c = wgetch(haut);
 
         switch (c)
         {
@@ -133,13 +173,16 @@ void JeuTxt :: txtBoucle(){
             //endwin 
             case 'x': ok = false; break;
         }
-        
+        wrefresh(haut);
 
     } while (ok);
 
-    refresh();
-    endwin();
     
-    //free();
+}
 
+void JeuTxt::quit(){
+  refresh();
+  free(haut);
+  free(bas);
+    
 }

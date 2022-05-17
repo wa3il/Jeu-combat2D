@@ -3,12 +3,12 @@
 #include "JeuTXT.h"
 
 int main(int argc,char ** argv){
-	//txtBoucle(actions);
 
-	//system(150,300);
 
 	JeuTxt J;
-	J.menuaff();
+	J.init();
+	J.update();
+	//J.quit();
 
 
 	return 0;
