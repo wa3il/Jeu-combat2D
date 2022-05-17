@@ -69,11 +69,11 @@ void JeuTxt :: update(){
     
     if (choices[highlight] == Jtxt.menu.start.tex.lettre){
     mvwprintw(bas,1,1,"partie commencée");
+    mvwprintw(bas,5,1,"Appuyez sur x pour Quitter!");
     werase(haut);
     wrefresh(haut);
     wrefresh(bas);
     txtBoucle();
-    getch();
     }
     
     if (choices[highlight] == Jtxt.menu.quit.tex.lettre) endwin();
@@ -83,7 +83,7 @@ void JeuTxt :: update(){
 void JeuTxt :: txtAff(){
    
     
-   
+    werase(haut);
     /* affichage du sol.*/
     for(int i=0 ;i<Jtxt.ter1.getDimx();i++){
         Jtxt.ter1.setCaract(i,Jtxt.ter1.getDimy()-1,"#");
@@ -145,7 +145,7 @@ void JeuTxt :: txtBoucle(){
         nodelay (bas, TRUE);
 
 
-        Jtxt.updatePartie(deltaTime);
+        //Jtxt.updatePartie(deltaTime);
         int c = wgetch(haut);
 
         switch (c)
@@ -174,6 +174,9 @@ void JeuTxt :: txtBoucle(){
             case 'x': ok = false; break;
         }
         wrefresh(haut);
+        if(c=='x'){
+            endwin();
+        }
 
     } while (ok);
 
