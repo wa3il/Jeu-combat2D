@@ -113,6 +113,15 @@ public:
      */
     void setVity(float y);
 
+
+    /**
+     * @brief Set the Accy object
+     * 
+     * @param y 
+     */
+    void setAccy(float y);
+
+
     /**
      * @brief Fonction permettant d'activé la gravité
      * 

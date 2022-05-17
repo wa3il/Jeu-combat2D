@@ -26,48 +26,24 @@ Personnage::~Personnage()
 
 //mouvements
 
-void Personnage::bougerAgauche(float xg,terrain& t){
+void Personnage::bougerAgauche(terrain& t){
 	if(t.posisvalide(this->phy.getPosx()-10, this->phy.getPosy()))
-		this->phy.setPosx(this->phy.getPosx()-xg );
+		this->phy.setPosx(this->phy.getPosx()- (t.getDimx()/200) );
 		
 }
 
-void Personnage::bougerAdroite(float xd,terrain& t){
+void Personnage::bougerAdroite(terrain& t){
 	if(t.posisvalide(this->phy.getPosx()+10, this->phy.getPosy()))
-		this->phy.setPosx(this->phy.getPosx()+xd );
+		this->phy.setPosx(this->phy.getPosx()+(t.getDimx()/200) );
 }
 
-void Personnage::sauter(float yh,terrain& t){
+void Personnage::sauter(terrain& t){
 	if(t.posisvalide(this->phy.getPosx(), this->phy.getPosy()+10))
-		this->phy.setPosy(this->phy.getPosy()-yh );
-}
-
-/* void Personnage::sauterAdroite(float &t){
-	//Variables méthode 2:
-    const double g = 9.81;
-    const double pi = 3.14;
-    int v_init = 2;
-    int angle_init = 4*pi/8;
-	double v_x = cos(angle_init)*v_init;
-    double v_y = sin(angle_init)*v_init;
-
-	// La position relative 
-    Vector2D posRel(0,0);
-    
-	//On calcule la valeur relative de y:
-    posRel.setx((int)(0.02f*v_x*t));
-    posRel.sety((int)((0.02*v_y*t)-((g*t*t)/1000)));
-
-    //On calcule maintenant les valeurs absolues
-
-	this->phy.setPosx(this->phy.getPosx() + posRel.getx());
-	this->phy.setPosy(this->phy.getPosy() - posRel.gety());
-	
-} */
-
-void Personnage::sauterAgauche(){
+		this->phy.setPosy(this->phy.getPosy()- (t.getDimx()/150) );
 
 }
+
+
 
 
 

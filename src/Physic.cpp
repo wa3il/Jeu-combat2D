@@ -51,11 +51,18 @@ void Physic::setVity(float y){
 
 
 
+
+void Physic::setAccy(float y)
+{
+    this->m_acceleration.sety(y);
+}
+
+
 //gravité
 
 void Physic::ticks(const float deltaTime){//tirer le personnage vers le bas
 
-    m_acceleration.sety(1000.0);
+    m_acceleration.sety(300.0);
 
     m_vitesse += m_acceleration * deltaTime;
 

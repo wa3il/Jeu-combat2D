@@ -18,6 +18,38 @@ void Jeu :: actionsAutomatique(){
     } 
 
 
+
+for(int i=12; i<20; i++) {
+	if((MP.phy.getPosy() + HAUTEUR_SPRITE < tuile[i].pos.gety() + 10) && 
+        (MP.phy.getPosx() + LARGEUR_SPRITE  > tuile[12].pos.getx() * LARGEUR_TILE  &&
+        MP.phy.getPosx() < tuile[19].pos.getx() * LARGEUR_TILE)) 
+
+    {  
+        
+        MP.phy.setPosy(tuile[i].pos.gety() - HAUTEUR_SPRITE );
+        MP.phy.setVity(0.0f);
+    }
+
+}
+
+for(int i=12; i<20; i++) {
+	if((SP.phy.getPosy() + HAUTEUR_SPRITE < tuile[i].pos.gety() + 10) && 
+        (SP.phy.getPosx()  > tuile[12].pos.getx() * LARGEUR_TILE  &&
+        SP.phy.getPosx() < tuile[19].pos.getx() * LARGEUR_TILE)) 
+
+    {  
+        
+        SP.phy.setPosy(tuile[i].pos.gety() - HAUTEUR_SPRITE );
+        SP.phy.setVity(0.0f);
+    }
+}
+
+/*     else if(MP.phy.getPosy() > tuile[15].pos.gety()) MP.phy.setPosy(500); */
+
+    
+
+    
+
 /* 
         if (MP.phy.getPosx() + LARGEUR_SPRITE <= SP.phy.getPosx()  && 
             MP.phy.getPosx() + LARGEUR_SPRITE > SP.phy.getPosx() + LARGEUR_SPRITE && 
@@ -34,25 +66,23 @@ void Jeu :: actionsAutomatique(){
 
 void Jeu :: MPClavierDown(int touche)
 {
-  
   switch(touche)
     {
         //MP/////////////////////////////////////////////////////////
+        
         case 0:
-            MP.bougerAdroite(5.0f, ter1);
+            MP.bougerAdroite(ter1);
             MP.tex.url = "./data/luffy/luffyCourtD.png";//Sprite Courir a corriger
-            //MP.tex.isSprite = true;          
 
         break;     
                             
         case 1: //gauche a inverser
-            MP.bougerAgauche(5.0f, ter1);
+            MP.bougerAgauche(ter1);
             MP.tex.url = "./data/luffy/luffyCourtG.png";//Sprite Courir
-            //MP.tex.isSprite = true;
         break;       
 
         case 2:                
-                MP.sauter(8.0f, ter1);
+                MP.sauter(ter1);
                 MP.tex.url= "./data/luffy/luffySauteD.png";
         break;
 
@@ -66,14 +96,12 @@ void Jeu :: MPClavierDown(int touche)
             MP.attaquer(SP);
             MP.tex.url = "./data/luffy/luffyAttaqueA.png"; //attaqueA
             MP.tex.lettre = "LL"; 
-            //MP.tex.isSprite = true;
         break;
 
         case 5:
             MP.attaqueUltime(SP);
             MP.tex.url = "./data/luffy/luffyAttaqueB.png"; //attaqueB
             MP.tex.lettre = "LL";
-            //MP.tex.isSprite = true; 
         break;
 
     }
@@ -84,6 +112,7 @@ void Jeu::MPClavierUp(int touche)
 {
         switch(touche)
         {
+
             case 0:
                 MP.tex.url = "./data/luffy/luffyD.png";
               
@@ -104,11 +133,11 @@ void Jeu::MPClavierUp(int touche)
             case 3 :
                 MP.tex.url = "./data/luffy/luffyD.png";
                 MP.tex.lettre = "L";
+                MP.phy.setPosy(MP.phy.getPosy() + 1);
             break;
 
             case 4:
                 MP.tex.url = "./data/luffy/luffyG.png"; //attaqueA
-                //MP.tex.isSprite = true;
             break;
 
             case 5:
@@ -123,42 +152,37 @@ void Jeu::SPClavierDown(int touche)
     switch(touche)
         {
             case 0:
-                SP.bougerAgauche(5.0f, ter1);     
+                SP.bougerAgauche(ter1);     
                 SP.tex.url = "./data/zoro/zoroCourtD.png";
-                //MP.tex.isSprite = true;
                 
             break;
 
             case 1:
-                SP.bougerAdroite(5.0f, ter1);     
+                SP.bougerAdroite(ter1);     
                 SP.tex.url = "./data/zoro/zoroCourtG.png";
-                //MP.tex.isSprite = true;
             break; 
 
             case 2:
-                SP.sauter(5.0f, ter1);
+                SP.sauter(ter1);
                 SP.tex.url = "./data/zoro/zoroSauteD.png"; 
-                //MP.tex.isSprite = false;
             break;
 
             case 3:
                 SP.tex.url = "./data/zoro/zoroAccroupiG.png";
                 SP.tex.lettre = "z";
-                //MP.tex.isSprite = false;
             break;
 
             case 4:
                 SP.attaquer(MP);
                 SP.tex.url = "./data/zoro/zoroAttaqueA.png"; //attaqueA
                 SP.tex.lettre = "ZZ"; 
-                //MP.tex.isSprite = true;
             break;
 
             case 5:
                 SP.attaqueUltime(MP);
+                SP.bougerAgauche(ter1);
                 SP.tex.url = "./data/zoro/zoroAttaqueB.png"; //attaqueB
                 SP.tex.lettre = "ZZ"; 
-                //MP.tex.isSprite = true;
             break;
         }
 }
@@ -176,14 +200,20 @@ void Jeu::SPClavierUp(int touche){
                 SP.tex.url = "./data/zoro/zoroG.png";
             break; 
 
+            case 3:
+                SP.tex.url = "./data/zoro/zoroG.png";
+                SP.tex.lettre = "Z";
+                SP.phy.setPosy(SP.phy.getPosy() + 1);
+            break;
+
             case 4 :
-                MP.tex.url = "./data/zoro/zoroD.png";
-                MP.tex.lettre = "Z";
+                SP.tex.url = "./data/zoro/zoroD.png";
+                SP.tex.lettre = "Z";
             break;
 
             case 5 :
-                MP.tex.url = "./data/zoro/zoroD.png";
-                MP.tex.lettre = "Z";
+                SP.tex.url = "./data/zoro/zoroD.png";
+                SP.tex.lettre = "Z";
             break;
         }
 }
@@ -204,8 +234,7 @@ void Jeu::SPClavierUp(int touche){
 //Initialisation du terrain 
 
 void Jeu::initPartie(){
-    //initialisation du terrain
-    ter1.setDim(WINDOW_SIZE_WIDTH,WINDOW_SIZE_HEIGHT);
+
    
     ter1.tex.url = "./data/background/sunny.jpg"; //SDL
     ter1.tex.lettre="#" ; //TXT
@@ -227,40 +256,30 @@ void Jeu::initPartie(){
 
     // Initialisation des tuiles:
     for(int i=0 ;i<12;i++){
-        tuile[i].pos.setx(i*LARGEUR_TILE);
-        tuile[i].pos.sety(WINDOW_SIZE_HEIGHT-HAUTEUR_TILE);
-        ter1.setCaract(i,WINDOW_SIZE_HEIGHT - HAUTEUR_TILE,"#");
+        tuile[i].pos.setx(i);
+        tuile[i].pos.sety(ter1.getDimy());
+        ter1.setCaract(i, ter1.getDimy(),"#");
         //std::cout <<ter1.getXY(i,WINDOW_SIZE_WIDTH-HAUTEUR_TILE)<<std::endl;
 
     }
 
-    for (int j=12;j<15;j++){
-        tuile[j].pos.setx((j-11) * LARGEUR_TILE);
-        tuile[j].pos.sety(WINDOW_SIZE_HEIGHT/2);
-        ter1.setCaract(j,WINDOW_SIZE_HEIGHT/4,"#");
-    }
-    for(int k=15;k<18;k++){
-        tuile[k].pos.setx((k-7) * LARGEUR_TILE);
-        tuile[k].pos.sety(WINDOW_SIZE_HEIGHT/2);
-        ter1.setCaract(k,WINDOW_SIZE_HEIGHT/4, "#");
+    //platforme
+    for (int j=12;j<20;j++){
+        tuile[j].pos.setx((j-10));
+        tuile[j].pos.sety(ter1.getDimy()/2);
+        ter1.setCaract(j,ter1.getDimy()/2,"#");
     }
 
-    for(int l=18;l<24;l++){
-        tuile[l].pos.setx((l-15) * LARGEUR_TILE);
-        tuile[l].pos.sety(WINDOW_SIZE_HEIGHT/2);
-        ter1.setCaract(l, WINDOW_SIZE_HEIGHT/2, "#");
 
-    }
+
 }
 
 void Jeu::updatePartie(float deltaTime){
+
  
     this->actionsAutomatique();
     MP.phy.ticks(deltaTime); //gravité MP
     SP.phy.ticks(deltaTime); //gravité SP
-
-
-
 
 
 }
@@ -272,6 +291,9 @@ void Jeu::quitPartie(){}
 
 //init concerne le menu
 void Jeu :: init(){
+
+        //initialisation du terrain
+        ter1.setDim(WINDOW_SIZE_WIDTH,WINDOW_SIZE_HEIGHT);
 
         menu = Menu(WINDOW_SIZE_WIDTH,WINDOW_SIZE_HEIGHT);
 

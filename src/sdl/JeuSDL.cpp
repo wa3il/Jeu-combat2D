@@ -54,7 +54,7 @@ void JeuSDL::init(){
 
     if(TTF_Init()==-1) 
     {
-        printf("TTF_Init: %s\n", TTF_GetError());
+        std::cout<<("TTF_Init: %s\n", TTF_GetError());
         exit(2);
     }
 
@@ -67,39 +67,45 @@ void JeuSDL::init(){
 
 
 
-void JeuSDL::KeyboardEventsLuffy(bool &isSprite){
+void JeuSDL::KeyboardEventsLuffy(bool &isSprite, bool &attaque){
 
     const Uint8 *state = SDL_GetKeyboardState(NULL);
     
     if(state[SDL_SCANCODE_D]){
         J.MPClavierDown(0);
         isSprite = true; 
+        attaque = false;
     }
 
     else if(state[SDL_SCANCODE_A]){
         J.MPClavierDown(1);
         isSprite = true;
+        attaque = false;
     }                           
       
     else if(state[SDL_SCANCODE_W]){
         J.MPClavierDown(2);
         isSprite = false;
+        attaque = false;
     }
             
     else if(state[SDL_SCANCODE_S]){
         J.MPClavierDown(3);
         isSprite = false;
+        attaque = false;
     }
 
     else if(state[SDL_SCANCODE_E]){
         J.MPClavierDown(4);
         isSprite = true;
-        SDL_Delay(20);
+        SDL_Delay(100);
+        attaque = true;
     }
 
     else if(state[SDL_SCANCODE_A]){
         J.MPClavierDown(5);
         isSprite = true;
+        attaque = true;
     }
     
     else{
@@ -108,54 +114,123 @@ void JeuSDL::KeyboardEventsLuffy(bool &isSprite){
 
 }
 
-void JeuSDL::KeyboardEventsZoro(bool &isSprite){
+void JeuSDL::KeyboardEventsZoro(bool &isSprite, bool &attaque){
     const Uint8 *state = SDL_GetKeyboardState( NULL );
     
     if(state[SDL_SCANCODE_LEFT]){
         J.SPClavierDown(0);
         isSprite = true;
+        attaque = false;
     }                  
     else if(state[SDL_SCANCODE_RIGHT]){
         J.SPClavierDown(1);
         isSprite = true;
+        attaque = false;    
     }
     else if(state[SDL_SCANCODE_UP]){
         J.SPClavierDown(2);
         isSprite = false;
+        attaque = false;
+
     }
     else if(state[SDL_SCANCODE_DOWN]){
        J.SPClavierDown(3);
        isSprite = false;
+       attaque = false;
     }                
     else if(state[SDL_SCANCODE_M]){
         J.SPClavierDown(4);
         isSprite = true;
+        attaque = true;
     }
-    else if(state[SDL_SCANCODE_L]){
+    else if(state[SDL_SCANCODE_N]){
         J.SPClavierDown(5);
         isSprite = true;
+        attaque = true;
     }
     else{
 
         isSprite = false;
+        attaque = false;
     }
 }
 
-void JeuSDL::clavierUP(SDL_Event events){
+void JeuSDL::MPclavierUP(SDL_Event events, bool &isSprite, bool &attaque){
     switch(events.key.keysym.sym)
         {
-            case SDLK_d    : J.MPClavierUp(0) ; break;    
-            case SDLK_q    : J.MPClavierUp(1) ; break;     
-            case SDLK_z    : J.MPClavierUp(2) ; break;
-            case SDLK_s    : J.MPClavierUp(3) ; break;
-            case SDLK_e    : J.MPClavierUp(4) ; break;
-            case SDLK_a    : J.MPClavierUp(5) ; break;
-            case SDLK_LEFT : J.SPClavierUp(0) ; break;
-            case SDLK_RIGHT: J.SPClavierUp(1) ; break;
-            case SDLK_UP   : J.SPClavierUp(2) ; break;
-            case SDLK_DOWN : J.SPClavierUp(1) ; break;
-            case SDLK_m    : J.SPClavierUp(1) ; break;
-            case SDLK_n    : J.SPClavierUp(1) ; break;
+            case SDLK_d  : 
+                J.MPClavierUp(0);
+                isSprite = false;
+                attaque = false;
+            break;   
+
+            case SDLK_q  : 
+                J.MPClavierUp(1);
+                isSprite = false;
+                attaque = false;
+            break;   
+
+            case SDLK_z  : 
+                J.MPClavierUp(2);
+                isSprite = false; 
+                attaque = false;
+            break;
+
+            case SDLK_s : 
+                J.MPClavierUp(3); 
+                isSprite = false;
+                attaque = false;
+            break;
+
+            case SDLK_e : 
+                J.MPClavierUp(4); 
+                isSprite = false;
+                attaque = false;
+            break;
+
+            case SDLK_a  : 
+                J.MPClavierUp(5); 
+                isSprite = false;
+                attaque = false;
+            break;
+
+
+    }
+}
+
+void JeuSDL::SPclavierUP(SDL_Event events, bool &isSprite, bool &attaque){
+    switch(events.key.keysym.sym)
+    {
+            case SDLK_LEFT : 
+                J.SPClavierUp(0); 
+                isSprite =false;
+                attaque = false;
+            break;
+            case SDLK_RIGHT: 
+                J.SPClavierUp(1); 
+                isSprite =false;
+                attaque = false;
+            break;
+            case SDLK_UP : 
+                J.SPClavierUp(2);
+                isSprite =false; 
+                attaque = false;
+            break;
+            case SDLK_DOWN : 
+                J.SPClavierUp(3); 
+                isSprite =false;
+                attaque = false;
+            break;
+            case SDLK_m : 
+                J.SPClavierUp(4);
+                isSprite =false; 
+                attaque = false;
+            break;
+            case SDLK_n : 
+                J.SPClavierUp(5);
+                isSprite =false; 
+                attaque = false;
+            break;
     }
 }
 
@@ -213,12 +288,12 @@ void JeuSDL::mainBoucle(){
 
     SDL_Texture * tileset = loadImage("./data/plateforme/2.png");
 
-    SDL_Rect Rect_dest[24] ;
+    SDL_Rect Rect_dest[20] ;
 
-    for(int i=0;i<24;i++)
+    for(int i=0;i<20;i++)
     {
-        Rect_dest[i] = SDL_Rect{J.tuile[i].pos.getx(),
-                                J.tuile[i].pos.gety(),
+        Rect_dest[i] = SDL_Rect{J.tuile[i].pos.getx()  * LARGEUR_TILE,
+                                J.tuile[i].pos.gety() - HAUTEUR_TILE,
                                 LARGEUR_TILE,
                                 HAUTEUR_TILE};
 
@@ -233,6 +308,8 @@ void JeuSDL::mainBoucle(){
     //booleen pour les sprites
     bool isSpriteL = true ;
     bool isSpriteZ = true;
+    bool attaqueL = false;
+    bool attaqueZ = false;
 
     
     ////////////////////////////////
@@ -246,7 +323,7 @@ void JeuSDL::mainBoucle(){
 
         /* ******** LUFFY ******* */
         //rectangle destination luffy :
-        SDL_Rect rectMPlayer  = {J.MP.phy.getPosx(), J.MP.phy.getPosy()  , 160, 150};
+        SDL_Rect rectMPlayer  = {J.MP.phy.getPosx(), J.MP.phy.getPosy() , 160, 150};
         //rectangle source pour luffySprite :
         SDL_Rect rectCourt = { nbSprite * 150, NULL, 148, 150 } ;
         //rectangle source luffyAttaque :
@@ -257,13 +334,16 @@ void JeuSDL::mainBoucle(){
 
         /* ******** ZORO ******* */
         //rectangle destination Zoro :
-        SDL_Rect rectSPlayer  = {J.SP.phy.getPosx(), J.SP.phy.getPosy() , 180, 155};
+        SDL_Rect rectSPlayer  = {J.SP.phy.getPosx(), J.SP.phy.getPosy(), 180, 150};
         //rectangle source pour zoroCourt :
         SDL_Rect rectCourtZ = { nbSprite * 190, 0, 180, 150} ;
         //rectangle source ZoroAttaque :
-        SDL_Rect rectAttaqueZoro= {nbSprite * 180, NULL, 180, 150};
+        SDL_Rect rectAttaqueZoro= {nbSprite * 200, 0, 180, 200};
         //textures
         SDL_Texture * texSP = loadImage(J.SP.tex.url);
+
+        //SDL_Texture * texAttaqueZoroA = loadImage("./data/zoro/zoroAttaqueA.png");
+        /* SDL_Texture * texAttaqueZoroB = loadImage("./data/zoro/zoroAttaqueB.png") */
         
 
 
@@ -295,7 +375,8 @@ void JeuSDL::mainBoucle(){
                 break;
                 
                 case SDL_KEYUP:
-                clavierUP(events);
+                    MPclavierUP(events, isSpriteL, attaqueL);
+                    SPclavierUP(events, isSpriteZ, attaqueZ);
                 break;
 
                 case SDL_MOUSEBUTTONDOWN:
@@ -325,8 +406,8 @@ void JeuSDL::mainBoucle(){
     
         
       
-        KeyboardEventsLuffy(isSpriteL);
-        KeyboardEventsZoro(isSpriteZ);
+        KeyboardEventsLuffy(isSpriteL, attaqueL);
+        KeyboardEventsZoro(isSpriteZ, attaqueZ);
 
 
 
@@ -335,6 +416,7 @@ void JeuSDL::mainBoucle(){
         //Transparence :
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
         SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+        
 
         
         if(onMenu)
@@ -350,14 +432,14 @@ void JeuSDL::mainBoucle(){
             SDL_RenderCopy(renderer, texBSon, NULL,&rectSon);
         }
         
-        else
+        else  
         {
 
             //Background du Jeu
             SDL_RenderCopy(renderer, ter1Tex, NULL,&WinRect );
         
             //affichage des tuiles (plateforme) :
-            for(int i=0 ; i<24;i++)
+            for(int i=0 ; i<20;i++)
             {
                 SDL_RenderCopy(renderer, tileset, NULL, &Rect_dest[i] );
             }
@@ -369,8 +451,8 @@ void JeuSDL::mainBoucle(){
  
 
          
-
-            if(isSpriteL == true)
+            /* LUFFY */
+            if(isSpriteL == true && attaqueL == false)
             {
                 SDL_RenderCopy(renderer, texMP, &rectCourt ,&rectMPlayer);
             }
@@ -380,43 +462,49 @@ void JeuSDL::mainBoucle(){
             }
             
 
-
-            if(isSpriteZ == true)
-            {
+            /* ZORO */
+            if(isSpriteZ ==true && attaqueZ == false){
                 SDL_RenderCopy(renderer, texSP, &rectCourtZ ,&rectSPlayer);
             }
-            else
+            else if(isSpriteZ ==false && attaqueZ == false)
             {
                 SDL_RenderCopy(renderer, texSP, NULL, &rectSPlayer);
             }
 
-            //affichage des pv    
+            else if(isSpriteZ==true && attaqueZ == true)
+            {
+                SDL_RenderCopy(renderer, texSP, &rectAttaqueZoro ,&rectSPlayer);
+
+            }
+
+
+
+            //affichage des pv 
+            /* barre de HP MP */  
             SDL_SetRenderDrawColor(renderer, 255 - 2.5 * J.MP.getVie(), 2.5 * J.MP.getVie(), 0 ,255);
             SDL_RenderFillRect(renderer, &hp_perso_MP); 
 
+            /* barre de HP SP */
             SDL_SetRenderDrawColor(renderer,255 - 2.5 * J.SP.getVie(),2.5 * J.SP.getVie(), 0,255);    
             SDL_RenderFillRect(renderer, &hp_perso_SP);
 
+            //bordures barre de HP :
             SDL_RenderCopy(renderer, texFeu, NULL, &borderMP);
             SDL_RenderCopy(renderer, texFeu, NULL, &borderSP);
             
             
                        ////////////////////////////////////affichage fin de partie///////////////////////////////////////
-
+            SDL_Rect rectFin = {0,0,WINDOW_SIZE_WIDTH, WINDOW_SIZE_HEIGHT};
             if(!J.MP.estVivant() || !J.SP.estVivant())
             {   
-                //Chargement de la font d'écriture
-                //TTF_Font * font = TTF_OpenFont("arial.ttf", 50);
-                SDL_Rect rectFin = {0, 0, WINDOW_SIZE_WIDTH, WINDOW_SIZE_HEIGHT};
-
-                //Rectangle Joueur gagnant :
-                //SDL_Surface * surfaceText = TTF_RenderUTF8_Blended(font, "Fin", { 255, 255, 255, 255 });
-                //SDL_Texture * textureFin = SDL_CreateTextureFromSurface(renderer, surfaceText);
-                SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-                SDL_RenderFillRect(renderer, &rectFin);
-                //SDL_RenderCopy(renderer, textureFin, NULL, &rectFin);
-                //SDL_FreeSurface(surfaceText);
-                //TTF_CloseFont(font);
+                if(!J.MP.estVivant()){
+                    SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+                    SDL_RenderFillRect(renderer, &rectFin);
+                }
+                else {
+                    SDL_SetRenderDrawColor(renderer, 255, 0, 255, 255);
+                    SDL_RenderFillRect(renderer, &rectFin);
+                }
 
             }
 
@@ -435,10 +523,7 @@ void JeuSDL::quit(){
     if(NULL != window)
         SDL_DestroyWindow(window);
 
-
-    	
-    TTF_Quit();
+    //TTF_Quit();
     SDL_Quit();
     
 }
-

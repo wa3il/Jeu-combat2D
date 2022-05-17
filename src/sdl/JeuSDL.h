@@ -64,21 +64,29 @@ class JeuSDL{
          * 
          * @param isSprite 
          */
-        void KeyboardEventsLuffy(bool &isSprite);
+        void KeyboardEventsLuffy(bool &isSprite, bool &attaque);
 
         /**
          * @brief fonction gerant les deplacements de zoro
          * 
          * @param isSprite 
          */
-        void KeyboardEventsZoro(bool &isSprite);
+        void KeyboardEventsZoro(bool &isSprite, bool &attaque);
 
         /**
-         * @brief fonction gerant le relachement d'une touche
+         * @brief fonction gerant le relachement d'une touche MP
          * 
          * @param events 
          */
-        void clavierUP(SDL_Event events);
+        void MPclavierUP(SDL_Event events, bool & isSprite, bool &attaque);
+
+        /**
+         * @brief fonction gerant le relachement d'une touche SP
+         * 
+         * @param events 
+         */
+        
+        void SPclavierUP(SDL_Event events, bool & isSprite, bool &attaque);
 
         /**
          * @brief initialisation d'SDL

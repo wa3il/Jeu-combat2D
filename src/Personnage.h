@@ -43,19 +43,19 @@ public:
      * @brief vers la droite
      * 
      */
-    void bougerAdroite(float xd,terrain& t);
+    void bougerAdroite(terrain& t);
     /** 
      * @fn permettant de gerer les mouvements d'un personnage
      * @brief vers la gauche
      * 
      */
-    void bougerAgauche(float xg,terrain& t);
+    void bougerAgauche(terrain& t);
     /** 
      * @fn permettant de gerer les mouvements d'un personnage
      * @brief vers le haut
      * 
      */
-    void sauter(float yh,terrain& t);
+    void sauter(terrain& t);
     /** 
      * @fn permettant de gerer les mouvements d'un personnage
      * @brief vers en haut à droite
