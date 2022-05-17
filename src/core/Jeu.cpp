@@ -39,7 +39,7 @@ for(int i=12; i<20; i++) {
 
     {  
         
-        SP.phy.setPosy(tuile[i].pos.gety() - HAUTEUR_SPRITE );
+        SP.phy.setPosy(tuile[i].pos.gety() - (HAUTEUR_SPRITE+HAUTEUR_TILE) );
         SP.phy.setVity(0.0f);
     }
 }
@@ -81,7 +81,8 @@ void Jeu :: MPClavierDown(int touche)
             MP.tex.url = "./data/luffy/luffyCourtG.png";//Sprite Courir
         break;       
 
-        case 2:                
+        case 2:    
+                MP.phy.setPosy(MP.phy.getPosy()+0.5)        ;    
                 MP.sauter(ter1);
                 MP.tex.url= "./data/luffy/luffySauteD.png";
         break;
@@ -163,6 +164,7 @@ void Jeu::SPClavierDown(int touche)
             break; 
 
             case 2:
+                SP.phy.setPosy(SP.phy.getPosy()+1)        ;  
                 SP.sauter(ter1);
                 SP.tex.url = "./data/zoro/zoroSauteD.png"; 
             break;

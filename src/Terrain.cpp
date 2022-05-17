@@ -9,7 +9,7 @@ terrain ::terrain():dimx(WINDOW_SIZE_WIDTH),dimy(WINDOW_SIZE_HEIGHT){
         
         for(int y = 0; y < dimy; y++){
 
-            caract[x][y]="0";
+            caract[x][y]=" ";
 
         }
     }
@@ -55,5 +55,5 @@ Tuiles::Tuiles(){
     height = HAUTEUR_TILE;
     pos = Vector2D(0,0);
     tex.url="./data/plateforme/2.png";
-    tex.lettre="#";
+    tex.lettre=" ";
 }

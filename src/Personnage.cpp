@@ -27,7 +27,7 @@ Personnage::~Personnage()
 //mouvements
 
 void Personnage::bougerAgauche(terrain& t){
-	if(t.posisvalide(this->phy.getPosx()-10, this->phy.getPosy()))
+	//if(t.posisvalide(this->phy.getPosx()-10, this->phy.getPosy()))
 		this->phy.setPosx(this->phy.getPosx()- (t.getDimx()/200) );
 		
 }
@@ -39,7 +39,7 @@ void Personnage::bougerAdroite(terrain& t){
 
 void Personnage::sauter(terrain& t){
 	if(t.posisvalide(this->phy.getPosx(), this->phy.getPosy()+10))
-		this->phy.setPosy(this->phy.getPosy()- (t.getDimx()/150) );
+		this->phy.setPosy(this->phy.getPosy()- (t.getDimx()/100) );
 
 }
 
