@@ -77,8 +77,9 @@ void JeuTxt :: update(){
     werase(bas);
     box(haut, ACS_VLINE, ACS_HLINE);
     box(bas, ACS_VLINE, ACS_HLINE);
-    mvwprintw(bas,1,1,"partie commencée");
-    mvwprintw(bas,5,1,"Appuyez sur x pour Quitter!");
+    mvwprintw(bas,1,1,"partie commencée!");
+    wattron(bas,A_DIM);
+    mvwprintw(bas,yMax-2,1,"Appuyez sur x pour Quitter!");
    
     wrefresh(haut);
     wrefresh(bas);
@@ -112,6 +113,19 @@ void JeuTxt :: txtAff(){
     //affichage des joueurs
     mvwprintw(haut,Jtxt.SP.phy.getPosy(),Jtxt.SP.phy.getPosx(), Jtxt.SP.tex.lettre);
     mvwprintw(haut,Jtxt.MP.phy.getPosy(),Jtxt.MP.phy.getPosx(), Jtxt.MP.tex.lettre);
+    //cdts MP
+    if(Jtxt.MP.phy.getPosx()<1) Jtxt.MP.phy.setPosx(1);
+    if(Jtxt.MP.phy.getPosx()> Jtxt.ter1.getDimx()-1) Jtxt.MP.phy.setPosx(Jtxt.ter1.getDimx()-1);
+    if(Jtxt.MP.phy.getPosy()>Jtxt.ter1.getDimy()-2) Jtxt.MP.phy.setPosy(Jtxt.ter1.getDimy()-2);
+    if(Jtxt.MP.phy.getPosy()<1) Jtxt.MP.phy.setPosy(1);
+    
+    //cdts SP
+    if(Jtxt.SP.phy.getPosx()<1) Jtxt.SP.phy.setPosx(1);
+    if(Jtxt.SP.phy.getPosx()>Jtxt.ter1.getDimx()-1) Jtxt.SP.phy.setPosx(Jtxt.ter1.getDimx()-1);
+    if(Jtxt.SP.phy.getPosy()>Jtxt.ter1.getDimy()-2) Jtxt.SP.phy.setPosy(Jtxt.ter1.getDimy()-2);
+    if(Jtxt.SP.phy.getPosy()<1) Jtxt.SP.phy.setPosy(1);
+    
+
     wrefresh(haut);
      
 }
@@ -141,11 +155,11 @@ void JeuTxt :: txtBoucle(){
    
     do{
 
-         txtAff();
+        txtAff();
         //deltaTime
         LAST = NOW;
         NOW = clock();
-        float deltaTime = (float)((NOW - LAST)/5000);
+        float deltaTime = (float)((NOW - LAST)/100);
 
         usleep(10000);
 
@@ -153,17 +167,17 @@ void JeuTxt :: txtBoucle(){
         nodelay (haut, TRUE);
        
 
-       // Jtxt.updatePartie(deltaTime);
-
-       
+        //Jtxt.updatePartie(deltaTime);
+        Jtxt.MP.phy.ticks(deltaTime); //gravité MP
+        Jtxt.SP.phy.ticks(deltaTime); //gravité SP
         int c = wgetch(haut);
 
         switch (c)
         {
         //mouvements MP
-            case 'z' :  Jtxt.MPClavierDown(2); break;
-            case 'q' :  Jtxt.MPClavierDown(1); break;
-            case 'd' : Jtxt.MPClavierDown(0); break;
+            case 'z' :  Jtxt.MP.phy.setPosy(Jtxt.MP.phy.getPosy()-2); break;
+            case 'q' :  Jtxt.MP.phy.setPosx(Jtxt.MP.phy.getPosx()-1); break;
+            case 'd' : Jtxt.MP.phy.setPosx(Jtxt.MP.phy.getPosx()+1); break;
 
             //S'accroupir MP
             case 's' : Jtxt.MPClavierDown(3); break;
@@ -172,9 +186,9 @@ void JeuTxt :: txtBoucle(){
             case 'a' : Jtxt.MPClavierDown(5); break;
 
             //mouvements SP
-            case KEY_UP:  Jtxt.SP.sauter(Jtxt.ter1); break;
-            case KEY_LEFT:  Jtxt.SP.bougerAgauche(Jtxt.ter1); break;
-            case KEY_RIGHT: Jtxt.SP.bougerAdroite(Jtxt.ter1); break;
+            case KEY_UP:  Jtxt.SP.phy.setPosy(Jtxt.SP.phy.getPosy()-2); break;
+            case KEY_LEFT:  Jtxt.SP.phy.setPosx(Jtxt.SP.phy.getPosx()-1); break;
+            case KEY_RIGHT: Jtxt.SP.phy.setPosx(Jtxt.SP.phy.getPosx()+1); break;
             //s'accroupir SP
             case KEY_DOWN: Jtxt.SPClavierDown(3); break;
             //attaquer SP
